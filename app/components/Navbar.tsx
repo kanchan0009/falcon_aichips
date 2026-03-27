@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface DropdownItem {
   title: string;
@@ -100,15 +101,18 @@ export default function Navbar(): React.ReactElement {
   }, [closeMobileMenu]);
 
   // Handle mobile dropdown toggle
-  const handleMobileDropdownToggle = useCallback((item: NavItem) => {
-    if (item.dropdown) {
-      // Toggle dropdown expansion
-      setMobileExpanded((prev) => (prev === item.label ? null : item.label));
-    } else {
-      // No dropdown - close the entire mobile menu
-      closeMobileMenu();
-    }
-  }, [closeMobileMenu]);
+  const handleMobileDropdownToggle = useCallback(
+    (item: NavItem) => {
+      if (item.dropdown) {
+        // Toggle dropdown expansion
+        setMobileExpanded((prev) => (prev === item.label ? null : item.label));
+      } else {
+        // No dropdown - close the entire mobile menu
+        closeMobileMenu();
+      }
+    },
+    [closeMobileMenu],
+  );
 
   // Handle mobile dropdown item click
   const handleMobileDropdownItemClick = useCallback(() => {
@@ -140,18 +144,16 @@ export default function Navbar(): React.ReactElement {
           <Link href="/" onClick={handleMobileLinkClick}>
             <div className="flex items-center gap-3 flex-shrink-0 cursor-pointer hover:scale-[1.02] transition-transform duration-200">
               {/* Logo placeholder */}
-              <div
-                className="w-9 h-9 rounded-lg flex items-center justify-center text-xs font-bold"
-                style={{
-                  background: "linear-gradient(135deg, #c9940a, #f5d87a)",
-                  color: "#000",
-                  letterSpacing: "0.05em",
-                  fontFamily: "'Georgia', serif",
-                  boxShadow: "0 0 12px rgba(201,148,10,0.5)",
-                }}
-              >
-                F
+
+              <div className="w-12 h-11 relative">
+                <Image
+                  src="/image0.jpeg" // place your logo in /public folder
+                  alt="Logo"
+                  fill
+                  className="rounded-lg object-cover"
+                />
               </div>
+
               <span
                 className="text-white font-bold text-xl tracking-widest uppercase"
                 style={{
@@ -469,7 +471,7 @@ export default function Navbar(): React.ReactElement {
           ))}
           {/* Mobile lang + CTA */}
           <div className="pt-3 border-t border-white/10 flex items-center justify-between">
-            <button 
+            <button
               className="flex items-center gap-2 text-white/70 text-sm px-2 py-1"
               onClick={() => setLangOpen(!langOpen)}
             >
