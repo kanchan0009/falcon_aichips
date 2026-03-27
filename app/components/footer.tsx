@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
 
 interface LinkItem {
@@ -96,8 +96,6 @@ const footerDataCompany: Array<{ heading: string; links: LinkItem[] }> = [
   },
 ];
 
-
-
 function ExternalIcon() {
   return (
     <svg
@@ -193,16 +191,13 @@ export default function Footer() {
               href="/"
               className="flex items-center gap-3 hover:scale-[1.02] transition-transform duration-200"
             >
-              <div
-                className="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm"
-                style={{
-                  background: "linear-gradient(135deg, #c9940a, #f5d87a)",
-                  color: "#000",
-                  fontFamily: "'Georgia', serif",
-                  boxShadow: "0 0 14px rgba(201,148,10,0.5)",
-                }}
-              >
-                F
+              <div className="w-9 h-9 relative">
+                <Image
+                  src="/image0.jpeg" // place your logo in /public folder
+                  alt="Logo"
+                  fill
+                  className="rounded-lg object-cover"
+                />
               </div>
               <span
                 className="text-white font-bold text-xl tracking-widest uppercase"

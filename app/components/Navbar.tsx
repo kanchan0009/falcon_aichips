@@ -145,7 +145,7 @@ export default function Navbar(): React.ReactElement {
             <div className="flex items-center gap-3 flex-shrink-0 cursor-pointer hover:scale-[1.02] transition-transform duration-200">
               {/* Logo placeholder */}
 
-              <div className="w-12 h-11 relative">
+              <div className="w-14 h-14 relative">
                 <Image
                   src="/image0.jpeg" // place your logo in /public folder
                   alt="Logo"
