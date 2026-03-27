@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 /* ── Types ─────────────────────────────────────────── */
 interface RevealProps {
@@ -22,6 +22,20 @@ interface StatItem {
   suffix: string;
   label: string;
   sub: string;
+}
+
+interface TestimonialItem {
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+}
+
+interface MapDot {
+  top: string;
+  left?: string;
+  right?: string;
+  label: string;
 }
 
 /* ── Scroll-reveal hook ─────────────────────────────────────────── */
@@ -230,7 +244,7 @@ function LogoPlaceholder({ name }: { name: string }) {
 /* ══════════════════════════════════════════════════════════════════
    MAIN PAGE
 ══════════════════════════════════════════════════════════════════ */
-export default function HomePage() {
+export default function HomePage(): React.ReactElement {
   const partners = ["Airwallex", "Monzo", "Klarna", "Wise", "Revolut", "Paysafe", "Luno", "Robinhood"];
   
   const valueProps = [
@@ -264,12 +278,12 @@ export default function HomePage() {
     { value: 750, suffix: "+", label: "Data suppliers", sub: "Trusted network" },
   ];
   
-  const testimonials = [
+  const testimonials: TestimonialItem[] = [
     { quote: "Partnering with Falcon allows us to offer a suite of solutions combining multi-layered protection against payment fraud.", name: "Sarah Chen", role: "Chief Risk Officer", company: "NeoBank Pro" },
     { quote: "When we launched on Falcon's identity data platform, our pass-rate improved from 68% to 91% — exceptional results.", name: "James Harlow", role: "VP Product", company: "TradeFi Global" },
   ];
   
-  const mapDots = [
+  const mapDots: MapDot[] = [
     { top: "20%", left: "20%", label: "UK" },
     { top: "35%", left: "45%", label: "EU" },
     { top: "40%", right: "20%", label: "APAC" },
