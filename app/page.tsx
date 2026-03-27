@@ -28,11 +28,11 @@ interface StatItem {
 function useReveal(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    
+
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -40,13 +40,13 @@ function useReveal(threshold = 0.1) {
           obs.disconnect();
         }
       },
-      { threshold }
+      { threshold },
     );
     obs.observe(el);
-    
+
     return () => obs.disconnect();
   }, [threshold]);
-  
+
   return [ref, visible] as const;
 }
 
@@ -54,10 +54,10 @@ function useReveal(threshold = 0.1) {
 function Counter({ end, suffix = "" }: { end: number; suffix?: string }) {
   const [count, setCount] = useState(0);
   const [ref, visible] = useReveal(0.3);
-  
+
   useEffect(() => {
     if (!visible) return;
-    
+
     let start = 0;
     const step = Math.ceil(end / 60);
     const timer = setInterval(() => {
@@ -69,28 +69,34 @@ function Counter({ end, suffix = "" }: { end: number; suffix?: string }) {
         setCount(start);
       }
     }, 20);
-    
+
     return () => clearInterval(timer);
   }, [visible, end]);
-  
+
   return (
     <span ref={ref}>
-      {count}{suffix}
+      {count}
+      {suffix}
     </span>
   );
 }
 
 /* ── Reveal wrapper ─────────────────────────────────────────────── */
-function Reveal({ children, delay = 0, className = "", direction = "up" }: RevealProps) {
+function Reveal({
+  children,
+  delay = 0,
+  className = "",
+  direction = "up",
+}: RevealProps) {
   const [ref, visible] = useReveal();
-  
+
   const transforms = {
     up: "translateY(32px)",
     down: "translateY(-32px)",
     left: "translateX(32px)",
     right: "translateX(-32px)",
   };
-  
+
   return (
     <div
       ref={ref}
@@ -170,7 +176,8 @@ function ImgBox({
     <div
       className={`rounded-2xl flex items-center justify-center overflow-hidden ${className}`}
       style={{
-        background: "linear-gradient(135deg,#1a1000 0%,#3a2800 60%,#6b4800 100%)",
+        background:
+          "linear-gradient(135deg,#1a1000 0%,#3a2800 60%,#6b4800 100%)",
         border: "1px solid rgba(201,148,10,0.25)",
         minHeight: "80px",
         ...style,
@@ -231,44 +238,128 @@ function LogoPlaceholder({ name }: { name: string }) {
    MAIN PAGE
 ══════════════════════════════════════════════════════════════════ */
 export default function HomePage() {
-  const partners = ["Airwallex", "Monzo", "Klarna", "Wise", "Revolut", "Paysafe", "Luno", "Robinhood"];
-  
+  const partners = [
+    "Airwallex",
+    "Monzo",
+    "Klarna",
+    "Wise",
+    "Revolut",
+    "Paysafe",
+    "Luno",
+    "Robinhood",
+  ];
+
   const valueProps = [
-    { icon: "🛡️", title: "Verify identity", desc: "Confirm customers are who they claim to be with multi-layered document and biometric checks." },
-    { icon: "📊", title: "Assess risk", desc: "Understand and manage risk across your customer base with continuous, AI-driven signals." },
-    { icon: "🔒", title: "Protect against fraud", desc: "Detect and block synthetic, stolen and fraudulent identities before they cause damage." },
+    {
+      icon: "🛡️",
+      title: "Verify identity",
+      desc: "Confirm customers are who they claim to be with multi-layered document and biometric checks.",
+    },
+    {
+      icon: "📊",
+      title: "Assess risk",
+      desc: "Understand and manage risk across your customer base with continuous, AI-driven signals.",
+    },
+    {
+      icon: "🔒",
+      title: "Protect against fraud",
+      desc: "Detect and block synthetic, stolen and fraudulent identities before they cause damage.",
+    },
   ];
-  
+
   const verifyFeatures = [
-    { icon: "📄", title: "Data verification", desc: "Verify customer identity data against authoritative global sources in real time, with minimal friction." },
-    { icon: "🤳", title: "Biometric verification", desc: "Confirm customers are genuinely present using advanced facial biometric and liveness checks." },
-    { icon: "🆔", title: "Identity scores", desc: "Combine signals into a single confidence score to assess identity reliability at every touchpoint." },
+    {
+      icon: "📄",
+      title: "Data verification",
+      desc: "Verify customer identity data against authoritative global sources in real time, with minimal friction.",
+    },
+    {
+      icon: "🤳",
+      title: "Biometric verification",
+      desc: "Confirm customers are genuinely present using advanced facial biometric and liveness checks.",
+    },
+    {
+      icon: "🆔",
+      title: "Identity scores",
+      desc: "Combine signals into a single confidence score to assess identity reliability at every touchpoint.",
+    },
   ];
-  
+
   const riskFeatures = [
-    { icon: "👤", title: "Know your customer", desc: "Comprehensive KYC checks drawn from hundreds of global data sources, delivered in milliseconds." },
-    { icon: "🏢", title: "Know your business", desc: "Verify corporate entities, UBOs and business relationships to meet AML and compliance obligations." },
-    { icon: "🧠", title: "Risk intelligence", desc: "Continuously evaluate behavioural and transactional risk with adaptive AI models." },
+    {
+      icon: "👤",
+      title: "Know your customer",
+      desc: "Comprehensive KYC checks drawn from hundreds of global data sources, delivered in milliseconds.",
+    },
+    {
+      icon: "🏢",
+      title: "Know your business",
+      desc: "Verify corporate entities, UBOs and business relationships to meet AML and compliance obligations.",
+    },
+    {
+      icon: "🧠",
+      title: "Risk intelligence",
+      desc: "Continuously evaluate behavioural and transactional risk with adaptive AI models.",
+    },
   ];
-  
+
   const fraudFeatures = [
-    { icon: "🌐", title: "Cross-industry network", desc: "Leverage consortium fraud signals from thousands of businesses to identify bad actors instantly." },
-    { icon: "👥", title: "Synthetic identities", desc: "Detect fabricated identities built from real and stolen data using advanced pattern recognition." },
-    { icon: "🔍", title: "Investigate identities", desc: "Dig deeper into suspect profiles with a rich investigation workspace and global data connections." },
+    {
+      icon: "🌐",
+      title: "Cross-industry network",
+      desc: "Leverage consortium fraud signals from thousands of businesses to identify bad actors instantly.",
+    },
+    {
+      icon: "👥",
+      title: "Synthetic identities",
+      desc: "Detect fabricated identities built from real and stolen data using advanced pattern recognition.",
+    },
+    {
+      icon: "🔍",
+      title: "Investigate identities",
+      desc: "Dig deeper into suspect profiles with a rich investigation workspace and global data connections.",
+    },
   ];
-  
+
   const stats: StatItem[] = [
-    { value: 60, suffix: "+", label: "Data sources", sub: "Authoritative global data" },
-    { value: 4, suffix: "B+", label: "Identity records", sub: "Continuously updated" },
+    {
+      value: 60,
+      suffix: "+",
+      label: "Data sources",
+      sub: "Authoritative global data",
+    },
+    {
+      value: 4,
+      suffix: "B+",
+      label: "Identity records",
+      sub: "Continuously updated",
+    },
     { value: 80, suffix: "", label: "Countries", sub: "Full coverage" },
-    { value: 750, suffix: "+", label: "Data suppliers", sub: "Trusted network" },
+    {
+      value: 750,
+      suffix: "+",
+      label: "Data suppliers",
+      sub: "Trusted network",
+    },
   ];
-  
+
   const testimonials = [
-    { quote: "Partnering with Falcon allows us to offer a suite of solutions combining multi-layered protection against payment fraud.", name: "Sarah Chen", role: "Chief Risk Officer", company: "NeoBank Pro" },
-    { quote: "When we launched on Falcon's identity data platform, our pass-rate improved from 68% to 91% — exceptional results.", name: "James Harlow", role: "VP Product", company: "TradeFi Global" },
+    {
+      quote:
+        "Partnering with Falcon allows us to offer a suite of solutions combining multi-layered protection against payment fraud.",
+      name: "Sarah Chen",
+      role: "Chief Risk Officer",
+      company: "NeoBank Pro",
+    },
+    {
+      quote:
+        "When we launched on Falcon's identity data platform, our pass-rate improved from 68% to 91% — exceptional results.",
+      name: "James Harlow",
+      role: "VP Product",
+      company: "TradeFi Global",
+    },
   ];
-  
+
   const mapDots = [
     { top: "20%", left: "20%", label: "UK" },
     { top: "35%", left: "45%", label: "EU" },
@@ -277,13 +368,18 @@ export default function HomePage() {
   ];
 
   return (
-    <main className="bg-white overflow-x-hidden w-full" style={{ fontFamily: "'Georgia',serif" }}>
-
+    <main
+      className="bg-white overflow-x-hidden w-full"
+      style={{ fontFamily: "'Georgia',serif" }}
+    >
       {/* ── HERO ──────────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 80% 60% at 65% 40%, rgba(201,148,10,0.07) 0%, transparent 70%)" }}
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 60% at 65% 40%, rgba(201,148,10,0.07) 0%, transparent 70%)",
+          }}
         />
         <div className="absolute right-0 top-0 w-1/2 h-full pointer-events-none hidden lg:block overflow-hidden">
           {[...Array(5)].map((_, i) => (
@@ -304,28 +400,37 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20 sm:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div className="text-center lg:text-left">
-              <Reveal delay={0}><Pill>AI-Powered Identity</Pill></Reveal>
+              <Reveal delay={0}>
+                <Pill>AI-Powered Identity</Pill>
+              </Reveal>
               <Reveal delay={0.1}>
                 <h1
                   className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-black leading-[1.05] mb-5 mt-1"
-                  style={{ fontFamily: "'Georgia',serif", letterSpacing: "-0.02em" }}
+                  style={{
+                    fontFamily: "'Georgia',serif",
+                    letterSpacing: "-0.02em",
+                  }}
                 >
-                  Complete<br />
+                  Complete
+                  <br />
                   <span
                     style={{
-                      background: "linear-gradient(135deg,#c9940a,#f5d87a,#c9940a)",
+                      background:
+                        "linear-gradient(135deg,#c9940a,#f5d87a,#c9940a)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                     }}
                   >
                     customer
-                  </span><br />
+                  </span>
+                  <br />
                   intelligence
                 </h1>
               </Reveal>
               <Reveal delay={0.2}>
                 <p className="text-black/55 text-base sm:text-lg leading-relaxed mb-7 max-w-md mx-auto lg:mx-0">
-                  Identity intelligence for fast and rewarding customer onboarding — every without compromise.
+                  Identity intelligence for fast and rewarding customer
+                  onboarding — every without compromise.
                 </p>
               </Reveal>
               <Reveal delay={0.3}>
@@ -340,10 +445,9 @@ export default function HomePage() {
                 className="grid grid-cols-3 grid-rows-3 gap-2 sm:gap-3"
                 style={{ height: "clamp(260px,50vw,420px)" }}
               >
-                <ImgBox className="col-span-2 row-span-2" label="Hero Visual" />
-                <ImgBox className="col-span-1 row-span-1" label="Portrait" />
-                <ImgBox className="col-span-1 row-span-1" label="Card UI" />
-                <ImgBox className="col-span-2 row-span-1" label="Dashboard" />
+                <ImgBox className="col-span-3 row-span-2" label="Hero Visual" />
+                <ImgBox className="col-span-2 row-span-1" label="Card UI" />
+                <ImgBox className="col-span-1 row-span-1" label="Dashboard" />
               </div>
             </Reveal>
           </div>
@@ -351,7 +455,10 @@ export default function HomePage() {
       </section>
 
       {/* ── PARTNER LOGOS ─────────────────────────────────────────── */}
-      <section className="py-6 sm:py-8 border-y border-black/5" style={{ background: "rgba(0,0,0,0.02)" }}>
+      <section
+        className="py-6 sm:py-8 border-y border-black/5"
+        style={{ background: "rgba(0,0,0,0.02)" }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <Reveal>
             <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 lg:gap-6">
@@ -379,11 +486,17 @@ export default function HomePage() {
       {/* ── CONNECT SECTION ───────────────────────────────────────── */}
       <section
         className="py-16 sm:py-24 relative overflow-hidden"
-        style={{ background: "linear-gradient(135deg,#000 0%,#1a1000 50%,#3d2900 100%)" }}
+        style={{
+          background:
+            "linear-gradient(135deg,#000 0%,#1a1000 50%,#3d2900 100%)",
+        }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 60% 50% at 70% 50%, rgba(201,148,10,0.1) 0%, transparent 70%)" }}
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 70% 50%, rgba(201,148,10,0.1) 0%, transparent 70%)",
+          }}
         />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -406,7 +519,9 @@ export default function HomePage() {
                   </span>
                 </h2>
                 <p className="text-white/55 leading-relaxed mb-7 max-w-md mx-auto lg:mx-0">
-                  Falcon GBG Identify lets you offer fast, personal and compliant customer journeys you — and your customers — can trust.
+                  Falcon GBG Identify lets you offer fast, personal and
+                  compliant customer journeys you — and your customers — can
+                  trust.
                 </p>
                 <div className="flex justify-center lg:justify-start">
                   <GoldBtn>See it in action</GoldBtn>
@@ -432,7 +547,11 @@ export default function HomePage() {
                       boxShadow: "0 0 30px rgba(201,148,10,0.5)",
                     }}
                   >
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6 ml-1 text-black" fill="currentColor" viewBox="0 0 24 24">
+                    <svg
+                      className="w-5 h-5 sm:w-6 sm:h-6 ml-1 text-black"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </div>
@@ -469,17 +588,33 @@ export default function HomePage() {
                 border: "1px solid rgba(201,148,10,0.2)",
               }}
             >
-              <ImgBox className="w-full h-full" label="Customer Journey Visual" style={{ border: "none", borderRadius: "0" }} />
+              <ImgBox
+                className="w-full h-full"
+                label="Customer Journey Visual"
+                style={{ border: "none", borderRadius: "0" }}
+              />
               <div
                 className="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 rounded-xl p-3 sm:p-4 w-40 sm:w-52"
-                style={{ background: "rgba(255,255,255,0.96)", boxShadow: "0 8px 32px rgba(0,0,0,0.2)" }}
+                style={{
+                  background: "rgba(255,255,255,0.96)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
+                }}
               >
-                <div className="text-xs text-black/50 mb-1">Document verification</div>
+                <div className="text-xs text-black/50 mb-1">
+                  Document verification
+                </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-sm font-bold text-black">Verified ✓</span>
+                  <span className="text-sm font-bold text-black">
+                    Verified ✓
+                  </span>
                 </div>
-                <div className="mt-2 h-1 rounded-full w-full" style={{ background: "linear-gradient(90deg,#c9940a,#f5d87a)" }} />
+                <div
+                  className="mt-2 h-1 rounded-full w-full"
+                  style={{
+                    background: "linear-gradient(90deg,#c9940a,#f5d87a)",
+                  }}
+                />
               </div>
             </div>
           </Reveal>
@@ -496,15 +631,24 @@ export default function HomePage() {
       {/* ── RISK ANALYSIS ─────────────────────────────────────────── */}
       <section
         className="py-16 sm:py-24 relative overflow-hidden"
-        style={{ background: "linear-gradient(160deg,#fafafa 0%,#fff8e6 50%,#fafafa 100%)" }}
+        style={{
+          background:
+            "linear-gradient(160deg,#fafafa 0%,#fff8e6 50%,#fafafa 100%)",
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             {/* Image — below text on mobile */}
             <Reveal direction="right" className="order-2 lg:order-1">
               <div className="relative mt-8 lg:mt-0 pb-6">
-                <div className="grid grid-cols-2 gap-3" style={{ height: "clamp(220px,45vw,380px)" }}>
-                  <ImgBox className="row-span-2 h-full" label="Customer Portrait" />
+                <div
+                  className="grid grid-cols-2 gap-3"
+                  style={{ height: "clamp(220px,45vw,380px)" }}
+                >
+                  <ImgBox
+                    className="row-span-2 h-full"
+                    label="Customer Portrait"
+                  />
                   <ImgBox label="Risk Card" />
                   <ImgBox label="Score Graph" />
                 </div>
@@ -516,17 +660,24 @@ export default function HomePage() {
                     boxShadow: "0 16px 48px rgba(0,0,0,0.3)",
                   }}
                 >
-                  <div className="text-xs text-yellow-400/70 mb-1 uppercase tracking-wider">Risk Score</div>
+                  <div className="text-xs text-yellow-400/70 mb-1 uppercase tracking-wider">
+                    Risk Score
+                  </div>
                   <div
                     className="text-xl sm:text-2xl font-black text-white"
                     style={{ fontFamily: "'Georgia',serif" }}
                   >
                     24 / Low
                   </div>
-                  <div className="mt-2 h-1.5 rounded-full w-full" style={{ background: "rgba(255,255,255,0.1)" }}>
+                  <div
+                    className="mt-2 h-1.5 rounded-full w-full"
+                    style={{ background: "rgba(255,255,255,0.1)" }}
+                  >
                     <div
                       className="h-full rounded-full w-1/4"
-                      style={{ background: "linear-gradient(90deg,#c9940a,#f5d87a)" }}
+                      style={{
+                        background: "linear-gradient(90deg,#c9940a,#f5d87a)",
+                      }}
                     />
                   </div>
                 </div>
@@ -540,10 +691,12 @@ export default function HomePage() {
                   className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-2 mb-5 leading-tight"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  Complete customer compliance and conversion with accurate risk analysis
+                  Complete customer compliance and conversion with accurate risk
+                  analysis
                 </h2>
                 <p className="text-black/55 leading-relaxed mb-7 max-w-md mx-auto lg:mx-0">
-                  Apply precise risk intelligence to every customer decision, staying compliant and protecting revenue at the same time.
+                  Apply precise risk intelligence to every customer decision,
+                  staying compliant and protecting revenue at the same time.
                 </p>
                 <div className="flex justify-center lg:justify-start">
                   <GoldBtn>Start now</GoldBtn>
@@ -564,11 +717,17 @@ export default function HomePage() {
       {/* ── FRAUD ─────────────────────────────────────────────────── */}
       <section
         className="py-16 sm:py-24 relative overflow-hidden"
-        style={{ background: "linear-gradient(135deg,#000 0%,#1a1000 60%,#3d2900 100%)" }}
+        style={{
+          background:
+            "linear-gradient(135deg,#000 0%,#1a1000 60%,#3d2900 100%)",
+        }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 50% 60% at 30% 50%, rgba(201,148,10,0.08) 0%, transparent 70%)" }}
+          style={{
+            background:
+              "radial-gradient(ellipse 50% 60% at 30% 50%, rgba(201,148,10,0.08) 0%, transparent 70%)",
+          }}
         />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -579,10 +738,12 @@ export default function HomePage() {
                   className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-2 mb-5 leading-tight"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  Interrogate identities for fraud signals and block crime at first contact
+                  Interrogate identities for fraud signals and block crime at
+                  first contact
                 </h2>
                 <p className="text-white/55 leading-relaxed mb-7 max-w-md mx-auto lg:mx-0">
-                  Combine network intelligence, synthetic identity detection and investigative tools to stop fraud before it starts.
+                  Combine network intelligence, synthetic identity detection and
+                  investigative tools to stop fraud before it starts.
                 </p>
                 <div className="flex justify-center lg:justify-start">
                   <GoldBtn>Start now</GoldBtn>
@@ -598,7 +759,11 @@ export default function HomePage() {
                   border: "1px solid rgba(201,148,10,0.2)",
                 }}
               >
-                <ImgBox className="w-full h-full" label="Fraud Detection UI" style={{ border: "none", borderRadius: "0" }} />
+                <ImgBox
+                  className="w-full h-full"
+                  label="Fraud Detection UI"
+                  style={{ border: "none", borderRadius: "0" }}
+                />
               </div>
             </Reveal>
           </div>
@@ -607,7 +772,10 @@ export default function HomePage() {
               <Reveal key={item.title} delay={i * 0.1}>
                 <div
                   className="p-5 sm:p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl h-full"
-                  style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(201,148,10,0.15)" }}
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(201,148,10,0.15)",
+                  }}
                 >
                   <div className="text-3xl mb-3">{item.icon}</div>
                   <h4
@@ -616,7 +784,9 @@ export default function HomePage() {
                   >
                     {item.title}
                   </h4>
-                  <p className="text-white/45 text-sm leading-relaxed mb-3">{item.desc}</p>
+                  <p className="text-white/45 text-sm leading-relaxed mb-3">
+                    {item.desc}
+                  </p>
                   <span className="text-xs font-bold text-yellow-500 cursor-pointer hover:text-yellow-400">
                     Learn more →
                   </span>
@@ -640,28 +810,37 @@ export default function HomePage() {
                   Global coverage
                 </h2>
                 <p className="text-black/55 leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
-                  Make the right customer decisions and complete onboarding around the world with Falcon's unmatched data reach.
+                  Make the right customer decisions and complete onboarding
+                  around the world with Falcon's unmatched data reach.
                 </p>
                 <div className="grid grid-cols-2 gap-4 max-w-xs mx-auto sm:max-w-sm lg:max-w-none lg:mx-0">
                   {stats.map((stat) => (
                     <Reveal key={stat.label}>
                       <div
                         className="p-4 sm:p-5 rounded-2xl"
-                        style={{ background: "#fafafa", border: "1px solid rgba(0,0,0,0.06)" }}
+                        style={{
+                          background: "#fafafa",
+                          border: "1px solid rgba(0,0,0,0.06)",
+                        }}
                       >
                         <div
                           className="text-2xl sm:text-3xl font-black mb-1"
                           style={{
                             fontFamily: "'Georgia',serif",
-                            background: "linear-gradient(135deg,#c9940a,#f5d87a)",
+                            background:
+                              "linear-gradient(135deg,#c9940a,#f5d87a)",
                             WebkitBackgroundClip: "text",
                             WebkitTextFillColor: "transparent",
                           }}
                         >
                           <Counter end={stat.value} suffix={stat.suffix} />
                         </div>
-                        <div className="font-bold text-black text-sm">{stat.label}</div>
-                        <div className="text-xs text-black/40 mt-0.5">{stat.sub}</div>
+                        <div className="font-bold text-black text-sm">
+                          {stat.label}
+                        </div>
+                        <div className="text-xs text-black/40 mt-0.5">
+                          {stat.sub}
+                        </div>
                       </div>
                     </Reveal>
                   ))}
@@ -670,7 +849,11 @@ export default function HomePage() {
             </div>
             <Reveal delay={0.2} direction="left">
               <div className="relative mt-6 lg:mt-0">
-                <ImgBox className="w-full" label="World Map Coverage" style={{ height: "clamp(220px,45vw,320px)" }} />
+                <ImgBox
+                  className="w-full"
+                  label="World Map Coverage"
+                  style={{ height: "clamp(220px,45vw,320px)" }}
+                />
                 {mapDots.map((dot) => (
                   <div
                     key={dot.label}
@@ -683,9 +866,14 @@ export default function HomePage() {
                   >
                     <div
                       className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full animate-pulse"
-                      style={{ background: "#c9940a", boxShadow: "0 0 8px rgba(201,148,10,0.8)" }}
+                      style={{
+                        background: "#c9940a",
+                        boxShadow: "0 0 8px rgba(201,148,10,0.8)",
+                      }}
                     />
-                    <span className="text-yellow-300 text-xs font-bold">{dot.label}</span>
+                    <span className="text-yellow-300 text-xs font-bold">
+                      {dot.label}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -697,7 +885,10 @@ export default function HomePage() {
       {/* ── SOCIAL PROOF ──────────────────────────────────────────── */}
       <section
         className="py-16 sm:py-24 relative overflow-hidden"
-        style={{ background: "linear-gradient(160deg,#000 0%,#1a1000 40%,#3d2900 80%,#7a5500 100%)" }}
+        style={{
+          background:
+            "linear-gradient(160deg,#000 0%,#1a1000 40%,#3d2900 80%,#7a5500 100%)",
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal>
@@ -705,7 +896,8 @@ export default function HomePage() {
               className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-2 leading-tight text-center"
               style={{ fontFamily: "'Georgia',serif" }}
             >
-              20,000+ businesses<br />
+              20,000+ businesses
+              <br />
               <span
                 style={{
                   background: "linear-gradient(90deg,#c9940a,#f5d87a)",
@@ -737,11 +929,15 @@ export default function HomePage() {
                   >
                     &ldquo;
                   </div>
-                  <p className="text-white/80 leading-relaxed mb-5 italic text-sm sm:text-base">{t.quote}</p>
+                  <p className="text-white/80 leading-relaxed mb-5 italic text-sm sm:text-base">
+                    {t.quote}
+                  </p>
                   <div className="flex items-center gap-3">
                     <div
                       className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-black font-bold text-sm flex-shrink-0"
-                      style={{ background: "linear-gradient(135deg,#c9940a,#f5d87a)" }}
+                      style={{
+                        background: "linear-gradient(135deg,#c9940a,#f5d87a)",
+                      }}
                     >
                       {t.name[0]}
                     </div>
@@ -752,7 +948,9 @@ export default function HomePage() {
                       >
                         {t.name}
                       </div>
-                      <div className="text-white/40 text-xs">{t.role}, {t.company}</div>
+                      <div className="text-white/40 text-xs">
+                        {t.role}, {t.company}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -767,7 +965,8 @@ export default function HomePage() {
                   label={l}
                   style={{
                     height: "clamp(90px,22vw,180px)",
-                    background: "linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.09))",
+                    background:
+                      "linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.09))",
                   }}
                 />
               ))}
@@ -780,7 +979,10 @@ export default function HomePage() {
       <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,148,10,0.07) 0%, transparent 70%)" }}
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,148,10,0.07) 0%, transparent 70%)",
+          }}
         />
         <div className="absolute right-0 top-0 bottom-0 w-1/3 pointer-events-none overflow-hidden hidden sm:block">
           <div
@@ -801,7 +1003,8 @@ export default function HomePage() {
                   className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-2 mb-5 leading-tight"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  Complete customer<br />
+                  Complete customer
+                  <br />
                   <span
                     style={{
                       background: "linear-gradient(135deg,#c9940a,#f5d87a)",
@@ -813,7 +1016,8 @@ export default function HomePage() {
                   </span>
                 </h2>
                 <p className="text-black/55 leading-relaxed mb-7 max-w-md mx-auto lg:mx-0">
-                  Connect safely with every genuine identity — at global scale, in real time.
+                  Connect safely with every genuine identity — at global scale,
+                  in real time.
                 </p>
                 <div className="flex justify-center lg:justify-start">
                   <GoldBtn>Get a demo</GoldBtn>
@@ -830,7 +1034,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
     </main>
   );
 }
