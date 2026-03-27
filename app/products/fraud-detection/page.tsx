@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 /* ═══════════════════════════════════════════════════════════════════
    TYPES & INTERFACES
@@ -613,7 +614,7 @@ function HeroSection() {
           ))}
         </div>
 
-        {/* GBG Go banner */}
+        {/* Falcon Go banner */}
         <Reveal delay={0.1} className="mt-10 sm:mt-14">
           <div
             className="rounded-2xl p-5 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
@@ -858,12 +859,12 @@ function TestimonialBanner() {
 ═══════════════════════════════════════════════════════════════════ */
 function ConnectSafelySection() {
   const [activeTab, setActiveTab] = useState(0);
-  const tabs: string[] = ["GBG Instinct", "GBG Trust Network"];
+  const tabs: string[] = ["FalconInstinct", "Falcon Trust Network"];
 
   const tabContent: TabContent[] = [
     {
       headline: "Real-time identity intelligence at every touchpoint",
-      desc: "GBG Instinct analyses hundreds of identity signals in milliseconds, giving you an accurate risk score at onboarding and across the full customer lifecycle.",
+      desc: "Falcon Instinct analyses hundreds of identity signals in milliseconds, giving you an accurate risk score at onboarding and across the full customer lifecycle.",
       features: [
         "Instant decisions at onboarding",
         "Continuous monitoring post-onboarding",
@@ -960,7 +961,7 @@ function ConnectSafelySection() {
     },
     {
       headline: "Connect with consortium intelligence to stop fraud networks",
-      desc: "GBG Trust Network pools identity intelligence across thousands of organisations, enabling you to spot emerging fraud patterns before they reach you.",
+      desc: "Falcon Trust Network pools identity intelligence across thousands of organisations, enabling you to spot emerging fraud patterns before they reach you.",
       features: [
         "Shared fraud signals network",
         "Synthetic identity detection",
@@ -1371,7 +1372,9 @@ function BottomCTA() {
               at global scale.
             </p>
             <div className="flex flex-wrap gap-3 mb-10">
-              <GoldBtn>Get a demo</GoldBtn>
+               <Link href="/demo">
+               <GoldBtn>Get a demo</GoldBtn>
+               </Link>
               <button
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white border border-white/15 hover:border-white/30 transition-colors"
                 style={{ fontFamily: "'Georgia',serif" }}

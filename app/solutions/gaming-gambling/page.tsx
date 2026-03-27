@@ -559,7 +559,7 @@ function TestimonialStrip() {
   const testimonials: TestimonialProps[] = [
     {
       quote:
-        "Using GBG's data and solutions, we identified significant improvements in identifying and blocking fraudulent onboarding, substantially reducing our fraud risk by almost 50% this year.",
+        "Using Falcon's data and solutions, we identified significant improvements in identifying and blocking fraudulent onboarding, substantially reducing our fraud risk by almost 50% this year.",
       author: "Read full story",
       role: "",
       logo: "Nike",
@@ -1098,9 +1098,9 @@ function ConnectSafelySection() {
 
   const products: ProductData[] = [
     {
-      label: "GBG Go",
+      label: "Falcon Go",
       headline: "Launch identity verification in hours, not weeks.",
-      desc: "GBG Go is the fastest way to get identity verification live for your retail business — no complex integration required. Ideal for growing businesses that need KYC quickly.",
+      desc: "Falcon Go is the fastest way to get identity verification live for your retail business — no complex integration required. Ideal for growing businesses that need KYC quickly.",
       features: [
         "No-code setup in hours",
         "Pre-built compliance rules",
@@ -1113,7 +1113,7 @@ function ConnectSafelySection() {
             className="text-xs font-black text-black mb-2"
             style={{ fontFamily: "'Georgia',serif" }}
           >
-            GBG Go Dashboard
+            Falcon Go Dashboard
           </div>
           <div className="grid grid-cols-2 gap-2">
             {[
@@ -1156,10 +1156,10 @@ function ConnectSafelySection() {
       ),
     },
     {
-      label: "GBG Trust Network",
+      label: "Falcon Trust Network",
       headline:
         "Stop fraud with consortium intelligence across 20,000+ businesses.",
-      desc: "GBG Trust Network shares anonymised fraud signals across our global customer base, so you benefit from intelligence gathered across thousands of organisations.",
+      desc: "Falcon Trust Network shares anonymised fraud signals across our global customer base, so you benefit from intelligence gathered across thousands of organisations.",
       features: [
         "Shared fraud signals",
         "Synthetic identity detection",

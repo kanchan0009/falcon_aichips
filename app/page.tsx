@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 /* ── Types ─────────────────────────────────────────── */
 interface RevealProps {
@@ -435,7 +436,9 @@ export default function HomePage() {
               </Reveal>
               <Reveal delay={0.3}>
                 <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-                  <GoldBtn>Get a demo</GoldBtn>
+                  <Link href="/demo">
+                    <GoldBtn>Get a demo</GoldBtn>
+                  </Link>
                   <OutlineBtn>Learn more</OutlineBtn>
                 </div>
               </Reveal>
