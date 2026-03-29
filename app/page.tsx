@@ -112,6 +112,25 @@ function Reveal({
     </div>
   );
 }
+<style
+  dangerouslySetInnerHTML={{
+    __html: `
+      @keyframes marquee {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .animate-marquee {
+        animation: marquee 25s linear infinite;
+      }
+    `,
+  }}
+/>
+
 
 /* ── Golden CTA button ──────────────────────────────────────────── */
 function GoldBtn({ children }: { children: React.ReactNode }) {
@@ -458,20 +477,47 @@ export default function HomePage() {
       </section>
 
       {/* ── PARTNER LOGOS ─────────────────────────────────────────── */}
-      <section
-        className="py-6 sm:py-8 border-y border-black/5"
-        style={{ background: "rgba(0,0,0,0.02)" }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <Reveal>
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 lg:gap-6">
-              {partners.map((n) => (
-                <LogoPlaceholder key={n} name={n} />
-              ))}
-            </div>
-          </Reveal>
+      <Reveal className="mt-16 text-center">
+        <p className="text-black/30 text-xs uppercase tracking-widest mb-6">
+          Trusted By Leading Institutions
+        </p>
+        <div className="relative overflow-hidden">
+          <div className="flex animate-marquee whitespace-nowrap">
+            {/* First set */}
+            {[
+              "Commercial Banks",
+              "Development Banks",
+              "Finance Companies",
+              "Microfinance",
+              "Digital Wallets",
+            ].map((inst) => (
+              <span
+                key={`a-${inst}`}
+                className="text-sm font-bold text-black/40 mx-8 flex items-center gap-2"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-black/20"></span>
+                {inst}
+              </span>
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {[
+              "Commercial Banks",
+              "Development Banks",
+              "Finance Companies",
+              "Microfinance",
+              "Digital Wallets",
+            ].map((inst) => (
+              <span
+                key={`b-${inst}`}
+                className="text-sm font-bold text-black/40 mx-8 flex items-center gap-2"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-black/20"></span>
+                {inst}
+              </span>
+            ))}
+          </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* ── 3 VALUE PROPS ─────────────────────────────────────────── */}
       <section className="py-16 sm:py-24 bg-white">
@@ -960,21 +1006,6 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
-          <Reveal delay={0.15}>
-            <div className="grid grid-cols-3 gap-3 sm:gap-4 mt-8 sm:mt-10">
-              {["Customer A", "Customer B", "Customer C"].map((l) => (
-                <ImgBox
-                  key={l}
-                  label={l}
-                  style={{
-                    height: "clamp(90px,22vw,180px)",
-                    background:
-                      "linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.09))",
-                  }}
-                />
-              ))}
-            </div>
-          </Reveal>
         </div>
       </section>
 

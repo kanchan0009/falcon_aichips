@@ -261,10 +261,10 @@ function CheckItem({ children, gold = false }: CheckItemProps) {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 1 — HERO: SECURE EVERY STEP OF THE JOURNEY
+   SECTION 1 — HERO: FAST AND SECURE AGE CERTAINTY
 ═══════════════════════════════════════════════════════════════════ */
 function HeroSection() {
-  const words: string[] = ["journey", "onboarding", "interaction", "decision"];
+  const words: string[] = ["certainty", "protection", "compliance", "confidence"];
   const [wordIdx, setWordIdx] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [deleting, setDeleting] = useState(false);
@@ -291,23 +291,23 @@ function HeroSection() {
   const features: FeatureItem[] = [
     {
       icon: "🛡️",
-      title: "All-in-one identity platform",
-      desc: "Everything you need to verify, screen and onboard in one connected platform.",
+      title: "Prevent underage access",
+      desc: "Stop minors from accessing age-restricted content, services, products and venues.",
     },
     {
-      icon: "🤖",
-      title: "Automate journey security",
-      desc: "AI-driven signals automatically flag risk and accelerate genuine customers.",
+      icon: "🔐",
+      title: "Adaptive journeys",
+      desc: "Treat every customer as an individual with age verification on our all-in-one identity platform.",
     },
     {
       icon: "⚡",
-      title: "Business-pace rules",
-      desc: "Configure your own risk thresholds and automation logic without code.",
+      title: "Fast and hassle-free",
+      desc: "Verify age quickly and securely without impacting the experience of genuine customers.",
     },
     {
       icon: "🌍",
-      title: "Verify anyone, anywhere",
-      desc: "80+ country coverage with localised data sources and compliance support.",
+      title: "Global coverage",
+      desc: "80+ checks and one API to verify genuine customers everywhere with accurate risk analysis.",
     },
   ];
 
@@ -366,7 +366,7 @@ function HeroSection() {
           {/* LEFT */}
           <div>
             <Reveal delay={0}>
-              <Pill>Guided Onboarding</Pill>
+              <Pill>Age Verification</Pill>
             </Reveal>
             <Reveal delay={0.08}>
               <h1
@@ -376,7 +376,7 @@ function HeroSection() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Secure every step of the{" "}
+                Fast and secure age{" "}
                 <span
                   style={{
                     background: "linear-gradient(135deg,#c9940a,#f5d87a)",
@@ -391,14 +391,13 @@ function HeroSection() {
             </Reveal>
             <Reveal delay={0.16}>
               <p className="text-black/55 text-base sm:text-lg leading-relaxed mb-8 max-w-md">
-                Falcon intelligence gives you everything you need to confidently
-                onboard, protect and grow your customer base without compromise.
+                Prevent underage access to age-restricted content, services, products and venues, ensuring minors and your business are fully protected.
               </p>
             </Reveal>
             <Reveal delay={0.24}>
               <div className="flex flex-wrap gap-3">
-                <GoldBtn>Start your journey</GoldBtn>
-                <GoldBtn outline>Watch demo →</GoldBtn>
+                <GoldBtn>Get a demo</GoldBtn>
+                <GoldBtn outline>Learn more →</GoldBtn>
               </div>
             </Reveal>
 
@@ -406,16 +405,16 @@ function HeroSection() {
             <Reveal delay={0.32}>
               <ul className="mt-8 space-y-3">
                 <CheckItem>
-                  All-in-one identity platform for global compliance
+                  Ensure a safe onboarding process online and in-store
                 </CheckItem>
                 <CheckItem>
-                  Automate journey security with real-time signals
+                  Safeguard minors and stop fake IDs with document validation
                 </CheckItem>
                 <CheckItem>
-                  Biometric verification at every touchpoint
+                  Accelerate customer acquisition while meeting compliance
                 </CheckItem>
                 <CheckItem>
-                  Verify anyone, anywhere with 80+ country coverage
+                  Verify anyone, anywhere with 190+ country coverage
                 </CheckItem>
               </ul>
             </Reveal>
@@ -439,7 +438,7 @@ function HeroSection() {
                   className="absolute inset-0 flex items-center justify-center text-yellow-600/30 text-sm font-bold uppercase tracking-widest"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  Hero Portrait
+                  Age Verification
                 </span>
                 {/* Gradient overlay */}
                 <div
@@ -451,7 +450,7 @@ function HeroSection() {
                 />
               </div>
 
-              {/* Floating card: face scan */}
+              {/* Floating card: age check */}
               <UICard
                 className="absolute top-5 right-5 w-48"
                 style={{
@@ -465,13 +464,13 @@ function HeroSection() {
                       background: "linear-gradient(135deg,#c9940a,#f5d87a)",
                     }}
                   >
-                    🤳
+                    🔞
                   </div>
                   <span
                     className="text-xs font-black text-black"
                     style={{ fontFamily: "'Georgia',serif" }}
                   >
-                    Face Scan
+                    Age Check
                   </span>
                 </div>
                 <div
@@ -481,14 +480,14 @@ function HeroSection() {
                   <div
                     className="h-full rounded-full"
                     style={{
-                      width: "82%",
+                      width: "100%",
                       background: "linear-gradient(90deg,#c9940a,#f5d87a)",
                     }}
                   />
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-xs text-black/50">Match: 99.2%</span>
+                  <span className="text-xs text-black/50">Age: 25+ Verified</span>
                 </div>
               </UICard>
 
@@ -509,10 +508,10 @@ function HeroSection() {
                   <span className="text-lg">🆔</span>
                   <div>
                     <div className="text-xs font-bold text-black">
-                      Passport • UK
+                      Driver's License • UK
                     </div>
                     <div className="text-xs text-green-500 font-bold">
-                      ✓ Authentic
+                      ✓ Age Confirmed
                     </div>
                   </div>
                 </div>
@@ -530,9 +529,9 @@ function HeroSection() {
                   className="text-xs font-black text-black mb-2"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  Onboarding
+                  Verification
                 </div>
-                {["Identity", "Biometrics", "Risk Check"].map((s, i) => (
+                {["Document", "Age Check", "Complete"].map((s, i) => (
                   <div key={s} className="flex items-center gap-2 mb-1">
                     <div
                       className="w-3.5 h-3.5 rounded-full flex items-center justify-center"
@@ -631,7 +630,7 @@ function HeroSection() {
                     fontFamily: "'Georgia',serif",
                   }}
                 >
-                  F
+                  G
                 </div>
                 <span
                   className="text-yellow-400 text-xs font-bold uppercase tracking-wider"
@@ -644,12 +643,10 @@ function HeroSection() {
                 className="text-white font-bold text-sm sm:text-base"
                 style={{ fontFamily: "'Georgia',serif" }}
               >
-                The fastest way to launch identity verification — no integration
-                required.
+                The all-in-one identity platform for fast, easy, and safe business growth.
               </p>
               <p className="text-white/45 text-xs mt-1">
-                Go live in hours, not weeks. Designed for startups and
-                scale-ups.
+                Verify genuine customers everywhere with 80+ checks and one API.
               </p>
             </div>
             <div className="flex-shrink-0">
@@ -678,9 +675,9 @@ const STAT_NODES: StatNode[] = [
 
 function GlobalCoverageSection() {
   const [ref, visible] = useReveal(0.2);
-  const n1 = useCounter(60, visible);
-  const n2 = useCounter(4, visible);
-  const n3 = useCounter(750, visible);
+  const n1 = useCounter(600, visible);
+  const n2 = useCounter(200, visible);
+  const n3 = useCounter(190, visible);
 
   const stats: Array<{
     val: number;
@@ -690,21 +687,21 @@ function GlobalCoverageSection() {
   }> = [
     {
       val: n1,
-      suffix: "+",
-      label: "Billion",
-      sub: "Data sources verified per year",
+      suffix: "M",
+      label: "Company",
+      sub: "Records worldwide",
     },
     {
       val: n2,
-      suffix: "B+",
-      label: "Records",
-      sub: "Identities in our global network",
+      suffix: "+",
+      label: "Registries",
+      sub: "Beneficial ownership",
     },
     {
       val: n3,
       suffix: "+",
       label: "Countries",
-      sub: "Data suppliers and partners",
+      sub: "Identity verification",
     },
   ];
 
@@ -720,16 +717,15 @@ function GlobalCoverageSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Reveal className="text-center mb-12 sm:mb-16">
-          <GoldLabel>Worldwide Intelligence</GoldLabel>
+          <GoldLabel>Global Coverage</GoldLabel>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-2 mb-3"
             style={{ fontFamily: "'Georgia',serif" }}
           >
-            Global coverage
+            Complete business onboarding faster
           </h2>
           <p className="text-black/50 text-sm max-w-lg mx-auto leading-relaxed">
-            World-class data network — the most comprehensive identity
-            intelligence platform on the planet.
+            Reduced time to revenue around the world with comprehensive identity intelligence.
           </p>
         </Reveal>
 
@@ -806,9 +802,7 @@ function TestimonialBanner() {
             className="text-white/80 text-base sm:text-xl lg:text-2xl italic leading-relaxed mb-8 font-bold"
             style={{ fontFamily: "'Georgia',serif" }}
           >
-            Multi-bureau research delivers a more reliable picture to our
-            clients, maximising customer match rates and vastly reducing
-            attrition.
+            We achieved a 30% uplift in successful age verifications and preventing underage sign-ups, while allowing GGPoker to let more legitimate customers start playing.
           </p>
           <div className="flex items-center justify-center gap-4">
             <div
@@ -819,17 +813,17 @@ function TestimonialBanner() {
                 fontFamily: "'Georgia',serif",
               }}
             >
-              RA
+              PB
             </div>
             <div className="text-left">
               <p
                 className="font-black text-white text-sm"
                 style={{ fontFamily: "'Georgia',serif" }}
               >
-                Rachel Adams
+                Paul Burke
               </p>
               <p className="text-white/40 text-xs">
-                Head of Analytics, CreditFlow Technology
+                Managing Director, NSUS Limited
               </p>
             </div>
             <div className="ml-4 hidden sm:flex gap-1">
@@ -858,17 +852,17 @@ function TestimonialBanner() {
 ═══════════════════════════════════════════════════════════════════ */
 function ConnectSafelySection() {
   const [activeTab, setActiveTab] = useState(0);
-  const tabs: string[] = ["Falcon Instinct", "Falcon Trust Network"];
+  const tabs: string[] = ["Falcon Go", "Document Authentication"];
 
   const tabContent: TabContent[] = [
     {
-      headline: "Real-time identity intelligence at every touchpoint",
-      desc: "Falcon Instinct analyses hundreds of identity signals in milliseconds, giving you an accurate risk score at onboarding and across the full customer lifecycle.",
+      headline: "Accelerate safe customer-centric growth with worldwide identity intelligence",
+      desc: "Falcon Go is the all-in-one identity platform for fast, easy, and safe business growth. Verify genuine customers everywhere with 80+ checks and one API.",
       features: [
-        "Instant decisions at onboarding",
-        "Continuous monitoring post-onboarding",
-        "Configurable risk thresholds",
-        "Audit-ready compliance logs",
+        "Complete customer compliance and conversion",
+        "Accurate risk analysis in real-time",
+        "Interrogate identities for fraud signals",
+        "Block crime at first contact",
       ],
       ui: (
         <div className="p-5 space-y-3">
@@ -878,7 +872,7 @@ function ConnectSafelySection() {
               className="text-xs font-black text-black"
               style={{ fontFamily: "'Georgia',serif" }}
             >
-              Risk Score Dashboard
+              Identity Verification
             </span>
             <span
               className="text-xs px-2 py-0.5 rounded-full font-bold"
@@ -888,7 +882,7 @@ function ConnectSafelySection() {
             </span>
           </div>
           {[
-            { label: "Identity Match", val: 96, color: "#c9940a" },
+            { label: "Age Verification", val: 96, color: "#c9940a" },
             { label: "Document Auth", val: 88, color: "#22c55e" },
             { label: "Fraud Risk", val: 12, color: "#ef4444", invert: true },
           ].map((row) => (
@@ -925,7 +919,7 @@ function ConnectSafelySection() {
                 className="text-xs font-black text-black"
                 style={{ fontFamily: "'Georgia',serif" }}
               >
-                PASS
+                VERIFIED
               </div>
               <div
                 className="text-lg font-black"
@@ -945,7 +939,7 @@ function ConnectSafelySection() {
                 className="text-xs font-black text-black/60"
                 style={{ fontFamily: "'Georgia',serif" }}
               >
-                FLAG
+                BLOCKED
               </div>
               <div
                 className="text-lg font-black text-red-400"
@@ -959,13 +953,13 @@ function ConnectSafelySection() {
       ),
     },
     {
-      headline: "Connect with consortium intelligence to stop fraud networks",
-      desc: "Falcon Trust Network pools identity intelligence across thousands of organisations, enabling you to spot emerging fraud patterns before they reach you.",
+      headline: "Authenticate government-issued IDs online or in-person with 50+ forensic tests",
+      desc: "Tech-first document authentication using FaceMatch technology, active and passive liveness checks, and Smart Capture technology to validate over 4,000 different forms of identification.",
       features: [
-        "Shared fraud signals network",
-        "Synthetic identity detection",
-        "Cross-industry risk data",
-        "Network analysis and visualisation",
+        "50+ forensic document tests in seconds",
+        "FaceMatch technology with liveness detection",
+        "Smart Capture for optimal image quality",
+        "Human forensic document experts",
       ],
       ui: (
         <div className="p-5">
@@ -973,10 +967,10 @@ function ConnectSafelySection() {
             className="text-xs font-black text-black mb-3"
             style={{ fontFamily: "'Georgia',serif" }}
           >
-            Network Signals
+            Document Analysis
           </div>
           <div className="grid grid-cols-3 gap-2 mb-3">
-            {["Low Risk", "Med Risk", "High Risk"].map((l, i) => (
+            {["Valid", "Suspicious", "Rejected"].map((l, i) => (
               <div
                 key={l}
                 className="p-2 rounded-lg text-center"
@@ -1006,9 +1000,9 @@ function ConnectSafelySection() {
           </div>
           <div className="space-y-2">
             {[
-              "Fraud signal match found",
-              "Synthetic ID flagged",
-              "Network link detected",
+              "Hologram verified",
+              "Microprint detected",
+              "UV security features",
             ].map((s, i) => (
               <div
                 key={s}
@@ -1018,13 +1012,13 @@ function ConnectSafelySection() {
                   border: "1px solid rgba(0,0,0,0.06)",
                 }}
               >
-                <span className="text-sm">{["⚠️", "🚫", "🔗"][i]}</span>
+                <span className="text-sm">{["✓", "✓", "✓"][i]}</span>
                 <span className="text-xs text-black/60">{s}</span>
                 <span
                   className="ml-auto text-xs font-bold"
                   style={{ color: "#c9940a", fontFamily: "'Georgia',serif" }}
                 >
-                  View →
+                  Passed →
                 </span>
               </div>
             ))}
@@ -1052,13 +1046,10 @@ function ConnectSafelySection() {
             className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-2 mb-3"
             style={{ fontFamily: "'Georgia',serif" }}
           >
-            Connect safely with every
-            <br />
-            genuine identity
+            Prevent fake IDs & underage access
           </h2>
           <p className="text-black/50 text-sm max-w-lg mx-auto">
-            The purpose-built platform for your digital identity estate —
-            intelligent, connected and compliant.
+            Transact with confidence while delivering a verification experience that is fast, easy and hassle-free.
           </p>
         </Reveal>
 
@@ -1132,28 +1123,28 @@ function ConnectSafelySection() {
 ═══════════════════════════════════════════════════════════════════ */
 const FAQS: FAQItem[] = [
   {
-    q: "What is digital customer onboarding?",
-    a: "Digital customer onboarding is the process of verifying a new customer's identity, assessing risk and activating their account entirely online — without branch visits or paper forms.",
+    q: "What is age verification?",
+    a: "Age verification is the process of confirming a person's age to ensure they meet legal requirements for accessing age-restricted products, services or content. Our age verification solutions help businesses prevent underage access while staying compliant with global regulations.",
   },
   {
-    q: "Why is digital onboarding important?",
-    a: "It dramatically improves conversion rates, reduces fraud, lowers operational costs and helps you meet regulatory obligations such as KYC and AML — all while delivering a better customer experience.",
+    q: "How could a person's age be verified?",
+    a: "A person's age can be verified using identity data checks against trusted sources, document authentication of government-issued IDs, and biometric verification like selfie matching and liveness detection. These methods ensure fast, secure and accurate age confirmation with minimal friction.",
   },
   {
-    q: "How does Falcon improve pass rates?",
-    a: "By drawing on 60+ data sources simultaneously, Falcon constructs a richer identity profile for each applicant, enabling more confident pass decisions and fewer unnecessary referrals.",
+    q: "What is an age verification system?",
+    a: "An age verification system is a digital solution that automates the process of checking a user's age. Our system combines data verification, document checks and biometric tools to confirm age and identity in real time, helping businesses onboard legitimate customers and block underage users.",
   },
   {
-    q: "Is Falcon compliant with GDPR?",
-    a: "Yes. Falcon is GDPR-compliant and ISO 27001 certified. All customer data is handled with strict security and data minimisation practices, and is never resold to third parties.",
+    q: "What is age verification software?",
+    a: "Age verification software is a tool that enables businesses to verify customer age online or in person. We use global data sources, document validation and biometric checks to ensure compliance and prevent fraud while maintaining a smooth customer experience.",
   },
   {
-    q: "Can Falcon support biometric verification?",
-    a: "Yes. Falcon's platform includes liveness detection and facial biometric matching, ensuring the person presenting a document is genuinely present and matches the identity being verified.",
+    q: "What are age verification services?",
+    a: "Age verification services include a suite of tools and technologies that help businesses confirm customer age. We offer services such as identity data verification, document authentication and real-time fraud detection to support compliance and protect minors.",
   },
   {
     q: "How quickly can we see results after go-live?",
-    a: "Most customers see measurable improvement in pass rates and fraud detection within the first 30 days of live operation. Our team provides ongoing tuning support to optimise performance.",
+    a: "Most customers see measurable improvement in age verification rates and underage prevention within the first 30 days of live operation. Our team provides ongoing tuning support to optimise performance.",
   },
 ];
 
@@ -1179,7 +1170,7 @@ function FAQSection() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              about customer onboarding
+              about age verification
             </span>
           </h2>
         </Reveal>
@@ -1270,10 +1261,10 @@ function FAQSection() {
 ═══════════════════════════════════════════════════════════════════ */
 function BottomCTA() {
   const ctaCards: CTACard[] = [
-    { icon: "🆔", t: "Identity", d: "Verify globally" },
-    { icon: "🧠", t: "AI Risk", d: "Real-time scoring" },
-    { icon: "🛡️", t: "Fraud Guard", d: "Stop crime fast" },
-    { icon: "📊", t: "Analytics", d: "Full visibility" },
+    { icon: "🔞", t: "Age Verify", d: "Block underage" },
+    { icon: "🛡️", t: "Fraud Guard", d: "Stop fake IDs" },
+    { icon: "📋", t: "Compliance", d: "Meet regulations" },
+    { icon: "🌍", t: "Global", d: "190+ countries" },
   ];
 
   return (
@@ -1380,7 +1371,7 @@ function BottomCTA() {
               </button>
             </div>
             <div className="flex flex-wrap gap-4 sm:gap-6 opacity-35">
-              {["VISA", "Mastercard", "Stripe", "Wise", "HSBC"].map((b) => (
+              {["Gaming", "Retail", "Alcohol", "Cannabis", "Media"].map((b) => (
                 <span
                   key={b}
                   className="font-black text-white text-xs tracking-widest uppercase"
@@ -1434,7 +1425,7 @@ function BottomCTA() {
 /* ═══════════════════════════════════════════════════════════════════
    ROOT
 ═══════════════════════════════════════════════════════════════════ */
-export default function SolutionsPage() {
+export default function AgeVerificationPage() {
   return (
     <main
       className="bg-white overflow-x-hidden w-full"
