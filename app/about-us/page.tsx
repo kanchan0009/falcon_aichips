@@ -1192,7 +1192,7 @@ export default function AboutPage() {
       {/* Map */}
       <div className="max-w-7xl mx-auto rounded-2xl overflow-hidden shadow-lg">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d7066.143415976875!2d85.3172765!3d27.6841785!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1774775408514!5m2!1sen!2snp"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.967780614527!2d85.31480357525305!3d27.68739067619398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19b625d8cd09%3A0x155b6ead3c186597!2sFalcon%20Chips%20And%20A.I.%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1774776887665!5m2!1sen!2snp"
           className="w-full h-[400px] md:h-[400px] lg:h-[500px] border-0"
           allowFullScreen
           loading="lazy"
