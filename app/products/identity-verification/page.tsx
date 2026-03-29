@@ -1,123 +1,68 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, ReactNode } from "react";
 
 /* ═══════════════════════════════════════════════════════════════════
    TYPES & INTERFACES
 ═══════════════════════════════════════════════════════════════════ */
-
 interface RevealProps {
-  children: React.ReactNode;
+  children: ReactNode;
   delay?: number;
   direction?: "up" | "down" | "left" | "right" | "scale";
   className?: string;
 }
 
-interface GoldBtnProps {
-  children: React.ReactNode;
-  full?: boolean;
-  outline?: boolean;
-  sm?: boolean;
-}
-
-interface GoldLabelProps {
-  children: React.ReactNode;
-}
-
-interface PillProps {
-  children: React.ReactNode;
-  dark?: boolean;
-}
-
-interface UICardProps {
-  children: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-}
-
-interface CheckItemProps {
-  children: React.ReactNode;
-  gold?: boolean;
-}
-
-interface StatNode {
-  x: string;
-  y: string;
-  city: string;
-}
-
-interface FeatureItem {
+interface FeatureCardProps {
   icon: string;
   title: string;
-  desc: string;
-}
-
-interface TabContent {
-  headline: string;
-  desc: string;
-  features: string[];
-  ui: React.ReactNode;
-}
-
-interface FAQItem {
-  q: string;
-  a: string;
-}
-
-interface CTACard {
-  icon: string;
-  t: string;
-  d: string;
+  description: string;
+  variant?: "light" | "dark";
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   HOOKS
+   ANIMATION HOOKS
 ═══════════════════════════════════════════════════════════════════ */
-function useReveal(
-  threshold = 0.1,
-): [React.RefObject<HTMLDivElement | null>, boolean] {
+function useReveal(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
+      ([e]) => { 
+        if (e.isIntersecting) { 
+          setVisible(true); 
+          obs.disconnect(); 
+        } 
       },
-      { threshold },
+      { threshold }
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
-  return [ref, visible];
+  }, [threshold]);
+  
+  return [ref, visible] as const;
 }
 
-function Reveal({
-  children,
-  delay = 0,
-  direction = "up",
-  className = "",
-}: RevealProps) {
+function Reveal({ children, delay = 0, direction = "up", className = "" }: RevealProps) {
   const [ref, visible] = useReveal();
   const map: Record<string, string> = {
-    up: "translateY(40px)",
-    down: "translateY(-40px)",
-    left: "translateX(44px)",
-    right: "translateX(-44px)",
-    scale: "scale(0.93) translateY(20px)",
+    up: "translateY(36px)",
+    down: "translateY(-36px)",
+    left: "translateX(40px)",
+    right: "translateX(-40px)",
+    scale: "scale(0.92)",
   };
+
   return (
-    <div
-      ref={ref}
-      className={className}
+    <div 
+      ref={ref} 
+      className={className} 
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "none" : map[direction] || map.up,
-        transition: `opacity 0.75s ease ${delay}s, transform 0.8s cubic-bezier(.22,1,.36,1) ${delay}s`,
+        transition: `opacity 0.7s ease ${delay}s, transform 0.75s cubic-bezier(.22,1,.36,1) ${delay}s`,
       }}
     >
       {children}
@@ -125,56 +70,25 @@ function Reveal({
   );
 }
 
-function useCounter(end: number, active: boolean): number {
-  const [val, setVal] = useState(0);
-  useEffect(() => {
-    if (!active) return;
-    let n = 0;
-    const step = Math.ceil(end / 70);
-    const t = setInterval(() => {
-      n += step;
-      if (n >= end) {
-        setVal(end);
-        clearInterval(t);
-      } else setVal(n);
-    }, 18);
-    return () => clearInterval(t);
-  }, [active, end]);
-  return val;
-}
-
 /* ═══════════════════════════════════════════════════════════════════
-   ATOMS
+   UI COMPONENTS (GOLD/BLACK THEME)
 ═══════════════════════════════════════════════════════════════════ */
-function GoldBtn({
-  children,
-  full = false,
-  outline = false,
-  sm = false,
-}: GoldBtnProps) {
-  if (outline)
-    return (
-      <button
-        className={`inline-flex items-center justify-center gap-2 rounded-xl font-bold transition-all duration-200 hover:scale-105 active:scale-95 whitespace-nowrap ${sm ? "px-4 py-2 text-xs" : "px-6 py-3 text-sm"} ${full ? "w-full" : ""}`}
-        style={{
-          border: "1.5px solid #c9940a",
-          color: "#c9940a",
-          background: "transparent",
-          fontFamily: "'Georgia',serif",
-        }}
-      >
-        {children}
-      </button>
-    );
+function GoldBtn({ children, full = false, sm = false, onClick }: { 
+  children: ReactNode; 
+  full?: boolean; 
+  sm?: boolean;
+  onClick?: () => void;
+}) {
   return (
     <button
-      className={`inline-flex items-center justify-center gap-2 rounded-xl font-black transition-all duration-200 hover:scale-105 active:scale-95 whitespace-nowrap ${sm ? "px-4 py-2 text-xs" : "px-6 py-3 text-sm"} ${full ? "w-full" : ""}`}
-      style={{
-        background: "linear-gradient(135deg,#c9940a,#f5d87a)",
-        color: "#000",
-        fontFamily: "'Georgia',serif",
-        boxShadow: "0 4px 20px rgba(201,148,10,0.38)",
-        letterSpacing: "0.02em",
+      onClick={onClick}
+      className={`inline-flex items-center justify-center gap-2 rounded-xl font-black transition-all duration-200 hover:scale-105 active:scale-95 whitespace-nowrap ${full ? "w-full" : ""} ${sm ? "px-4 py-2 text-xs" : "px-6 py-3 text-sm"}`}
+      style={{ 
+        background: "linear-gradient(135deg,#c9940a,#f5d87a)", 
+        color: "#000", 
+        fontFamily: "'Georgia',serif", 
+        boxShadow: "0 4px 24px rgba(201,148,10,0.4)", 
+        letterSpacing: "0.02em" 
       }}
     >
       {children}
@@ -182,1301 +96,531 @@ function GoldBtn({
   );
 }
 
-function GoldLabel({ children }: GoldLabelProps) {
+function GoldLabel({ children }: { children: ReactNode }) {
   return (
-    <div className="flex items-center justify-center gap-2 mb-3">
-      <span className="h-px w-8" style={{ background: "#c9940a" }} />
-      <span
-        className="text-xs font-black uppercase tracking-widest"
-        style={{ color: "#c9940a", fontFamily: "'Georgia',serif" }}
-      >
-        {children}
-      </span>
-      <span className="h-px w-8" style={{ background: "#c9940a" }} />
-    </div>
-  );
-}
-
-function Pill({ children, dark = false }: PillProps) {
-  return (
-    <span
-      className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full"
-      style={{
-        background: dark ? "rgba(201,148,10,0.18)" : "rgba(201,148,10,0.09)",
-        border: "1px solid rgba(201,148,10,0.38)",
-        color: "#c9940a",
-        fontFamily: "'Georgia',serif",
-      }}
-    >
+    <span className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest mb-2"
+      style={{ color: "#c9940a", fontFamily: "'Georgia',serif" }}>
+      <span className="inline-block w-6 h-px" style={{ background: "#c9940a" }} />
       {children}
+      <span className="inline-block w-6 h-px" style={{ background: "#c9940a" }} />
     </span>
   );
 }
 
-function UICard({ children, className = "", style = {} }: UICardProps) {
-  return (
-    <div
-      className={`rounded-2xl p-4 ${className}`}
-      style={{
-        background: "#fff",
-        boxShadow: "0 8px 40px rgba(0,0,0,0.10)",
-        border: "1px solid rgba(0,0,0,0.06)",
-        ...style,
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
-function CheckItem({ children, gold = false }: CheckItemProps) {
-  return (
-    <li className="flex items-start gap-2.5 text-sm">
-      <span
-        className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5"
-        style={{
-          background: gold
-            ? "linear-gradient(135deg,#c9940a,#f5d87a)"
-            : "rgba(201,148,10,0.12)",
-          border: "1px solid rgba(201,148,10,0.3)",
-        }}
-      >
-        <svg
-          className="w-2.5 h-2.5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke={gold ? "#000" : "#c9940a"}
-          strokeWidth={3}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M5 13l4 4L19 7"
-          />
-        </svg>
-      </span>
-      <span style={{ color: "rgba(0,0,0,0.65)" }}>{children}</span>
-    </li>
-  );
-}
-
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 1 — HERO: SECURE EVERY STEP OF THE JOURNEY
+   SECTION 1 — HERO
 ═══════════════════════════════════════════════════════════════════ */
 function HeroSection() {
-  const words: string[] = ["journey", "onboarding", "interaction", "decision"];
-  const [wordIdx, setWordIdx] = useState(0);
-  const [displayed, setDisplayed] = useState("");
-  const [deleting, setDeleting] = useState(false);
-
-  useEffect(() => {
-    const word = words[wordIdx];
-    let timeout: NodeJS.Timeout;
-    if (!deleting && displayed.length < word.length) {
-      timeout = setTimeout(
-        () => setDisplayed(word.slice(0, displayed.length + 1)),
-        80,
-      );
-    } else if (!deleting && displayed.length === word.length) {
-      timeout = setTimeout(() => setDeleting(true), 1800);
-    } else if (deleting && displayed.length > 0) {
-      timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 45);
-    } else if (deleting && displayed.length === 0) {
-      setDeleting(false);
-      setWordIdx((i) => (i + 1) % words.length);
-    }
-    return () => clearTimeout(timeout);
-  }, [displayed, deleting, wordIdx]);
-
-  const features: FeatureItem[] = [
-    {
-      icon: "🛡️",
-      title: "All-in-one identity platform",
-      desc: "Everything you need to verify, screen and onboard in one connected platform.",
-    },
-    {
-      icon: "🤖",
-      title: "Automate journey security",
-      desc: "AI-driven signals automatically flag risk and accelerate genuine customers.",
-    },
-    {
-      icon: "⚡",
-      title: "Business-pace rules",
-      desc: "Configure your own risk thresholds and automation logic without code.",
-    },
-    {
-      icon: "🌍",
-      title: "Verify anyone, anywhere",
-      desc: "80+ country coverage with localised data sources and compliance support.",
-    },
-  ];
-
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
-      {/* Layered background */}
+    <section className="relative pt-20 pb-28 overflow-hidden"
+      style={{ background: "linear-gradient(160deg,#000 0%,#0d0800 30%,#1a1000 60%,#3d2900 100%)" }}>
+      
+      {/* Animated background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(ellipse 70% 60% at 70% 30%, rgba(201,148,10,0.07) 0%, transparent 65%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(ellipse 40% 40% at 10% 80%, rgba(0,0,0,0.03) 0%, transparent 60%)",
-          }}
-        />
+        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-20"
+          style={{ background: "radial-gradient(circle,rgba(201,148,10,0.4) 0%,transparent 70%)" }} />
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full opacity-15"
+          style={{ background: "radial-gradient(circle,rgba(201,148,10,0.3) 0%,transparent 70%)" }} />
       </div>
-
-      {/* Animated grid */}
-      <div
-        className="absolute inset-0 pointer-events-none overflow-hidden"
-        style={{ opacity: 0.025 }}
-      >
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={`h${i}`}
-            className="absolute w-full h-px"
-            style={{
-              top: `${i * 9}%`,
-              background: "linear-gradient(90deg,transparent,#000,transparent)",
-            }}
-          />
-        ))}
-        {[...Array(16)].map((_, i) => (
-          <div
-            key={`v${i}`}
-            className="absolute h-full w-px"
-            style={{
-              left: `${i * 7}%`,
-              background:
-                "linear-gradient(180deg,transparent,#000,transparent)",
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20 sm:py-28 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* LEFT */}
-          <div>
-            <Reveal delay={0}>
-              <Pill>Guided Onboarding</Pill>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <h1
-                className="text-4xl sm:text-5xl lg:text-6xl font-black text-black mt-4 mb-5 leading-[1.04]"
-                style={{
-                  fontFamily: "'Georgia',serif",
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                Secure every step of the{" "}
-                <span
-                  style={{
-                    background: "linear-gradient(135deg,#c9940a,#f5d87a)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  {displayed}
-                  <span className="animate-pulse">|</span>
-                </span>
-              </h1>
-            </Reveal>
-            <Reveal delay={0.16}>
-              <p className="text-black/55 text-base sm:text-lg leading-relaxed mb-8 max-w-md">
-                Falcon intelligence gives you everything you need to confidently
-                onboard, protect and grow your customer base without compromise.
-              </p>
-            </Reveal>
-            <Reveal delay={0.24}>
-              <div className="flex flex-wrap gap-3">
-                <GoldBtn>Start your journey</GoldBtn>
-                <GoldBtn outline>Watch demo →</GoldBtn>
-              </div>
-            </Reveal>
-
-            {/* Feature bullet list */}
-            <Reveal delay={0.32}>
-              <ul className="mt-8 space-y-3">
-                <CheckItem>
-                  All-in-one identity platform for global compliance
-                </CheckItem>
-                <CheckItem>
-                  Automate journey security with real-time signals
-                </CheckItem>
-                <CheckItem>
-                  Biometric verification at every touchpoint
-                </CheckItem>
-                <CheckItem>
-                  Verify anyone, anywhere with 80+ country coverage
-                </CheckItem>
-              </ul>
-            </Reveal>
-          </div>
-
-          {/* RIGHT — floating UI mockup */}
-          <Reveal delay={0.18} direction="left">
-            <div
-              className="relative"
-              style={{ height: "clamp(420px,55vw,560px)" }}
-            >
-              {/* Main portrait placeholder */}
-              <div
-                className="absolute inset-0 rounded-3xl overflow-hidden"
-                style={{
-                  background: "linear-gradient(135deg,#1a1000,#3d2900,#7a5500)",
-                  border: "1px solid rgba(201,148,10,0.2)",
-                }}
-              >
-                <span
-                  className="absolute inset-0 flex items-center justify-center text-yellow-600/30 text-sm font-bold uppercase tracking-widest"
-                  style={{ fontFamily: "'Georgia',serif" }}
-                >
-                  Hero Portrait
-                </span>
-                {/* Gradient overlay */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.5) 100%)",
-                  }}
-                />
-              </div>
-
-              {/* Floating card: face scan */}
-              <UICard
-                className="absolute top-5 right-5 w-48"
-                style={{
-                  animation: "floatCard 4s ease-in-out infinite alternate",
-                }}
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <div
-                    className="w-7 h-7 rounded-full flex items-center justify-center text-xs"
-                    style={{
-                      background: "linear-gradient(135deg,#c9940a,#f5d87a)",
-                    }}
-                  >
-                    🤳
-                  </div>
-                  <span
-                    className="text-xs font-black text-black"
-                    style={{ fontFamily: "'Georgia',serif" }}
-                  >
-                    Face Scan
-                  </span>
-                </div>
-                <div
-                  className="h-1.5 rounded-full w-full mb-1.5"
-                  style={{ background: "rgba(0,0,0,0.06)" }}
-                >
-                  <div
-                    className="h-full rounded-full"
-                    style={{
-                      width: "82%",
-                      background: "linear-gradient(90deg,#c9940a,#f5d87a)",
-                    }}
-                  />
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-xs text-black/50">Match: 99.2%</span>
-                </div>
-              </UICard>
-
-              {/* Floating card: document check */}
-              <UICard
-                className="absolute bottom-8 left-5 w-52"
-                style={{
-                  animation: "floatCard 5s ease-in-out 1s infinite alternate",
-                }}
-              >
-                <div
-                  className="text-xs font-black text-black mb-2"
-                  style={{ fontFamily: "'Georgia',serif" }}
-                >
-                  Document Verified
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">🆔</span>
-                  <div>
-                    <div className="text-xs font-bold text-black">
-                      Passport • UK
-                    </div>
-                    <div className="text-xs text-green-500 font-bold">
-                      ✓ Authentic
-                    </div>
-                  </div>
-                </div>
-              </UICard>
-
-              {/* Floating card: step tracker */}
-              <UICard
-                className="absolute bottom-8 right-5 w-40"
-                style={{
-                  animation:
-                    "floatCard 3.5s ease-in-out 0.5s infinite alternate",
-                }}
-              >
-                <div
-                  className="text-xs font-black text-black mb-2"
-                  style={{ fontFamily: "'Georgia',serif" }}
-                >
-                  Onboarding
-                </div>
-                {["Identity", "Biometrics", "Risk Check"].map((s, i) => (
-                  <div key={s} className="flex items-center gap-2 mb-1">
-                    <div
-                      className="w-3.5 h-3.5 rounded-full flex items-center justify-center"
-                      style={{
-                        background:
-                          i < 2
-                            ? "linear-gradient(135deg,#c9940a,#f5d87a)"
-                            : "rgba(0,0,0,0.08)",
-                      }}
-                    >
-                      {i < 2 && (
-                        <svg
-                          className="w-2 h-2"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="#000"
-                          strokeWidth={3}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                      )}
-                    </div>
-                    <span
-                      className="text-xs"
-                      style={{ color: i < 2 ? "#000" : "rgba(0,0,0,0.35)" }}
-                    >
-                      {s}
-                    </span>
-                  </div>
-                ))}
-              </UICard>
-
-              {/* Pulse ring deco */}
-              <div className="absolute top-10 left-10 w-5 h-5">
-                <div
-                  className="absolute inset-0 rounded-full"
-                  style={{
-                    background: "#c9940a",
-                    animation: "pulseRing 2.4s ease-out infinite",
-                  }}
-                />
-                <div
-                  className="w-5 h-5 rounded-full"
-                  style={{ background: "#c9940a" }}
-                />
-              </div>
-            </div>
-          </Reveal>
-        </div>
-
-        {/* 4-feature row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-16 sm:mt-20">
-          {features.map((f, i) => (
-            <Reveal key={f.title} delay={0.08 * i}>
-              <div
-                className="group p-5 sm:p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
-                style={{
-                  background: "#fff",
-                  border: "1px solid rgba(0,0,0,0.07)",
-                }}
-              >
-                <div className="text-2xl mb-3">{f.icon}</div>
-                <h4
-                  className="font-black text-black text-sm mb-1.5 group-hover:text-yellow-700 transition-colors"
-                  style={{ fontFamily: "'Georgia',serif" }}
-                >
-                  {f.title}
-                </h4>
-                <p className="text-xs text-black/50 leading-relaxed">
-                  {f.desc}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        {/* Falcon Go banner */}
-        <Reveal delay={0.1} className="mt-10 sm:mt-14">
-          <div
-            className="rounded-2xl p-5 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-            style={{
-              background: "linear-gradient(135deg,#000,#1a1000)",
-              border: "1px solid rgba(201,148,10,0.25)",
-            }}
-          >
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <div
-                  className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black text-black"
-                  style={{
-                    background: "linear-gradient(135deg,#c9940a,#f5d87a)",
-                    fontFamily: "'Georgia',serif",
-                  }}
-                >
-                  F
-                </div>
-                <span
-                  className="text-yellow-400 text-xs font-bold uppercase tracking-wider"
-                  style={{ fontFamily: "'Georgia',serif" }}
-                >
-                  Falcon Go
-                </span>
-              </div>
-              <p
-                className="text-white font-bold text-sm sm:text-base"
-                style={{ fontFamily: "'Georgia',serif" }}
-              >
-                The fastest way to launch identity verification — no integration
-                required.
-              </p>
-              <p className="text-white/45 text-xs mt-1">
-                Go live in hours, not weeks. Designed for startups and
-                scale-ups.
-              </p>
-            </div>
-            <div className="flex-shrink-0">
-              <GoldBtn sm>Explore Falcon Go →</GoldBtn>
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   SECTION 2 — GLOBAL COVERAGE
-═══════════════════════════════════════════════════════════════════ */
-const STAT_NODES: StatNode[] = [
-  { x: "22%", y: "32%", city: "NY" },
-  { x: "48%", y: "28%", city: "LDN" },
-  { x: "62%", y: "42%", city: "DXB" },
-  { x: "76%", y: "56%", city: "SG" },
-  { x: "83%", y: "72%", city: "SYD" },
-  { x: "35%", y: "62%", city: "SAO" },
-  { x: "54%", y: "22%", city: "MOS" },
-  { x: "68%", y: "30%", city: "MUM" },
-];
-
-function GlobalCoverageSection() {
-  const [ref, visible] = useReveal(0.2);
-  const n1 = useCounter(60, visible);
-  const n2 = useCounter(4, visible);
-  const n3 = useCounter(750, visible);
-
-  const stats: Array<{
-    val: number;
-    suffix: string;
-    label: string;
-    sub: string;
-  }> = [
-    {
-      val: n1,
-      suffix: "+",
-      label: "Billion",
-      sub: "Data sources verified per year",
-    },
-    {
-      val: n2,
-      suffix: "B+",
-      label: "Records",
-      sub: "Identities in our global network",
-    },
-    {
-      val: n3,
-      suffix: "+",
-      label: "Countries",
-      sub: "Data suppliers and partners",
-    },
-  ];
-
-  return (
-    <section className="py-16 sm:py-24 relative overflow-hidden bg-white">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,148,10,0.05) 0%, transparent 70%)",
-        }}
-      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <Reveal className="text-center mb-12 sm:mb-16">
-          <GoldLabel>Worldwide Intelligence</GoldLabel>
-          <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-2 mb-3"
-            style={{ fontFamily: "'Georgia',serif" }}
-          >
-            Global coverage
-          </h2>
-          <p className="text-black/50 text-sm max-w-lg mx-auto leading-relaxed">
-            World-class data network — the most comprehensive identity
-            intelligence platform on the planet.
-          </p>
-        </Reveal>
-
-        {/* Stats row */}
-        <div
-          ref={ref}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 mb-12 sm:mb-16"
-        >
-          {stats.map((s, i) => (
-            <Reveal key={s.sub} delay={i * 0.1} direction="scale">
-              <div
-                className="p-6 sm:p-8 rounded-2xl text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-                style={{
-                  background: "linear-gradient(135deg,#000,#1a1000)",
-                  border: "1px solid rgba(201,148,10,0.25)",
-                }}
-              >
-                <div
-                  className="text-3xl sm:text-4xl font-black mb-1"
-                  style={{
-                    fontFamily: "'Georgia',serif",
-                    background: "linear-gradient(135deg,#c9940a,#f5d87a)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  {s.val}
-                  {s.suffix}
-                </div>
-                <div
-                  className="text-white font-bold text-sm mb-1"
-                  style={{ fontFamily: "'Georgia',serif" }}
-                >
-                  {s.label}
-                </div>
-                <div className="text-white/40 text-xs">{s.sub}</div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   SECTION 3 — TESTIMONIAL BANNER
-═══════════════════════════════════════════════════════════════════ */
-function TestimonialBanner() {
-  return (
-    <section
-      className="py-14 sm:py-20 relative overflow-hidden"
-      style={{ background: "linear-gradient(135deg,#000,#1a1000,#3d2900)" }}
-    >
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg,transparent,#c9940a 30%,#f5d87a 50%,#c9940a 70%,transparent)",
-        }}
-      />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
-        <Reveal>
-          <div
-            className="text-5xl font-black mb-4"
-            style={{
-              color: "rgba(201,148,10,0.2)",
-              fontFamily: "'Georgia',serif",
-            }}
-          >
-            "
-          </div>
-          <p
-            className="text-white/80 text-base sm:text-xl lg:text-2xl italic leading-relaxed mb-8 font-bold"
-            style={{ fontFamily: "'Georgia',serif" }}
-          >
-            Multi-bureau research delivers a more reliable picture to our
-            clients, maximising customer match rates and vastly reducing
-            attrition.
-          </p>
-          <div className="flex items-center justify-center gap-4">
-            <div
-              className="w-11 h-11 rounded-full flex items-center justify-center font-black text-sm"
-              style={{
-                background: "linear-gradient(135deg,#c9940a,#f5d87a)",
-                color: "#000",
-                fontFamily: "'Georgia',serif",
-              }}
-            >
-              RA
-            </div>
-            <div className="text-left">
-              <p
-                className="font-black text-white text-sm"
-                style={{ fontFamily: "'Georgia',serif" }}
-              >
-                Rachel Adams
-              </p>
-              <p className="text-white/40 text-xs">
-                Head of Analytics, CreditFlow Technology
-              </p>
-            </div>
-            <div className="ml-4 hidden sm:flex gap-1">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-yellow-400">
-                  ★
-                </span>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-      </div>
-      <div
-        className="absolute bottom-0 left-0 right-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg,transparent,#c9940a 30%,#f5d87a 50%,#c9940a 70%,transparent)",
-        }}
-      />
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   SECTION 4 — CONNECT SAFELY / PRODUCT SHOWCASE
-═══════════════════════════════════════════════════════════════════ */
-function ConnectSafelySection() {
-  const [activeTab, setActiveTab] = useState(0);
-  const tabs: string[] = ["Falcon Instinct", "Falcon Trust Network"];
-
-  const tabContent: TabContent[] = [
-    {
-      headline: "Real-time identity intelligence at every touchpoint",
-      desc: "Falcon Instinct analyses hundreds of identity signals in milliseconds, giving you an accurate risk score at onboarding and across the full customer lifecycle.",
-      features: [
-        "Instant decisions at onboarding",
-        "Continuous monitoring post-onboarding",
-        "Configurable risk thresholds",
-        "Audit-ready compliance logs",
-      ],
-      ui: (
-        <div className="p-5 space-y-3">
-          {/* Mini dashboard mock */}
-          <div className="flex items-center justify-between mb-2">
-            <span
-              className="text-xs font-black text-black"
-              style={{ fontFamily: "'Georgia',serif" }}
-            >
-              Risk Score Dashboard
-            </span>
-            <span
-              className="text-xs px-2 py-0.5 rounded-full font-bold"
-              style={{ background: "rgba(34,197,94,0.1)", color: "#16a34a" }}
-            >
-              Live
-            </span>
-          </div>
-          {[
-            { label: "Identity Match", val: 96, color: "#c9940a" },
-            { label: "Document Auth", val: 88, color: "#22c55e" },
-            { label: "Fraud Risk", val: 12, color: "#ef4444", invert: true },
-          ].map((row) => (
-            <div key={row.label}>
-              <div className="flex justify-between mb-1">
-                <span className="text-xs text-black/60">{row.label}</span>
-                <span
-                  className="text-xs font-bold"
-                  style={{ color: row.color }}
-                >
-                  {row.val}%
-                </span>
-              </div>
-              <div
-                className="h-1.5 rounded-full w-full"
-                style={{ background: "rgba(0,0,0,0.06)" }}
-              >
-                <div
-                  className="h-full rounded-full transition-all duration-700"
-                  style={{ width: `${row.val}%`, background: row.color }}
-                />
-              </div>
-            </div>
-          ))}
-          <div className="pt-2 flex gap-2">
-            <div
-              className="flex-1 p-2 rounded-lg text-center"
-              style={{
-                background: "rgba(201,148,10,0.08)",
-                border: "1px solid rgba(201,148,10,0.2)",
-              }}
-            >
-              <div
-                className="text-xs font-black text-black"
-                style={{ fontFamily: "'Georgia',serif" }}
-              >
-                PASS
-              </div>
-              <div
-                className="text-lg font-black"
-                style={{ color: "#c9940a", fontFamily: "'Georgia',serif" }}
-              >
-                91%
-              </div>
-            </div>
-            <div
-              className="flex-1 p-2 rounded-lg text-center"
-              style={{
-                background: "rgba(239,68,68,0.06)",
-                border: "1px solid rgba(239,68,68,0.15)",
-              }}
-            >
-              <div
-                className="text-xs font-black text-black/60"
-                style={{ fontFamily: "'Georgia',serif" }}
-              >
-                FLAG
-              </div>
-              <div
-                className="text-lg font-black text-red-400"
-                style={{ fontFamily: "'Georgia',serif" }}
-              >
-                9%
-              </div>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      headline: "Connect with consortium intelligence to stop fraud networks",
-      desc: "Falcon Trust Network pools identity intelligence across thousands of organisations, enabling you to spot emerging fraud patterns before they reach you.",
-      features: [
-        "Shared fraud signals network",
-        "Synthetic identity detection",
-        "Cross-industry risk data",
-        "Network analysis and visualisation",
-      ],
-      ui: (
-        <div className="p-5">
-          <div
-            className="text-xs font-black text-black mb-3"
-            style={{ fontFamily: "'Georgia',serif" }}
-          >
-            Network Signals
-          </div>
-          <div className="grid grid-cols-3 gap-2 mb-3">
-            {["Low Risk", "Med Risk", "High Risk"].map((l, i) => (
-              <div
-                key={l}
-                className="p-2 rounded-lg text-center"
-                style={{
-                  background: [
-                    "rgba(34,197,94,0.08)",
-                    "rgba(234,179,8,0.08)",
-                    "rgba(239,68,68,0.08)",
-                  ][i],
-                  border: `1px solid ${["rgba(34,197,94,0.2)", "rgba(234,179,8,0.2)", "rgba(239,68,68,0.2)"][i]}`,
-                }}
-              >
-                <div
-                  className="text-sm font-black"
-                  style={{
-                    color: ["#16a34a", "#ca8a04", "#dc2626"][i],
-                    fontFamily: "'Georgia',serif",
-                  }}
-                >
-                  {[2847, 193, 41][i]}
-                </div>
-                <div className="text-xs" style={{ color: "rgba(0,0,0,0.5)" }}>
-                  {l}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="space-y-2">
-            {[
-              "Fraud signal match found",
-              "Synthetic ID flagged",
-              "Network link detected",
-            ].map((s, i) => (
-              <div
-                key={s}
-                className="flex items-center gap-2 p-2 rounded-lg"
-                style={{
-                  background: "rgba(0,0,0,0.03)",
-                  border: "1px solid rgba(0,0,0,0.06)",
-                }}
-              >
-                <span className="text-sm">{["⚠️", "🚫", "🔗"][i]}</span>
-                <span className="text-xs text-black/60">{s}</span>
-                <span
-                  className="ml-auto text-xs font-bold"
-                  style={{ color: "#c9940a", fontFamily: "'Georgia',serif" }}
-                >
-                  View →
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      ),
-    },
-  ];
-
-  const tc = tabContent[activeTab];
-
-  return (
-    <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 40% at 50% 50%, rgba(201,148,10,0.04) 0%, transparent 70%)",
-        }}
-      />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <Reveal className="text-center mb-10 sm:mb-14">
-          <GoldLabel>Product Suite</GoldLabel>
-          <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-2 mb-3"
-            style={{ fontFamily: "'Georgia',serif" }}
-          >
-            Connect safely with every
-            <br />
-            genuine identity
-          </h2>
-          <p className="text-black/50 text-sm max-w-lg mx-auto">
-            The purpose-built platform for your digital identity estate —
-            intelligent, connected and compliant.
-          </p>
-        </Reveal>
-
-        {/* Tab switcher */}
-        <Reveal delay={0.1} className="flex justify-center gap-2 mb-10">
-          {tabs.map((t, i) => (
-            <button
-              key={t}
-              onClick={() => setActiveTab(i)}
-              className="px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200"
-              style={{
-                background:
-                  activeTab === i
-                    ? "linear-gradient(135deg,#000,#3d2900)"
-                    : "#fff",
-                color: activeTab === i ? "#f5d87a" : "rgba(0,0,0,0.5)",
-                border:
-                  activeTab === i
-                    ? "1px solid rgba(201,148,10,0.4)"
-                    : "1px solid rgba(0,0,0,0.1)",
-                fontFamily: "'Georgia',serif",
-                boxShadow:
-                  activeTab === i ? "0 4px 20px rgba(0,0,0,0.15)" : "none",
-                transform: activeTab === i ? "scale(1.04)" : "scale(1)",
-              }}
-            >
-              {t}
-            </button>
-          ))}
-        </Reveal>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Text */}
-          <Reveal direction="right">
-            <h3
-              className="text-2xl sm:text-3xl font-black text-black mb-4 leading-tight"
-              style={{ fontFamily: "'Georgia',serif" }}
-            >
-              {tc.headline}
-            </h3>
-            <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-6">
-              {tc.desc}
-            </p>
-            <ul className="space-y-3 mb-8">
-              {tc.features.map((f) => (
-                <CheckItem key={f} gold>
-                  {f}
-                </CheckItem>
-              ))}
-            </ul>
-            <div className="flex gap-3">
-              <GoldBtn>Learn more</GoldBtn>
-              <GoldBtn outline>See case study →</GoldBtn>
-            </div>
-          </Reveal>
-
-          {/* UI mock */}
-          <Reveal delay={0.15} direction="left">
-            <UICard style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.12)" }}>
-              {tc.ui}
-            </UICard>
-          </Reveal>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   SECTION 5 — FAQ
-═══════════════════════════════════════════════════════════════════ */
-const FAQS: FAQItem[] = [
-  {
-    q: "What is digital customer onboarding?",
-    a: "Digital customer onboarding is the process of verifying a new customer's identity, assessing risk and activating their account entirely online — without branch visits or paper forms.",
-  },
-  {
-    q: "Why is digital onboarding important?",
-    a: "It dramatically improves conversion rates, reduces fraud, lowers operational costs and helps you meet regulatory obligations such as KYC and AML — all while delivering a better customer experience.",
-  },
-  {
-    q: "How does Falcon improve pass rates?",
-    a: "By drawing on 60+ data sources simultaneously, Falcon constructs a richer identity profile for each applicant, enabling more confident pass decisions and fewer unnecessary referrals.",
-  },
-  {
-    q: "Is Falcon compliant with GDPR?",
-    a: "Yes. Falcon is GDPR-compliant and ISO 27001 certified. All customer data is handled with strict security and data minimisation practices, and is never resold to third parties.",
-  },
-  {
-    q: "Can Falcon support biometric verification?",
-    a: "Yes. Falcon's platform includes liveness detection and facial biometric matching, ensuring the person presenting a document is genuinely present and matches the identity being verified.",
-  },
-  {
-    q: "How quickly can we see results after go-live?",
-    a: "Most customers see measurable improvement in pass rates and fraud detection within the first 30 days of live operation. Our team provides ongoing tuning support to optimise performance.",
-  },
-];
-
-function FAQSection() {
-  const [openIdx, setOpenIdx] = useState<number | null>(null);
-  return (
-    <section
-      className="py-16 sm:py-24 relative overflow-hidden"
-      style={{ background: "#f8f8f8" }}
-    >
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <Reveal className="mb-10 sm:mb-14">
-          <h2
-            className="text-3xl sm:text-4xl font-black text-black leading-tight"
-            style={{ fontFamily: "'Georgia',serif" }}
-          >
-            Frequently asked questions
-            <br />
-            <span
-              style={{
-                background: "linear-gradient(135deg,#c9940a,#f5d87a)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              about customer onboarding
-            </span>
-          </h2>
-        </Reveal>
-        <div className="space-y-3">
-          {FAQS.map((faq, i) => (
-            <Reveal key={faq.q} delay={i * 0.04}>
-              <div
-                className="rounded-2xl overflow-hidden transition-all duration-300"
-                style={{
-                  background:
-                    openIdx === i
-                      ? "linear-gradient(135deg,#000,#1a1000)"
-                      : "#fff",
-                  border:
-                    openIdx === i
-                      ? "1px solid rgba(201,148,10,0.3)"
-                      : "1px solid rgba(0,0,0,0.07)",
-                  boxShadow:
-                    openIdx === i ? "0 8px 32px rgba(201,148,10,0.12)" : "none",
-                }}
-              >
-                <button
-                  className="w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left"
-                  onClick={() => setOpenIdx(openIdx === i ? null : i)}
-                >
-                  <span
-                    className="font-bold text-sm sm:text-base transition-colors duration-300"
-                    style={{
-                      fontFamily: "'Georgia',serif",
-                      color: openIdx === i ? "#fff" : "#000",
-                    }}
-                  >
-                    {faq.q}
-                  </span>
-                  <div
-                    className="w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center transition-all duration-300"
-                    style={{
-                      background:
-                        openIdx === i
-                          ? "rgba(201,148,10,0.2)"
-                          : "rgba(0,0,0,0.05)",
-                      transform:
-                        openIdx === i ? "rotate(180deg)" : "rotate(0deg)",
-                    }}
-                  >
-                    <svg
-                      className="w-3.5 h-3.5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke={openIdx === i ? "#c9940a" : "#666"}
-                      strokeWidth={2.5}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </div>
-                </button>
-                <div
-                  style={{
-                    maxHeight: openIdx === i ? "200px" : "0",
-                    overflow: "hidden",
-                    transition: "max-height 0.4s cubic-bezier(.22,1,.36,1)",
-                  }}
-                >
-                  <div className="px-5 sm:px-6 pb-5 sm:pb-6">
-                    <p
-                      className="text-sm leading-relaxed"
-                      style={{ color: "rgba(255,255,255,0.55)" }}
-                    >
-                      {faq.a}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   SECTION 6 — BOTTOM CTA
-═══════════════════════════════════════════════════════════════════ */
-function BottomCTA() {
-  const ctaCards: CTACard[] = [
-    { icon: "🆔", t: "Identity", d: "Verify globally" },
-    { icon: "🧠", t: "AI Risk", d: "Real-time scoring" },
-    { icon: "🛡️", t: "Fraud Guard", d: "Stop crime fast" },
-    { icon: "📊", t: "Analytics", d: "Full visibility" },
-  ];
-
-  return (
-    <section
-      className="py-16 sm:py-24 relative overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(135deg,#000 0%,#0d0800 20%,#1a1000 45%,#3d2900 70%,#7a5500 90%,#c9940a 100%)",
-      }}
-    >
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg,transparent,#c9940a 30%,#f5d87a 50%,#c9940a 70%,transparent)",
-        }}
-      />
-
-      {/* Animated background orbs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[
-          { size: 320, top: "10%", left: "5%", delay: 0 },
-          { size: 240, top: "60%", left: "70%", delay: 2 },
-          { size: 180, top: "30%", left: "50%", delay: 1 },
-        ].map((o, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full pointer-events-none"
-            style={{
-              width: o.size,
-              height: o.size,
-              top: o.top,
-              left: o.left,
-              background:
-                "radial-gradient(circle,rgba(201,148,10,0.15) 0%,transparent 70%)",
-              animation: `floatOrb ${6 + o.delay}s ease-in-out ${o.delay}s infinite alternate`,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Geometric ring deco */}
-      <div className="absolute right-16 top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none">
-        {[80, 140, 200].map((s) => (
-          <div
-            key={s}
-            className="absolute rounded-full"
-            style={{
-              width: s,
-              height: s,
-              border: "1px solid rgba(201,148,10,0.12)",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%,-50%)",
-            }}
-          />
-        ))}
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full"
-          style={{
-            background: "#c9940a",
-            boxShadow: "0 0 16px rgba(201,148,10,0.8)",
-          }}
-        />
-      </div>
-
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Left content */}
           <Reveal>
-            <p
-              className="text-yellow-500/60 text-xs uppercase tracking-widest mb-3"
-              style={{ fontFamily: "'Georgia',serif" }}
-            >
-              Get Started Today
-            </p>
-            <h2
-              className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-5 leading-tight"
-              style={{ fontFamily: "'Georgia',serif" }}
-            >
-              Complete customer{" "}
-              <span
-                style={{
-                  background: "linear-gradient(90deg,#c9940a,#f5d87a,#c9940a)",
-                  backgroundSize: "200% auto",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  animation: "shimmerSlide 3s linear infinite",
-                }}
-              >
-                intelligence
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              style={{ background: "rgba(201,148,10,0.15)", border: "1px solid rgba(201,148,10,0.3)" }}>
+              <span className="w-2 h-2 rounded-full" style={{ background: "#c9940a" }} />
+              <span className="text-xs font-bold" style={{ color: "#f5d87a", fontFamily: "'Georgia',serif" }}>
+                Identity Verification Platform
               </span>
-            </h2>
-            <p className="text-white/50 text-sm leading-relaxed mb-8 max-w-md">
-              Connect safely with every genuine identity — fast, compliant, and
-              at global scale.
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight"
+              style={{ fontFamily: "'Georgia',serif" }}>
+              Optimise customer onboarding with{" "}
+              <span style={{ 
+                background: "linear-gradient(90deg,#c9940a,#f5d87a)", 
+                WebkitBackgroundClip: "text", 
+                WebkitTextFillColor: "transparent" 
+              }}>
+                confidence
+              </span>
+            </h1>
+            
+            <p className="text-white/60 text-lg mb-8 max-w-lg leading-relaxed">
+              The identity intelligence platform that helps you verify customers, 
+              detect fraud, and make accurate onboarding decisions in seconds.
             </p>
-            <div className="flex flex-wrap gap-3 mb-10">
-              <GoldBtn>Get a demo</GoldBtn>
-              <button
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white border border-white/15 hover:border-white/30 transition-colors"
-                style={{ fontFamily: "'Georgia',serif" }}
-              >
-                Start free trial →
+            
+            <div className="flex flex-wrap gap-4">
+              <GoldBtn>Get a live demo</GoldBtn>
+              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white border border-white/20 hover:border-white/40 transition-colors"
+                style={{ fontFamily: "'Georgia',serif" }}>
+                View pricing →
               </button>
             </div>
-            <div className="flex flex-wrap gap-4 sm:gap-6 opacity-35">
-              {["VISA", "Mastercard", "Stripe", "Wise", "HSBC"].map((b) => (
-                <span
-                  key={b}
-                  className="font-black text-white text-xs tracking-widest uppercase"
-                  style={{ fontFamily: "'Georgia',serif" }}
-                >
-                  {b}
+            
+            {/* Trust badges */}
+            <div className="mt-10 flex items-center gap-6 opacity-40">
+              {["VISA", "Mastercard", "Stripe", "HSBC"].map((brand) => (
+                <span key={brand} className="text-white font-black text-sm tracking-widest"
+                  style={{ fontFamily: "'Georgia',serif" }}>
+                  {brand}
                 </span>
               ))}
             </div>
           </Reveal>
 
-          {/* Right: feature recap cards */}
-          <Reveal delay={0.15} direction="left">
-            <div className="grid grid-cols-2 gap-3">
-              {ctaCards.map((c) => (
-                <div
-                  key={c.t}
-                  className="p-4 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-                  style={{
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(201,148,10,0.18)",
-                    backdropFilter: "blur(8px)",
-                  }}
-                >
-                  <div className="text-2xl mb-2">{c.icon}</div>
-                  <div
-                    className="font-black text-white text-sm"
-                    style={{ fontFamily: "'Georgia',serif" }}
-                  >
-                    {c.t}
+          {/* Right - Dashboard Mockup */}
+          <Reveal delay={0.2} direction="left">
+            <div className="relative">
+              {/* Main dashboard card */}
+              <div className="rounded-2xl overflow-hidden shadow-2xl"
+                style={{ 
+                  background: "linear-gradient(135deg,#fff,#fafafa)",
+                  border: "1px solid rgba(201,148,10,0.2)"
+                }}>
+                {/* Header */}
+                <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm"
+                      style={{ background: "linear-gradient(135deg,#c9940a,#f5d87a)", color: "#000" }}>
+                      F
+                    </div>
+                    <span className="font-bold text-gray-800" style={{ fontFamily: "'Georgia',serif" }}>
+                      Falcon Dashboard
+                    </span>
                   </div>
-                  <div className="text-white/40 text-xs">{c.d}</div>
+                  <div className="flex gap-2">
+                    <div className="w-3 h-3 rounded-full bg-red-400" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                    <div className="w-3 h-3 rounded-full bg-green-400" />
+                  </div>
                 </div>
-              ))}
+                
+                {/* Dashboard content */}
+                <div className="p-6 space-y-4">
+                  {/* Stats row */}
+                  <div className="grid grid-cols-3 gap-4">
+                    {[
+                      { label: "Verified", value: "2,847", color: "#c9940a" },
+                      { label: "Pending", value: "156", color: "#f5d87a" },
+                      { label: "Flagged", value: "23", color: "#7a5500" },
+                    ].map((stat) => (
+                      <div key={stat.label} className="text-center p-3 rounded-xl"
+                        style={{ background: "rgba(201,148,10,0.05)" }}>
+                        <p className="text-2xl font-black" style={{ color: stat.color, fontFamily: "'Georgia',serif" }}>
+                          {stat.value}
+                        </p>
+                        <p className="text-xs text-gray-500">{stat.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Chart placeholder */}
+                  <div className="h-32 rounded-xl flex items-end justify-between px-4 pb-4 gap-2"
+                    style={{ background: "linear-gradient(180deg,rgba(201,148,10,0.05),rgba(201,148,10,0.1))" }}>
+                    {[40, 65, 45, 80, 55, 90, 70, 85, 60, 75].map((h, i) => (
+                      <div key={i} className="w-full rounded-t-sm transition-all duration-500"
+                        style={{ 
+                          height: `${h}%`, 
+                          background: "linear-gradient(180deg,#c9940a,#f5d87a)"
+                        }} />
+                    ))}
+                  </div>
+                  
+                  {/* Recent activity */}
+                  <div className="space-y-2">
+                    {["ID Verified - John Smith", "Document uploaded - Sarah Chen", "Face match confirmed - Mike Johnson"].map((item, i) => (
+                      <div key={i} className="flex items-center gap-3 p-3 rounded-lg"
+                        style={{ background: "rgba(201,148,10,0.03)" }}>
+                        <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs"
+                          style={{ background: "rgba(201,148,10,0.2)", color: "#c9940a" }}>
+                          ✓
+                        </div>
+                        <span className="text-sm text-gray-700">{item}</span>
+                        <span className="ml-auto text-xs text-gray-400">Just now</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Floating badge */}
+              <div className="absolute -top-4 -right-4 px-4 py-2 rounded-xl shadow-lg"
+                style={{ background: "linear-gradient(135deg,#c9940a,#f5d87a)" }}>
+                <p className="text-xs font-black text-black" style={{ fontFamily: "'Georgia',serif" }}>
+                  340% ROI
+                </p>
+              </div>
             </div>
           </Reveal>
         </div>
       </div>
-
-      <div
-        className="absolute bottom-0 left-0 right-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg,transparent,#c9940a 30%,#f5d87a 50%,#c9940a 70%,transparent)",
-        }}
-      />
     </section>
   );
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   ROOT
+   SECTION 2 — KNOW YOUR CUSTOMER (Feature Grid)
 ═══════════════════════════════════════════════════════════════════ */
-export default function SolutionsPage() {
+function KnowYourCustomerSection() {
+  const features = [
+    {
+      icon: "🔍",
+      title: "Competitor analysis",
+      description: "Compare your verification metrics against industry benchmarks and competitors to identify optimization opportunities.",
+      preview: [
+        { label: "Your pass rate", value: "94%", good: true },
+        { label: "Industry avg", value: "78%", good: false },
+      ]
+    },
+    {
+      icon: "👤",
+      title: "Granular customer screening",
+      description: "Deep-dive into individual customer profiles with comprehensive identity data and risk indicators.",
+      preview: [
+        { label: "Name", value: "Sarah Chen" },
+        { label: "Risk Score", value: "Low", good: true },
+        { label: "Status", value: "Verified" },
+      ]
+    },
+    {
+      icon: "🛡️",
+      title: "Advanced document verification",
+      description: "AI-powered document analysis detects tampering, forgeries, and expired IDs in real-time.",
+      preview: ["ID Card", "Passport", "Driver License", "Utility Bill"]
+    },
+    {
+      icon: "📊",
+      title: "Real-time monitoring",
+      description: "Continuous surveillance of customer accounts with instant alerts for suspicious activity.",
+      preview: "Chart"
+    }
+  ];
+
   return (
-    <main
-      className="bg-white overflow-x-hidden w-full"
-      style={{ fontFamily: "'Georgia',serif" }}
-    >
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        @keyframes floatCard {
-          from { transform: translateY(0px); }
-          to   { transform: translateY(-10px); }
-        }
-        @keyframes pulseRing {
-          0%   { transform: scale(1);   opacity: 0.7; }
-          100% { transform: scale(2.6); opacity: 0;   }
-        }
+    <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,148,10,0.05) 0%, transparent 70%)" }} />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <Reveal className="text-center mb-16">
+          <GoldLabel>Platform Features</GoldLabel>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-3 mb-4"
+            style={{ fontFamily: "'Georgia',serif" }}>
+            Know your customer better
+          </h2>
+          <p className="text-black/50 max-w-2xl mx-auto">
+            Comprehensive tools to verify, monitor, and understand your customers at every touchpoint.
+          </p>
+        </Reveal>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {features.map((feature, i) => (
+            <Reveal key={feature.title} delay={i * 0.1}>
+              <div className="group rounded-2xl p-6 transition-all duration-300 hover:shadow-xl"
+                style={{ 
+                  background: "#fff",
+                  border: "1px solid rgba(201,148,10,0.15)",
+                }}>
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: "linear-gradient(135deg,rgba(201,148,10,0.1),rgba(201,148,10,0.05))" }}>
+                    <span className="text-2xl">{feature.icon}</span>
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="font-black text-lg mb-2 text-black" style={{ fontFamily: "'Georgia',serif" }}>
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm text-black/50 mb-4">{feature.description}</p>
+                    
+                    {/* Mini preview */}
+                    <div className="rounded-xl p-3" style={{ background: "rgba(201,148,10,0.03)" }}>
+                      {Array.isArray(feature.preview) && feature.preview[0]? (
+                        <div className="space-y-2">
+                          {feature.preview.map((item: any, idx: number) => (
+                            <div key={idx} className="flex justify-between text-xs">
+                              <span className="text-gray-500">{item.label}</span>
+                              <span className="font-bold" style={{ color: item.good ? "#c9940a" : "#666" }}>
+                                {item.value}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : feature.preview === "Chart" ? (
+                        <div className="h-16 flex items-end gap-1">
+                          {[30, 50, 40, 70, 60, 80, 75].map((h, idx) => (
+                            <div key={idx} className="flex-1 rounded-t"
+                              style={{ height: `${h}%`, background: "rgba(201,148,10,0.3)" }} />
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="flex gap-2 flex-wrap">
+                          
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SECTION 3 — IDENTITY INTELLIGENCE
+═══════════════════════════════════════════════════════════════════ */
+function IdentityIntelligenceSection() {
+  const capabilities = [
+    { icon: "⚡", title: "Real-time verification", desc: "Sub-second identity verification with 99.9% uptime" },
+    { icon: "🎯", title: "Precision matching", desc: "Advanced algorithms reduce false positives by 85%" },
+    { icon: "🔒", title: "Fraud prevention", desc: "Detect synthetic identities and document tampering" },
+  ];
+
+  return (
+    <section className="py-20 sm:py-28 relative overflow-hidden"
+      style={{ background: "linear-gradient(160deg,#f7f7f7 0%,#fff 50%,#fafafa 100%)" }}>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Left - Content */}
+          <Reveal>
+            <GoldLabel>Identity Intelligence</GoldLabel>
+            <h2 className="text-3xl sm:text-4xl font-black text-black mb-6" style={{ fontFamily: "'Georgia',serif" }}>
+              Identity intelligence for fast and accurate onboarding decisions
+            </h2>
+            <p className="text-black/50 mb-8 leading-relaxed">
+              Our AI-powered platform analyzes hundreds of data points to deliver instant, 
+              accurate identity verification decisions that you can trust.
+            </p>
+            
+            <div className="space-y-4">
+              {capabilities.map((cap, i) => (
+                <div key={i} className="flex items-start gap-4 p-4 rounded-xl"
+                  style={{ background: "rgba(201,148,10,0.03)", border: "1px solid rgba(201,148,10,0.1)" }}>
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center"
+                    style={{ background: "linear-gradient(135deg,#c9940a,#f5d87a)" }}>
+                    <span className="text-lg">{cap.icon}</span>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-black mb-1" style={{ fontFamily: "'Georgia',serif" }}>
+                      {cap.title}
+                    </h4>
+                    <p className="text-sm text-black/50">{cap.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* Right - Score Visualization */}
+          <Reveal delay={0.2} direction="left">
+            <div className="relative">
+              {/* Main score card */}
+              <div className="rounded-3xl p-8 shadow-2xl"
+                style={{ 
+                  background: "linear-gradient(135deg,#000,#1a1000,#3d2900)",
+                  border: "1px solid rgba(201,148,10,0.2)"
+                }}>
+                <div className="text-center mb-8">
+                  <p className="text-white/50 text-sm mb-2">Identity Score</p>
+                  <div className="relative inline-flex items-center justify-center">
+                    {/* Circular progress */}
+                    <svg className="w-32 h-32 transform -rotate-90">
+                      <circle cx="64" cy="64" r="56" stroke="rgba(201,148,10,0.2)" strokeWidth="8" fill="none" />
+                      <circle cx="64" cy="64" r="56" stroke="url(#goldGradient)" strokeWidth="8" fill="none"
+                        strokeDasharray={`${0.85 * 351.86} 351.86`} strokeLinecap="round" />
+                      <defs>
+                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#c9940a" />
+                          <stop offset="100%" stopColor="#f5d87a" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <div className="absolute text-center">
+                      <span className="text-4xl font-black" 
+                        style={{ color: "#f5d87a", fontFamily: "'Georgia',serif" }}>
+                        85
+                      </span>
+                      <span className="block text-xs text-white/50">/ 100</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Score breakdown */}
+                <div className="space-y-3">
+                  {[
+                    { label: "Document Validity", score: 98 },
+                    { label: "Biometric Match", score: 92 },
+                    { label: "Liveness Check", score: 88 },
+                    { label: "Risk Assessment", score: 85 },
+                  ].map((item) => (
+                    <div key={item.label} className="flex items-center gap-3">
+                      <span className="text-xs text-white/60 w-32">{item.label}</span>
+                      <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.1)" }}>
+                        <div className="h-full rounded-full transition-all duration-1000"
+                          style={{ 
+                            width: `${item.score}%`,
+                            background: "linear-gradient(90deg,#c9940a,#f5d87a)"
+                          }} />
+                      </div>
+                      <span className="text-xs font-bold" style={{ color: "#f5d87a" }}>{item.score}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Floating verification badge */}
+              <div className="absolute -bottom-4 -left-4 px-4 py-3 rounded-xl shadow-xl"
+                style={{ background: "#fff", border: "1px solid rgba(201,148,10,0.2)" }}>
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center"
+                    style={{ background: "rgba(201,148,10,0.1)" }}>
+                    <span className="text-green-600 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-black">Verified</p>
+                    <p className="text-xs text-gray-500">2 minutes ago</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SECTION 4 — DIVERSE IDENTITIES & BENCHMARK
+═══════════════════════════════════════════════════════════════════ */
+function DiverseIdentitiesSection() {
+  return (
+    <section className="py-20 sm:py-28 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        
+
+        {/* Recognize Diverse Identities */}
+        <Reveal delay={0.1}>
+          <div className="rounded-3xl p-8 sm:p-12 mb-12"
+            style={{ background: "linear-gradient(135deg,#fafafa,#f5f5f5)", border: "1px solid rgba(201,148,10,0.1)" }}>
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <GoldLabel>Inclusive Technology</GoldLabel>
+                <h3 className="text-2xl sm:text-3xl font-black text-black mb-4" style={{ fontFamily: "'Georgia',serif" }}>
+                  Recognise diverse identities
+                </h3>
+                <p className="text-black/50 mb-6">
+                  Our AI is trained on diverse datasets to ensure accurate verification across all 
+                  ethnicities, ages, and document types. No bias, just accurate results.
+                </p>
+                <div className="flex gap-4">
+                  <div className="text-center">
+                    <p className="text-2xl font-black" style={{ color: "#c9940a", fontFamily: "'Georgia',serif" }}>99.2%</p>
+                    <p className="text-xs text-black/50">Accuracy across demographics</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-2xl font-black" style={{ color: "#c9940a", fontFamily: "'Georgia',serif" }}>150+</p>
+                    <p className="text-xs text-black/50">Countries supported</p>
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-3">
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <div key={i} className="aspect-square rounded-xl flex items-center justify-center"
+                    style={{ background: "rgba(201,148,10,0.08)" }}>
+                    <div className="w-10 h-10 rounded-full"
+                      style={{ 
+                        background: "linear-gradient(135deg,#c9940a,#f5d87a)",
+                        opacity: 0.3 + (i * 0.1)
+                      }} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Benchmark Results */}
+        <Reveal delay={0.2}>
+          <div className="rounded-3xl p-8 sm:p-12"
+            style={{ background: "linear-gradient(160deg,#000,#0d0800,#1a1000)" }}>
+            <div className="text-center mb-8">
+              <GoldLabel>Performance</GoldLabel>
+              <h3 className="text-2xl sm:text-3xl font-black text-white" style={{ fontFamily: "'Georgia',serif" }}>
+                Benchmark test industry results
+              </h3>
+            </div>
+            
+            <div className="grid sm:grid-cols-3 gap-6">
+              {[
+                { label: "Verification Speed", value: "< 2s", desc: "Average processing time" },
+                { label: "Pass Rate", value: "94%", desc: "First-time approvals" },
+                { label: "Fraud Caught", value: "99.8%", desc: "Suspicious activity detected" },
+              ].map((stat, i) => (
+                <div key={i} className="text-center p-6 rounded-2xl"
+                  style={{ background: "rgba(201,148,10,0.08)", border: "1px solid rgba(201,148,10,0.15)" }}>
+                  <p className="text-3xl sm:text-4xl font-black mb-2" 
+                    style={{ color: "#f5d87a", fontFamily: "'Georgia',serif" }}>
+                    {stat.value}
+                  </p>
+                  <p className="text-white font-bold mb-1" style={{ fontFamily: "'Georgia',serif" }}>{stat.label}</p>
+                  <p className="text-white/40 text-sm">{stat.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   ROOT EXPORT
+═══════════════════════════════════════════════════════════════════ */
+export default function LandingPage() {
+  return (
+    <main className="bg-white overflow-x-hidden w-full" style={{ fontFamily: "'Georgia',serif" }}>
+      <style>{`
         @keyframes shimmerSlide {
-          0%   { background-position: -200% center; }
-          100% { background-position:  200% center; }
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
         }
         @keyframes floatOrb {
-          from { transform: translate(0,0)    scale(1);    }
-          to   { transform: translate(18px,-26px) scale(1.1); }
+          from { transform: translate(0,0) scale(1); }
+          to { transform: translate(20px,-30px) scale(1.08); }
+        }
+        @keyframes twinkle {
+          from { opacity: 0.1; transform: scale(0.8); }
+          to { opacity: 0.6; transform: scale(1.2); }
         }
         @keyframes fadeUp {
-          from { opacity:0; transform:translateY(30px); }
-          to   { opacity:1; transform:translateY(0);    }
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes rotateSlow {
-          from { transform: rotate(0deg);   }
-          to   { transform: rotate(360deg); }
+        @keyframes pulseRing {
+          0% { transform: scale(1); opacity: 0.6; }
+          100% { transform: scale(2.4); opacity: 0; }
         }
-      `,
-        }}
-      />
+      `}</style>
 
       <HeroSection />
-      <GlobalCoverageSection />
-      <TestimonialBanner />
-      <ConnectSafelySection />
-      <FAQSection />
-      <BottomCTA />
+      <KnowYourCustomerSection />
+      <IdentityIntelligenceSection />
+      <DiverseIdentitiesSection />
+    
     </main>
   );
 }

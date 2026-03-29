@@ -1178,6 +1178,28 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </section>
+     <section className="w-full px-4 py-10 md:px-8 lg:px-16 bg-gray-50">
+      {/* Heading */}
+      <div className="max-w-5xl mx-auto text-center mb-6">
+        <h2 className="text-2xl md:text-4xl font-bold text-gray-800">
+          Our Location
+        </h2>
+        <p className="text-gray-500 mt-2 text-sm md:text-base">
+          Visit us or find us easily on the map below
+        </p>
+      </div>
+
+      {/* Map */}
+      <div className="max-w-7xl mx-auto rounded-2xl overflow-hidden shadow-lg">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d7066.143415976875!2d85.3172765!3d27.6841785!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1774775408514!5m2!1sen!2snp"
+          className="w-full h-[400px] md:h-[400px] lg:h-[500px] border-0"
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
     </main>
   );
 }
