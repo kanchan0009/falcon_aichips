@@ -982,7 +982,7 @@ export default function AboutPage() {
 
           {/* Trust indicators */}
           <Reveal className="mt-16 text-center">
-            <p className="text-black/30 text-xs uppercase tracking-widest mb-6">
+            <p className="text-black/100 text-xm uppercase tracking-widest mb-6">
               Trusted By Leading Institutions
             </p>
             <div className="relative overflow-hidden">
@@ -1105,9 +1105,9 @@ export default function AboutPage() {
                   label="Lalitpur Office"
                   icon="🏢"
                 />
-                <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-lg">
+                <div className="absolute bottom-3 left-6 right-6 bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-lg">
                   <h3
-                    className="font-black text-lg mb-2"
+                    className="font-black text-black lg mb-2"
                     style={{ fontFamily: "'Georgia',serif" }}
                   >
                     Ready to secure your digital future?
