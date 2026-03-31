@@ -433,7 +433,7 @@ function HeroSection() {
                 className="absolute inset-0 rounded-3xl overflow-hidden"
                 style={{
                   backgroundImage:
-                    "url('https://i.pinimg.com/1200x/53/4e/c7/534ec72392a048d6f64ade322e6589d0.jpg')",
+                    "url('https://i.pinimg.com/1200x/49/34/0a/49340acdddd136c14a57856a6c4a8226.jpg')",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundBlendMode: "overlay",
@@ -442,12 +442,7 @@ function HeroSection() {
                   border: "1px solid rgba(201,148,10,0.2)",
                 }}
               >
-                <span
-                  className="absolute inset-0 flex items-center justify-center text-yellow-600/25 text-xs font-bold uppercase tracking-widest"
-                  style={{ fontFamily: "'Georgia',serif" }}
-                >
-                  Player Portrait
-                </span>
+                
                 <div
                   className="absolute inset-0"
                   style={{

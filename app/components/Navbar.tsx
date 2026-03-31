@@ -23,6 +23,8 @@ const navItems: NavItem[] = [
       { title: "Fraud Detection", desc: "AI-powered fraud prevention" },
       { title: "Document Verification", desc: "Authenticate documents fast" },
       { title: "Age Verification", desc: "Compliant age checks" },
+      { title: "KYC", desc: "Know your customer" },
+      { title: "KYB", desc: "Know your business" },
     ],
   },
   {
