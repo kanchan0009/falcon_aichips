@@ -432,6 +432,7 @@ function HeroSection() {
               <div
                 className="absolute inset-0 rounded-3xl overflow-hidden"
                 style={{
+                  backgroundImage:'url("https://i.pinimg.com/736x/18/a8/83/18a88374b6fd595f4b5ed69669b5c235.jpg")',
                   background: "linear-gradient(135deg,#1a1000,#3d2900,#7a5500)",
                   border: "1px solid rgba(201,148,10,0.2)",
                 }}
@@ -452,52 +453,7 @@ function HeroSection() {
               </div>
 
               {/* Video call UI card */}
-              <GlassCard
-                className="absolute top-4 right-4 w-52"
-                style={{
-                  animation: "floatCard 4s ease-in-out infinite alternate",
-                }}
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-2 h-2 rounded-full bg-red-400" />
-                  <div className="w-2 h-2 rounded-full bg-yellow-400" />
-                  <div className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-xs text-black/50 ml-1">
-                    Open for a link
-                  </span>
-                </div>
-                <div
-                  className="h-20 rounded-xl mb-3 flex items-center justify-center"
-                  style={{
-                    background: "linear-gradient(135deg,#1a1000,#3d2900)",
-                    border: "1px solid rgba(201,148,10,0.2)",
-                  }}
-                >
-                  <span
-                    className="text-yellow-600/40 text-xs uppercase tracking-wide"
-                    style={{ fontFamily: "'Georgia',serif" }}
-                  >
-                    Video Call
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div
-                    className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-black text-black"
-                    style={{
-                      background: "linear-gradient(135deg,#c9940a,#f5d87a)",
-                    }}
-                  >
-                    J
-                  </div>
-                  <span
-                    className="text-xs font-bold text-black"
-                    style={{ fontFamily: "'Georgia',serif" }}
-                  >
-                    John Dough
-                  </span>
-                  <span className="ml-auto text-xs text-black/40">Now</span>
-                </div>
-              </GlassCard>
+              
 
               {/* Scan progress card */}
               <GlassCard className="absolute bottom-6 left-5 w-52">
@@ -1098,9 +1054,9 @@ function ConnectSafelySection() {
 
   const products: ProductData[] = [
     {
-      label: "Falcon Go",
+      label: "Falcon ",
       headline: "Launch identity verification in hours, not weeks.",
-      desc: "Falcon Go is the fastest way to get identity verification live for your retail business — no complex integration required. Ideal for growing businesses that need KYC quickly.",
+      desc: "Falcon  is the fastest way to get identity verification live for your retail business — no complex integration required. Ideal for growing businesses that need KYC quickly.",
       features: [
         "No-code setup in hours",
         "Pre-built compliance rules",

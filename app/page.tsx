@@ -183,14 +183,7 @@ function ImgBox({
         minHeight: "80px",
         ...style,
       }}
-    >
-      <span
-        className="text-yellow-600/50 text-xs font-bold tracking-widest uppercase px-2 text-center"
-        style={{ fontFamily: "'Georgia',serif" }}
-      >
-        {label || "Image"}
-      </span>
-    </div>
+    ></div>
   );
 }
 
@@ -439,11 +432,37 @@ export default function HomePage() {
             <Reveal delay={0.15} direction="left">
               <div
                 className="grid grid-cols-3 grid-rows-3 gap-2 sm:gap-3"
-                style={{ height: "clamp(260px,50vw,420px)" }}
+                style={{ height: "clamp(350px,60vw,600px)" }}
               >
-                <ImgBox className="col-span-3 row-span-2" label="Hero Visual" />
-                <ImgBox className="col-span-2 row-span-1" label="Card UI" />
-                <ImgBox className="col-span-1 row-span-1" label="Dashboard" />
+                <ImgBox
+                  className="col-span-3 row-span-2"
+                  style={{
+                    backgroundImage:
+                      "url('https://innefu.com/wp-content/uploads/2025/11/AI-Driven-Fraud-Detection.webp')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+
+                <ImgBox
+                  className="col-span-2 row-span-1"
+                  style={{
+                    backgroundImage:
+                      "url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+
+                <ImgBox
+                  className="col-span-1 row-span-1"
+                  style={{
+                    backgroundImage:
+                      "url('https://career-advice.jobs.ac.uk/wp-content/uploads/New-colleagues.jpg.optimal.jpg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
               </div>
             </Reveal>
           </div>
@@ -554,10 +573,12 @@ export default function HomePage() {
               <div className="relative mt-6 lg:mt-0">
                 <ImgBox
                   className="w-full"
-                  label="Product Demo"
                   style={{
-                    height: "clamp(200px,40vw,300px)",
-                    background: "linear-gradient(135deg,#0d0800,#3d2900)",
+                    height: "clamp(250px,45vw,400px)", // slightly increased height
+                    backgroundImage:
+                      "url('https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1200&auto=format&fit=crop')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
                     border: "none",
                   }}
                 />
@@ -612,8 +633,14 @@ export default function HomePage() {
             >
               <ImgBox
                 className="w-full h-full"
-                label="Customer Journey Visual"
-                style={{ border: "none", borderRadius: "0" }}
+                style={{
+                  backgroundImage:
+                    "url('https://i.pinimg.com/1200x/18/30/8d/18308d46ce6699445930cef594ae5845.jpg')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  border: "none",
+                  borderRadius: "0",
+                }}
               />
               <div
                 className="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 rounded-xl p-3 sm:p-4 w-40 sm:w-52"
@@ -670,9 +697,33 @@ export default function HomePage() {
                   <ImgBox
                     className="row-span-2 h-full"
                     label="Customer Portrait"
+                    style={{
+                      backgroundImage:
+                        "url('https://i.pinimg.com/736x/3c/63/1b/3c631b97815217aaa9716d368feb990a.jpg')",
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
                   />
-                  <ImgBox label="Risk Card" />
-                  <ImgBox label="Score Graph" />
+
+                  <ImgBox
+                    label="Risk Card"
+                    style={{
+                      backgroundImage:
+                        "url('https://spd.tech/wp-content/uploads/2023/01/Credit-Card-Fraud-Detection-Using-Machine-Learning.webp')",
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  />
+
+                  <ImgBox
+                    label="Score Graph"
+                    style={{
+                      backgroundImage:
+                        "url('https://i.pinimg.com/1200x/1c/61/80/1c61808688674a3ddf1af4fa58e90978.jpg')",
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  />
                 </div>
                 <div
                   className="absolute -bottom-2 right-0 sm:-right-2 rounded-2xl p-3 sm:p-4 w-40 sm:w-52"
@@ -784,7 +835,14 @@ export default function HomePage() {
                 <ImgBox
                   className="w-full h-full"
                   label="Fraud Detection UI"
-                  style={{ border: "none", borderRadius: "0" }}
+                  style={{
+                    border: "none",
+                    borderRadius: "0",
+                    backgroundImage:
+                      "url('https://i.pinimg.com/1200x/02/ff/2a/02ff2a71c530737fea86161984443304.jpg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
                 />
               </div>
             </Reveal>
@@ -874,7 +932,21 @@ export default function HomePage() {
                 <ImgBox
                   className="w-full"
                   label="World Map Coverage"
-                  style={{ height: "clamp(220px,45vw,320px)" }}
+                  style={{
+                    height: "clamp(220px,45vw,320px)",
+                    border: "1px solid rgba(201,148,10,0.2)",
+                    background: `
+                      linear-gradient(
+                        135deg,
+                        rgba(0,0,0,0.9) 0%, 
+                        rgba(201,148,10,0.8) 50%, 
+                        rgba(245,216,122,0.7) 100%
+                    ),
+                    url('https://i.pinimg.com/1200x/73/de/b9/73deb96f4648afd8c08dce3ec9ab1872.jpg')
+                  `,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
                 />
                 {mapDots.map((dot) => (
                   <div
@@ -1035,7 +1107,13 @@ export default function HomePage() {
               <ImgBox
                 className="w-full mt-6 lg:mt-0"
                 label="CTA Visual"
-                style={{ height: "clamp(180px,40vw,260px)" }}
+                style={{
+                  height: "clamp(180px,40vw,260px)",
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?auto=format&fit=crop&w=800&q=80')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
               />
             </Reveal>
           </div>

@@ -432,16 +432,14 @@ function HeroSection() {
               <div
                 className="absolute inset-0 rounded-3xl overflow-hidden"
                 style={{
+                  backgroundImage:
+                    "url('https://i.pinimg.com/736x/d7/29/dd/d729dd5248143e120ca299cf3d448f9f.jpg')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                   background: "linear-gradient(135deg,#1a1000,#3d2900,#7a5500)",
                   border: "1px solid rgba(201,148,10,0.2)",
                 }}
               >
-                <span
-                  className="absolute inset-0 flex items-center justify-center text-yellow-600/25 text-xs font-bold uppercase tracking-widest"
-                  style={{ fontFamily: "'Georgia',serif" }}
-                >
-                  Customer Portrait
-                </span>
                 <div
                   className="absolute inset-0"
                   style={{
@@ -689,6 +687,10 @@ function RefundFraudSection() {
               <div
                 className="absolute inset-0 rounded-3xl overflow-hidden"
                 style={{
+                  backgroundImage:
+                    "url('https://i.pinimg.com/736x/8a/b6/53/8ab6533a3f0e57ec5fc4c3bf999d035d.jpg')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                   background: "linear-gradient(135deg,#1a1000,#3d2800)",
                   border: "1px solid rgba(201,148,10,0.18)",
                 }}

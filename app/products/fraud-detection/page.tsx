@@ -432,6 +432,11 @@ function HeroSection() {
               <div
                 className="absolute inset-0 rounded-3xl overflow-hidden"
                 style={{
+                  backgroundImage:
+                    "url('https://i.pinimg.com/736x/a0/92/c5/a092c5c57079c770b056a0347da0d60e.jpg')", 
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundBlendMode: "overlay",
                   background: "linear-gradient(135deg,#1a1000,#3d2900,#7a5500)",
                   border: "1px solid rgba(201,148,10,0.2)",
                 }}
@@ -442,7 +447,6 @@ function HeroSection() {
                 >
                   Hero Portrait
                 </span>
-                {/* Gradient overlay */}
                 <div
                   className="absolute inset-0"
                   style={{
@@ -1372,9 +1376,9 @@ function BottomCTA() {
               at global scale.
             </p>
             <div className="flex flex-wrap gap-3 mb-10">
-               <Link href="/demo">
-               <GoldBtn>Get a demo</GoldBtn>
-               </Link>
+              <Link href="/demo">
+                <GoldBtn>Get a demo</GoldBtn>
+              </Link>
               <button
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white border border-white/15 hover:border-white/30 transition-colors"
                 style={{ fontFamily: "'Georgia',serif" }}

@@ -261,10 +261,15 @@ function CheckItem({ children, gold = false }: CheckItemProps) {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 1 — HERO: SECURE EVERY STEP OF THE JOURNEY
+   SECTION 1 — HERO: SECURE ID AUTHENTICATION
 ═══════════════════════════════════════════════════════════════════ */
 function HeroSection() {
-  const words: string[] = ["journey", "onboarding", "interaction", "decision"];
+  const words: string[] = [
+    "authentication",
+    "verification",
+    "confidence",
+    "accuracy",
+  ];
   const [wordIdx, setWordIdx] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [deleting, setDeleting] = useState(false);
@@ -290,24 +295,24 @@ function HeroSection() {
 
   const features: FeatureItem[] = [
     {
-      icon: "🛡️",
-      title: "All-in-one identity platform",
-      desc: "Everything you need to verify, screen and onboard in one connected platform.",
+      icon: "🆔",
+      title: "Robust ID verification",
+      desc: "Accurate, fast and forensic document checks across passports, driving licences and national IDs.",
     },
     {
-      icon: "🤖",
-      title: "Automate journey security",
-      desc: "AI-driven signals automatically flag risk and accelerate genuine customers.",
+      icon: "🔬",
+      title: "Forensic ID checks",
+      desc: "Advanced tamper detection and security feature analysis to catch sophisticated fraud attempts.",
+    },
+    {
+      icon: "🛡️",
+      title: "ID fraud protection",
+      desc: "Multi-layer signals combine to identify counterfeit, altered and fraudulently obtained documents.",
     },
     {
       icon: "⚡",
-      title: "Business-pace rules",
-      desc: "Configure your own risk thresholds and automation logic without code.",
-    },
-    {
-      icon: "🌍",
-      title: "Verify anyone, anywhere",
-      desc: "80+ country coverage with localised data sources and compliance support.",
+      title: "Instant decisions",
+      desc: "Real-time results delivered in seconds — no manual review queues for genuine customers.",
     },
   ];
 
@@ -366,7 +371,7 @@ function HeroSection() {
           {/* LEFT */}
           <div>
             <Reveal delay={0}>
-              <Pill>Guided Onboarding</Pill>
+              <Pill>Document Authentication</Pill>
             </Reveal>
             <Reveal delay={0.08}>
               <h1
@@ -376,7 +381,7 @@ function HeroSection() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Secure every step of the{" "}
+                Secure ID{" "}
                 <span
                   style={{
                     background: "linear-gradient(135deg,#c9940a,#f5d87a)",
@@ -391,13 +396,14 @@ function HeroSection() {
             </Reveal>
             <Reveal delay={0.16}>
               <p className="text-black/55 text-base sm:text-lg leading-relaxed mb-8 max-w-md">
-                Falcon intelligence gives you everything you need to confidently
-                onboard, protect and grow your customer base without compromise.
+                Accurate, fast and forensic ID fraud prevention — authenticating
+                identity documents quickly, efficiently and accurately so you
+                can trust your customers.
               </p>
             </Reveal>
             <Reveal delay={0.24}>
               <div className="flex flex-wrap gap-3">
-                <GoldBtn>Start your journey</GoldBtn>
+                <GoldBtn>Find out more</GoldBtn>
                 <GoldBtn outline>Watch demo →</GoldBtn>
               </div>
             </Reveal>
@@ -406,16 +412,16 @@ function HeroSection() {
             <Reveal delay={0.32}>
               <ul className="mt-8 space-y-3">
                 <CheckItem>
-                  All-in-one identity platform for global compliance
+                  Robust ID verification across 200+ document types worldwide
                 </CheckItem>
                 <CheckItem>
-                  Automate journey security with real-time signals
+                  Forensic tamper and counterfeit detection in real time
                 </CheckItem>
                 <CheckItem>
-                  Biometric verification at every touchpoint
+                  ID fraud protection with multi-layer signal analysis
                 </CheckItem>
                 <CheckItem>
-                  Verify anyone, anywhere with 80+ country coverage
+                  Expert document support team available 24/7
                 </CheckItem>
               </ul>
             </Reveal>
@@ -431,6 +437,10 @@ function HeroSection() {
               <div
                 className="absolute inset-0 rounded-3xl overflow-hidden"
                 style={{
+                  backgroundImage:
+                    'url("https://i.pinimg.com/736x/cd/b8/76/cdb876e10d4d0bdbd688d3d8428f9bb2.jpg")',
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                   background: "linear-gradient(135deg,#1a1000,#3d2900,#7a5500)",
                   border: "1px solid rgba(201,148,10,0.2)",
                 }}
@@ -439,9 +449,8 @@ function HeroSection() {
                   className="absolute inset-0 flex items-center justify-center text-yellow-600/30 text-sm font-bold uppercase tracking-widest"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  Hero Portrait
+                  Customer Portrait
                 </span>
-                {/* Gradient overlay */}
                 <div
                   className="absolute inset-0"
                   style={{
@@ -471,7 +480,7 @@ function HeroSection() {
                     className="text-xs font-black text-black"
                     style={{ fontFamily: "'Georgia',serif" }}
                   >
-                    Face Scan
+                    Biometric Match
                   </span>
                 </div>
                 <div
@@ -481,14 +490,14 @@ function HeroSection() {
                   <div
                     className="h-full rounded-full"
                     style={{
-                      width: "82%",
+                      width: "97%",
                       background: "linear-gradient(90deg,#c9940a,#f5d87a)",
                     }}
                   />
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-xs text-black/50">Match: 99.2%</span>
+                  <span className="text-xs text-black/50">Match: 97.4%</span>
                 </div>
               </UICard>
 
@@ -503,7 +512,7 @@ function HeroSection() {
                   className="text-xs font-black text-black mb-2"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  Document Verified
+                  Document Authenticated
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-lg">🆔</span>
@@ -516,57 +525,6 @@ function HeroSection() {
                     </div>
                   </div>
                 </div>
-              </UICard>
-
-              {/* Floating card: step tracker */}
-              <UICard
-                className="absolute bottom-8 right-5 w-40"
-                style={{
-                  animation:
-                    "floatCard 3.5s ease-in-out 0.5s infinite alternate",
-                }}
-              >
-                <div
-                  className="text-xs font-black text-black mb-2"
-                  style={{ fontFamily: "'Georgia',serif" }}
-                >
-                  Onboarding
-                </div>
-                {["Identity", "Biometrics", "Risk Check"].map((s, i) => (
-                  <div key={s} className="flex items-center gap-2 mb-1">
-                    <div
-                      className="w-3.5 h-3.5 rounded-full flex items-center justify-center"
-                      style={{
-                        background:
-                          i < 2
-                            ? "linear-gradient(135deg,#c9940a,#f5d87a)"
-                            : "rgba(0,0,0,0.08)",
-                      }}
-                    >
-                      {i < 2 && (
-                        <svg
-                          className="w-2 h-2"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="#000"
-                          strokeWidth={3}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                      )}
-                    </div>
-                    <span
-                      className="text-xs"
-                      style={{ color: i < 2 ? "#000" : "rgba(0,0,0,0.35)" }}
-                    >
-                      {s}
-                    </span>
-                  </div>
-                ))}
               </UICard>
 
               {/* Pulse ring deco */}
@@ -612,48 +570,300 @@ function HeroSection() {
             </Reveal>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
 
-        {/* Falcon Go banner */}
-        <Reveal delay={0.1} className="mt-10 sm:mt-14">
+/* ═══════════════════════════════════════════════════════════════════
+   SECTION 2 — FAST, FORENSIC AND SECURE DOCUMENT AUTHENTICATION
+═══════════════════════════════════════════════════════════════════ */
+function DocumentAuthSection() {
+  const docFeatures = [
+    {
+      title: "Smart capture ID",
+      desc: "Guided capture technology ensures customers submit a clear, readable image of their document first time — reducing drop-off and manual review.",
+      icon: "📸",
+      ui: (
+        <UICard style={{ boxShadow: "0 12px 40px rgba(0,0,0,0.10)" }}>
+          <div className="flex items-center gap-3 mb-3">
+            <div
+              className="w-10 h-10 rounded-xl flex items-center justify-center text-xl"
+              style={{
+                background: "rgba(201,148,10,0.1)",
+                border: "1px solid rgba(201,148,10,0.2)",
+              }}
+            >
+              📸
+            </div>
+            <div>
+              <p
+                className="text-xs font-black text-black"
+                style={{ fontFamily: "'Georgia',serif" }}
+              >
+                Smart Capture
+              </p>
+              <p className="text-xs text-black/40">Auto-align & optimise</p>
+            </div>
+          </div>
           <div
-            className="rounded-2xl p-5 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+            className="h-20 rounded-xl flex items-center justify-center mb-2"
+            style={{
+              background: "linear-gradient(135deg,#f8f8f8,#fff8e6)",
+              border: "1px solid rgba(201,148,10,0.12)",
+            }}
+          >
+            <span className="text-xs text-black/30 uppercase tracking-widest">
+              Document Frame
+            </span>
+          </div>
+          <div
+            className="flex items-center gap-2 p-2 rounded-lg"
+            style={{
+              background: "rgba(34,197,94,0.06)",
+              border: "1px solid rgba(34,197,94,0.15)",
+            }}
+          >
+            <div className="w-2 h-2 rounded-full bg-green-400" />
+            <span className="text-xs text-black/60">
+              Image quality: Excellent
+            </span>
+          </div>
+        </UICard>
+      ),
+    },
+    {
+      title: "Accurate ID extraction",
+      desc: "OCR and NFC data extraction pulls all relevant fields from a document accurately — name, date of birth, document number, expiry and more.",
+      icon: "🔎",
+      ui: (
+        <UICard style={{ boxShadow: "0 12px 40px rgba(0,0,0,0.10)" }}>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-lg">🔎</span>
+            <span
+              className="text-xs font-black text-black"
+              style={{ fontFamily: "'Georgia',serif" }}
+            >
+              Data Extraction
+            </span>
+          </div>
+          <div className="space-y-1.5">
+            {[
+              { label: "Full name", value: "Sarah Mitchell" },
+              { label: "Date of birth", value: "12 Mar 1988" },
+              { label: "Doc number", value: "GB••••••••" },
+              { label: "Expiry", value: "14 Jun 2031" },
+            ].map((r) => (
+              <div
+                key={r.label}
+                className="flex items-center justify-between px-2 py-1.5 rounded-lg"
+                style={{
+                  background: "#fafafa",
+                  border: "1px solid rgba(0,0,0,0.06)",
+                }}
+              >
+                <span className="text-xs text-black/40">{r.label}</span>
+                <span
+                  className="text-xs font-bold text-black"
+                  style={{ fontFamily: "'Georgia',serif" }}
+                >
+                  {r.value}
+                </span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-2 flex items-center gap-1.5">
+            <div className="w-2 h-2 rounded-full bg-green-400" />
+            <span className="text-xs text-green-600 font-bold">
+              All fields extracted ✓
+            </span>
+          </div>
+        </UICard>
+      ),
+    },
+    {
+      title: "Enhanced tampering detection",
+      desc: "Forensic analysis checks security features, holograms, fonts and microprint for signs of alteration or counterfeiting.",
+      icon: "🧬",
+      ui: (
+        <UICard style={{ boxShadow: "0 12px 40px rgba(0,0,0,0.10)" }}>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-lg">🧬</span>
+            <span
+              className="text-xs font-black text-black"
+              style={{ fontFamily: "'Georgia',serif" }}
+            >
+              Tamper Analysis
+            </span>
+          </div>
+          <div className="space-y-2">
+            {[
+              { check: "Hologram present", pass: true },
+              { check: "Font consistency", pass: true },
+              { check: "MRZ integrity", pass: true },
+              { check: "UV security features", pass: true },
+              { check: "Microprint verified", pass: true },
+            ].map((c) => (
+              <div key={c.check} className="flex items-center justify-between">
+                <span className="text-xs text-black/55">{c.check}</span>
+                <span className="text-xs font-bold text-green-500">✓ Pass</span>
+              </div>
+            ))}
+          </div>
+        </UICard>
+      ),
+    },
+    {
+      title: "Forensic document expert support",
+      desc: "Access to a team of forensic document specialists for complex cases — providing expert opinion on edge cases and emerging fraud typologies.",
+      icon: "👨‍🔬",
+      ui: (
+        <UICard style={{ boxShadow: "0 12px 40px rgba(0,0,0,0.10)" }}>
+          <div className="flex items-center gap-3 mb-3">
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-black"
+              style={{ background: "linear-gradient(135deg,#c9940a,#f5d87a)" }}
+            >
+              FE
+            </div>
+            <div>
+              <p
+                className="text-xs font-black text-black"
+                style={{ fontFamily: "'Georgia',serif" }}
+              >
+                Forensic Expert
+              </p>
+              <p className="text-xs text-black/40">Available 24/7</p>
+            </div>
+          </div>
+          <div
+            className="p-3 rounded-xl mb-2"
+            style={{
+              background: "#fafafa",
+              border: "1px solid rgba(0,0,0,0.06)",
+            }}
+          >
+            <p
+              className="text-xs text-black/55 italic"
+              style={{ fontFamily: "'Georgia',serif" }}
+            >
+              "This document shows consistent security feature profiles.
+              Authentication: confirmed genuine."
+            </p>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="w-2 h-2 rounded-full bg-green-400" />
+            <span className="text-xs text-black/50">
+              Expert review complete
+            </span>
+          </div>
+        </UICard>
+      ),
+    },
+  ];
+
+  return (
+    <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,148,10,0.04) 0%, transparent 70%)",
+        }}
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <Reveal className="text-center mb-14 sm:mb-18">
+          <GoldLabel>How It Works</GoldLabel>
+          <h2
+            className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-2 mb-4 max-w-2xl mx-auto leading-tight"
+            style={{ fontFamily: "'Georgia',serif" }}
+          >
+            Fast, forensic and secure document authentication
+          </h2>
+          <p className="text-black/50 text-sm max-w-xl mx-auto leading-relaxed">
+            Accurate, secure and expertly documented solutions and reliable
+            verifications to authenticate documents and confirm the identities
+            of your customers.
+          </p>
+        </Reveal>
+
+        <div className="space-y-16 sm:space-y-24">
+          {docFeatures.map((feat, i) => (
+            <div
+              key={feat.title}
+              className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center`}
+            >
+              {/* Text — alternates left/right */}
+              <div className={i % 2 === 1 ? "order-1 lg:order-2" : ""}>
+                <Reveal delay={0.05}>
+                  <div className="text-3xl mb-4">{feat.icon}</div>
+                  <h3
+                    className="text-2xl sm:text-3xl font-black text-black mb-4 leading-tight"
+                    style={{ fontFamily: "'Georgia',serif" }}
+                  >
+                    {feat.title}
+                  </h3>
+                  <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-6 max-w-md">
+                    {feat.desc}
+                  </p>
+                  <GoldBtn>Learn more</GoldBtn>
+                </Reveal>
+              </div>
+              {/* UI card */}
+              <div className={i % 2 === 1 ? "order-2 lg:order-1" : ""}>
+                <Reveal delay={0.15} direction={i % 2 === 1 ? "right" : "left"}>
+                  {feat.ui}
+                </Reveal>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SECTION 3 — HARDWARE CTA BANNER
+═══════════════════════════════════════════════════════════════════ */
+function HardwareBanner() {
+  return (
+    <section className="py-8 sm:py-10 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Reveal>
+          <div
+            className="rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5"
             style={{
               background: "linear-gradient(135deg,#000,#1a1000)",
               border: "1px solid rgba(201,148,10,0.25)",
             }}
           >
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <div
-                  className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black text-black"
-                  style={{
-                    background: "linear-gradient(135deg,#c9940a,#f5d87a)",
-                    fontFamily: "'Georgia',serif",
-                  }}
-                >
-                  F
-                </div>
-                <span
-                  className="text-yellow-400 text-xs font-bold uppercase tracking-wider"
+            <div className="flex items-center gap-5">
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0"
+                style={{
+                  background: "rgba(201,148,10,0.12)",
+                  border: "1px solid rgba(201,148,10,0.25)",
+                }}
+              >
+                🖨️
+              </div>
+              <div>
+                <p
+                  className="text-white font-black text-base sm:text-lg mb-1"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  Falcon Go
-                </span>
+                  Looking for document authentication hardware?
+                </p>
+                <p className="text-white/45 text-xs leading-relaxed max-w-lg">
+                  Falcon offers a range of desktop and kiosk document readers
+                  for in-branch and in-store verification workflows — fully
+                  integrated with our software platform.
+                </p>
               </div>
-              <p
-                className="text-white font-bold text-sm sm:text-base"
-                style={{ fontFamily: "'Georgia',serif" }}
-              >
-                The fastest way to launch identity verification — no integration
-                required.
-              </p>
-              <p className="text-white/45 text-xs mt-1">
-                Go live in hours, not weeks. Designed for startups and
-                scale-ups.
-              </p>
             </div>
             <div className="flex-shrink-0">
-              <GoldBtn sm>Explore Falcon Go →</GoldBtn>
+              <GoldBtn sm>Explore hardware →</GoldBtn>
             </div>
           </div>
         </Reveal>
@@ -663,7 +873,7 @@ function HeroSection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 2 — GLOBAL COVERAGE
+   SECTION 4 — ESTABLISH TRUST IN REAL TIME
 ═══════════════════════════════════════════════════════════════════ */
 const STAT_NODES: StatNode[] = [
   { x: "22%", y: "32%", city: "NY" },
@@ -676,35 +886,32 @@ const STAT_NODES: StatNode[] = [
   { x: "68%", y: "30%", city: "MUM" },
 ];
 
-function GlobalCoverageSection() {
+function EstablishTrustSection() {
   const [ref, visible] = useReveal(0.2);
-  const n1 = useCounter(60, visible);
-  const n2 = useCounter(4, visible);
-  const n3 = useCounter(750, visible);
+  const n1 = useCounter(200, visible);
+  const n2 = useCounter(99, visible);
+  const n3 = useCounter(4, visible);
 
-  const stats: Array<{
-    val: number;
-    suffix: string;
-    label: string;
-    sub: string;
-  }> = [
+  const trustPillars = [
     {
-      val: n1,
-      suffix: "+",
-      label: "Billion",
-      sub: "Data sources verified per year",
+      icon: "✨",
+      title: "Simple experience",
+      desc: "A smooth, guided document capture experience that keeps genuine customers on track without friction or confusion.",
     },
     {
-      val: n2,
-      suffix: "B+",
-      label: "Records",
-      sub: "Identities in our global network",
+      icon: "🎯",
+      title: "Best accuracy",
+      desc: "Industry-leading extraction and authentication accuracy rates across a wide range of document types and quality levels.",
     },
     {
-      val: n3,
-      suffix: "+",
-      label: "Countries",
-      sub: "Data suppliers and partners",
+      icon: "🛡️",
+      title: "Secure fraud protection",
+      desc: "Multi-layer forensic checks and real-time fraud signals protect you from sophisticated document fraud at scale.",
+    },
+    {
+      icon: "🚀",
+      title: "Streamlined onboarding",
+      desc: "Fast, automated decisions get genuine customers through onboarding quickly — reducing abandonment and boosting conversion.",
     },
   ];
 
@@ -720,25 +927,44 @@ function GlobalCoverageSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Reveal className="text-center mb-12 sm:mb-16">
-          <GoldLabel>Worldwide Intelligence</GoldLabel>
+          <GoldLabel>Trust & Biometrics</GoldLabel>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-2 mb-3"
+            className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-2 mb-4 max-w-2xl mx-auto leading-tight"
             style={{ fontFamily: "'Georgia',serif" }}
           >
-            Global coverage
+            Establish trust in real time with documents and biometrics
           </h2>
-          <p className="text-black/50 text-sm max-w-lg mx-auto leading-relaxed">
-            World-class data network — the most comprehensive identity
-            intelligence platform on the planet.
+          <p className="text-black/50 text-sm max-w-xl mx-auto leading-relaxed">
+            Infinite identity proofing in a proven product that authenticates in
+            seconds and delivers reliable decisions every time.
           </p>
         </Reveal>
 
         {/* Stats row */}
         <div
           ref={ref}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 mb-12 sm:mb-16"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 mb-14"
         >
-          {stats.map((s, i) => (
+          {[
+            {
+              val: n1,
+              suffix: "+",
+              label: "Document types",
+              sub: "Supported globally across 195 countries",
+            },
+            {
+              val: n2,
+              suffix: "%+",
+              label: "Accuracy rate",
+              sub: "Industry-leading extraction and authentication",
+            },
+            {
+              val: n3,
+              suffix: "s",
+              label: "Average decision",
+              sub: "From capture to confirmed result",
+            },
+          ].map((s, i) => (
             <Reveal key={s.sub} delay={i * 0.1} direction="scale">
               <div
                 className="p-6 sm:p-8 rounded-2xl text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
@@ -770,13 +996,39 @@ function GlobalCoverageSection() {
             </Reveal>
           ))}
         </div>
+
+        {/* 4 trust pillars */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+          {trustPillars.map((p, i) => (
+            <Reveal key={p.title} delay={0.08 * i}>
+              <div
+                className="group p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer h-full"
+                style={{
+                  background: "#fff",
+                  border: "1px solid rgba(0,0,0,0.07)",
+                }}
+              >
+                <div className="text-2xl mb-3">{p.icon}</div>
+                <h4
+                  className="font-black text-black text-sm mb-2 group-hover:text-yellow-700 transition-colors"
+                  style={{ fontFamily: "'Georgia',serif" }}
+                >
+                  {p.title}
+                </h4>
+                <p className="text-xs text-black/50 leading-relaxed">
+                  {p.desc}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 3 — TESTIMONIAL BANNER
+   SECTION 5 — TESTIMONIAL BANNER
 ═══════════════════════════════════════════════════════════════════ */
 function TestimonialBanner() {
   return (
@@ -806,9 +1058,9 @@ function TestimonialBanner() {
             className="text-white/80 text-base sm:text-xl lg:text-2xl italic leading-relaxed mb-8 font-bold"
             style={{ fontFamily: "'Georgia',serif" }}
           >
-            Multi-bureau research delivers a more reliable picture to our
-            clients, maximising customer match rates and vastly reducing
-            attrition.
+            Falcon's document authentication platform helped us reduce manual
+            review rates by over 60%, dramatically improving our customer
+            onboarding experience.
           </p>
           <div className="flex items-center justify-center gap-4">
             <div
@@ -819,17 +1071,17 @@ function TestimonialBanner() {
                 fontFamily: "'Georgia',serif",
               }}
             >
-              RA
+              JT
             </div>
             <div className="text-left">
               <p
                 className="font-black text-white text-sm"
                 style={{ fontFamily: "'Georgia',serif" }}
               >
-                Rachel Adams
+                James Thornton
               </p>
               <p className="text-white/40 text-xs">
-                Head of Analytics, CreditFlow Technology
+                Head of Compliance, Meridian Financial Services
               </p>
             </div>
             <div className="ml-4 hidden sm:flex gap-1">
@@ -854,31 +1106,30 @@ function TestimonialBanner() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 4 — CONNECT SAFELY / PRODUCT SHOWCASE
+   SECTION 6 — CONNECT SAFELY / PRODUCT SHOWCASE
 ═══════════════════════════════════════════════════════════════════ */
 function ConnectSafelySection() {
   const [activeTab, setActiveTab] = useState(0);
-  const tabs: string[] = ["Falcon Instinct", "Falcon Trust Network"];
+  const tabs: string[] = ["Falcon Go", "Falcon Trust Network"];
 
   const tabContent: TabContent[] = [
     {
-      headline: "Real-time identity intelligence at every touchpoint",
-      desc: "Falcon Instinct analyses hundreds of identity signals in milliseconds, giving you an accurate risk score at onboarding and across the full customer lifecycle.",
+      headline: "Launch document verification in hours, not weeks",
+      desc: "Falcon Go is the fastest way to get document authentication live for your business — no complex integration required. Ideal for growing businesses that need KYC up and running quickly.",
       features: [
-        "Instant decisions at onboarding",
-        "Continuous monitoring post-onboarding",
-        "Configurable risk thresholds",
-        "Audit-ready compliance logs",
+        "No-code setup in hours",
+        "200+ document types supported",
+        "Plug-in to existing onboarding",
+        "Instant pass/fail decisions",
       ],
       ui: (
         <div className="p-5 space-y-3">
-          {/* Mini dashboard mock */}
           <div className="flex items-center justify-between mb-2">
             <span
               className="text-xs font-black text-black"
               style={{ fontFamily: "'Georgia',serif" }}
             >
-              Risk Score Dashboard
+              Falcon Go Dashboard
             </span>
             <span
               className="text-xs px-2 py-0.5 rounded-full font-bold"
@@ -888,9 +1139,9 @@ function ConnectSafelySection() {
             </span>
           </div>
           {[
-            { label: "Identity Match", val: 96, color: "#c9940a" },
-            { label: "Document Auth", val: 88, color: "#22c55e" },
-            { label: "Fraud Risk", val: 12, color: "#ef4444", invert: true },
+            { label: "Document Auth", val: 99, color: "#c9940a" },
+            { label: "Biometric Match", val: 97, color: "#22c55e" },
+            { label: "Fraud Risk", val: 4, color: "#ef4444" },
           ].map((row) => (
             <div key={row.label}>
               <div className="flex justify-between mb-1">
@@ -931,7 +1182,7 @@ function ConnectSafelySection() {
                 className="text-lg font-black"
                 style={{ color: "#c9940a", fontFamily: "'Georgia',serif" }}
               >
-                91%
+                94%
               </div>
             </div>
             <div
@@ -951,7 +1202,7 @@ function ConnectSafelySection() {
                 className="text-lg font-black text-red-400"
                 style={{ fontFamily: "'Georgia',serif" }}
               >
-                9%
+                6%
               </div>
             </div>
           </div>
@@ -959,13 +1210,13 @@ function ConnectSafelySection() {
       ),
     },
     {
-      headline: "Connect with consortium intelligence to stop fraud networks",
-      desc: "Falcon Trust Network pools identity intelligence across thousands of organisations, enabling you to spot emerging fraud patterns before they reach you.",
+      headline: "Stop document fraud with consortium intelligence",
+      desc: "Falcon Trust Network pools fraud intelligence across thousands of organisations, helping you spot fraudulent document patterns before they reach your onboarding flow.",
       features: [
-        "Shared fraud signals network",
+        "Shared document fraud signals",
         "Synthetic identity detection",
-        "Cross-industry risk data",
-        "Network analysis and visualisation",
+        "Cross-industry risk intelligence",
+        "Real-time pattern alerts",
       ],
       ui: (
         <div className="p-5">
@@ -976,7 +1227,7 @@ function ConnectSafelySection() {
             Network Signals
           </div>
           <div className="grid grid-cols-3 gap-2 mb-3">
-            {["Low Risk", "Med Risk", "High Risk"].map((l, i) => (
+            {["Genuine", "Review", "Fraud"].map((l, i) => (
               <div
                 key={l}
                 className="p-2 rounded-lg text-center"
@@ -996,7 +1247,7 @@ function ConnectSafelySection() {
                     fontFamily: "'Georgia',serif",
                   }}
                 >
-                  {[2847, 193, 41][i]}
+                  {[3104, 241, 55][i]}
                 </div>
                 <div className="text-xs" style={{ color: "rgba(0,0,0,0.5)" }}>
                   {l}
@@ -1006,9 +1257,9 @@ function ConnectSafelySection() {
           </div>
           <div className="space-y-2">
             {[
-              "Fraud signal match found",
-              "Synthetic ID flagged",
-              "Network link detected",
+              "Counterfeit document detected",
+              "Altered ID flagged",
+              "Cross-network match found",
             ].map((s, i) => (
               <div
                 key={s}
@@ -1057,8 +1308,8 @@ function ConnectSafelySection() {
             genuine identity
           </h2>
           <p className="text-black/50 text-sm max-w-lg mx-auto">
-            The purpose-built platform for your digital identity estate —
-            intelligent, connected and compliant.
+            The purpose-built platform for document authentication and identity
+            proofing — intelligent, connected and compliant.
           </p>
         </Reveal>
 
@@ -1128,32 +1379,32 @@ function ConnectSafelySection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 5 — FAQ
+   SECTION 7 — FAQ: IDENTITY PROOFING
 ═══════════════════════════════════════════════════════════════════ */
 const FAQS: FAQItem[] = [
   {
-    q: "What is digital customer onboarding?",
-    a: "Digital customer onboarding is the process of verifying a new customer's identity, assessing risk and activating their account entirely online — without branch visits or paper forms.",
+    q: "What is identity proofing?",
+    a: "Identity proofing is the process of verifying that a person is who they claim to be, typically by checking an identity document and matching it to the individual presenting it — often via biometric comparison.",
   },
   {
-    q: "Why is digital onboarding important?",
-    a: "It dramatically improves conversion rates, reduces fraud, lowers operational costs and helps you meet regulatory obligations such as KYC and AML — all while delivering a better customer experience.",
+    q: "What documents can Falcon authenticate?",
+    a: "Falcon supports over 200 document types across 195 countries, including passports, national identity cards, driving licences, residence permits and more — with new document types added regularly.",
   },
   {
-    q: "How does Falcon improve pass rates?",
-    a: "By drawing on 60+ data sources simultaneously, Falcon constructs a richer identity profile for each applicant, enabling more confident pass decisions and fewer unnecessary referrals.",
+    q: "How does document tampering detection work?",
+    a: "Our forensic engine analyses security features including holograms, UV patterns, microprint, font consistency and MRZ integrity. Any anomalies are flagged for review, with expert escalation available for complex cases.",
   },
   {
-    q: "Is Falcon compliant with GDPR?",
-    a: "Yes. Falcon is GDPR-compliant and ISO 27001 certified. All customer data is handled with strict security and data minimisation practices, and is never resold to third parties.",
+    q: "Can Falcon authenticate documents in real time?",
+    a: "Yes. The majority of document checks are completed in under 4 seconds, delivering an immediate pass, fail or refer decision without any manual intervention required.",
   },
   {
-    q: "Can Falcon support biometric verification?",
-    a: "Yes. Falcon's platform includes liveness detection and facial biometric matching, ensuring the person presenting a document is genuinely present and matches the identity being verified.",
+    q: "Is biometric verification included?",
+    a: "Yes. Falcon's platform includes liveness detection and facial biometric matching, ensuring the person presenting a document is genuinely present and corresponds to the identity being verified.",
   },
   {
-    q: "How quickly can we see results after go-live?",
-    a: "Most customers see measurable improvement in pass rates and fraud detection within the first 30 days of live operation. Our team provides ongoing tuning support to optimise performance.",
+    q: "How does Falcon handle edge cases and expert escalations?",
+    a: "Our forensic document expert team is available around the clock to review complex or ambiguous cases. Escalations are typically resolved within a few hours, with a full written report provided.",
   },
 ];
 
@@ -1179,7 +1430,7 @@ function FAQSection() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              about customer onboarding
+              about identity proofing
             </span>
           </h2>
         </Reveal>
@@ -1266,14 +1517,14 @@ function FAQSection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 6 — BOTTOM CTA
+   SECTION 8 — BOTTOM CTA
 ═══════════════════════════════════════════════════════════════════ */
 function BottomCTA() {
   const ctaCards: CTACard[] = [
-    { icon: "🆔", t: "Identity", d: "Verify globally" },
-    { icon: "🧠", t: "AI Risk", d: "Real-time scoring" },
-    { icon: "🛡️", t: "Fraud Guard", d: "Stop crime fast" },
-    { icon: "📊", t: "Analytics", d: "Full visibility" },
+    { icon: "🆔", t: "Document Auth", d: "200+ doc types" },
+    { icon: "🧬", t: "Biometrics", d: "Liveness + face match" },
+    { icon: "🔬", t: "Forensics", d: "Expert tamper checks" },
+    { icon: "📊", t: "Analytics", d: "Full audit trail" },
   ];
 
   return (
@@ -1380,7 +1631,7 @@ function BottomCTA() {
               </button>
             </div>
             <div className="flex flex-wrap gap-4 sm:gap-6 opacity-35">
-              {["VISA", "Mastercard", "Stripe", "Wise", "HSBC"].map((b) => (
+              {["Aviva", "AXA", "HSBC", "Lloyds", "Barclays"].map((b) => (
                 <span
                   key={b}
                   className="font-black text-white text-xs tracking-widest uppercase"
@@ -1434,7 +1685,7 @@ function BottomCTA() {
 /* ═══════════════════════════════════════════════════════════════════
    ROOT
 ═══════════════════════════════════════════════════════════════════ */
-export default function SolutionsPage() {
+export default function SecureIDPage() {
   return (
     <main
       className="bg-white overflow-x-hidden w-full"
@@ -1472,7 +1723,9 @@ export default function SolutionsPage() {
       />
 
       <HeroSection />
-      <GlobalCoverageSection />
+      <DocumentAuthSection />
+      <HardwareBanner />
+      <EstablishTrustSection />
       <TestimonialBanner />
       <ConnectSafelySection />
       <FAQSection />

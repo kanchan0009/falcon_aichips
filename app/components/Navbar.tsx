@@ -30,7 +30,7 @@ const navItems: NavItem[] = [
     dropdown: [
       { title: "Financial Services", desc: "KYC & AML compliance" },
       { title: "Gaming & Gambling", desc: "Responsible gaming tools" },
-      { title: "Healthcare", desc: "Patient identity management" },
+      { title: "Insurance", desc: "Patient identity management" },
       { title: "Retail & eCommerce", desc: "Secure customer journeys" },
     ],
   },
@@ -102,10 +102,10 @@ export default function Navbar(): React.ReactElement {
   const handleMobileDropdownToggle = useCallback(
     (item: NavItem) => {
       if (item.dropdown) {
-        // Toggle dropdown expansion
+        
         setMobileExpanded((prev) => (prev === item.label ? null : item.label));
       } else {
-        // No dropdown - close the entire mobile menu
+        
         closeMobileMenu();
       }
     },

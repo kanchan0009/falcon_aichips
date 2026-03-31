@@ -409,7 +409,9 @@ function HeroSection() {
             </Reveal>
             <Reveal delay={0.14}>
               <p className="text-black/55 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
-                Falcon helps operators retain and grow players across all markets and regulations while creating genuine player trust, so you always stay ahead of the game.
+                Falcon helps operators retain and grow players across all
+                markets and regulations while creating genuine player trust, so
+                you always stay ahead of the game.
               </p>
             </Reveal>
             <Reveal delay={0.2}>
@@ -430,6 +432,12 @@ function HeroSection() {
               <div
                 className="absolute inset-0 rounded-3xl overflow-hidden"
                 style={{
+                  backgroundImage:
+                    "url('https://i.pinimg.com/1200x/53/4e/c7/534ec72392a048d6f64ade322e6589d0.jpg')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundBlendMode: "overlay",
+
                   background: "linear-gradient(135deg,#1a1000,#3d2900,#7a5500)",
                   border: "1px solid rgba(201,148,10,0.2)",
                 }}
@@ -456,45 +464,33 @@ function HeroSection() {
                   animation: "floatCard 4s ease-in-out infinite alternate",
                 }}
               >
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-2 h-2 rounded-full bg-red-400" />
-                  <div className="w-2 h-2 rounded-full bg-yellow-400" />
-                  <div className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-xs text-black/50 ml-1">
-                    Player profile
-                  </span>
+                <div
+                  className="text-xs font-black text-black mb-2"
+                  style={{ fontFamily: "'Georgia',serif" }}
+                >
+                  {verified ? "✓ Identity Confirmed" : "Verifying identity..."}
                 </div>
                 <div
-                  className="h-20 rounded-xl mb-3 flex items-center justify-center"
-                  style={{
-                    background: "linear-gradient(135deg,#1a1000,#3d2900)",
-                    border: "1px solid rgba(201,148,10,0.2)",
-                  }}
+                  className="h-1.5 rounded-full w-full mb-2"
+                  style={{ background: "rgba(0,0,0,0.08)" }}
                 >
-                  <span
-                    className="text-yellow-600/40 text-xs uppercase tracking-wide"
-                    style={{ fontFamily: "'Georgia',serif" }}
-                  >
-                    Onboarding
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
                   <div
-                    className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-black text-black"
+                    className="h-full rounded-full transition-all duration-300"
                     style={{
-                      background: "linear-gradient(135deg,#c9940a,#f5d87a)",
+                      width: `${scanPct}%`,
+                      background: `linear-gradient(90deg,#c9940a,${verified ? "#22c55e" : "#f5d87a"})`,
                     }}
-                  >
-                    H
-                  </div>
-                  <span
-                    className="text-xs font-bold text-black"
-                    style={{ fontFamily: "'Georgia',serif" }}
-                  >
-                    Harrie Veltjer
-                  </span>
-                  <span className="ml-auto text-xs text-black/40">Now</span>
+                  />
                 </div>
+                {verified ? (
+                  <p className="text-xs text-green-500 font-bold">
+                    Player Verified ✓
+                  </p>
+                ) : (
+                  <p className="text-xs text-black/40">
+                    Processing... {scanPct}%
+                  </p>
+                )}
               </GlassCard>
 
               {/* Scan progress card */}
@@ -664,10 +660,16 @@ function PlayerOnboardingSection() {
                 Complete player onboarding
               </h2>
               <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-5 max-w-md">
-                Operators across the world face growing pressure to verify players quickly and compliantly. Understanding player identity at the point of registration means you can make confident, data-driven decisions, protecting your platform and your players.
+                Operators across the world face growing pressure to verify
+                players quickly and compliantly. Understanding player identity
+                at the point of registration means you can make confident,
+                data-driven decisions, protecting your platform and your
+                players.
               </p>
               <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-7 max-w-md">
-                Falcon gives you the power to verify identities in real time and automatically flag suspicious registrations before they escalate.
+                Falcon gives you the power to verify identities in real time and
+                automatically flag suspicious registrations before they
+                escalate.
               </p>
               <GoldBtn>Learn more</GoldBtn>
             </Reveal>
@@ -683,6 +685,11 @@ function PlayerOnboardingSection() {
               <div
                 className="absolute inset-0 rounded-3xl overflow-hidden"
                 style={{
+                  backgroundImage:
+                    "url('https://i.pinimg.com/736x/cb/9d/ae/cb9dae367287930bffa7e9c9cd17fac1.jpg')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundBlendMode: "overlay",
                   background: "linear-gradient(135deg,#1a1000,#3d2800)",
                   border: "1px solid rgba(201,148,10,0.18)",
                 }}
@@ -873,10 +880,14 @@ function BonusAbuseSection() {
                 Minimise bonus abuse and fraud
               </h2>
               <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-5 max-w-md mx-auto lg:mx-0">
-                Fraudsters exploit bonus offers and multiple accounts to drain operator margins. By connecting identity data, behavioural intelligence and device signals, Falcon gives you a real-time picture of every player.
+                Fraudsters exploit bonus offers and multiple accounts to drain
+                operator margins. By connecting identity data, behavioural
+                intelligence and device signals, Falcon gives you a real-time
+                picture of every player.
               </p>
               <p className="text-black/55 text-sm leading-relaxed mb-7 max-w-md mx-auto lg:mx-0">
-                Reduce bonus abuse, stop account takeovers and protect genuine players — all without adding unnecessary friction.
+                Reduce bonus abuse, stop account takeovers and protect genuine
+                players — all without adding unnecessary friction.
               </p>
               <div className="flex justify-center lg:justify-start">
                 <GoldBtn>Explore solution</GoldBtn>
@@ -908,10 +919,14 @@ function VulnerablePlayersSection() {
                 Protect vulnerable players
               </h2>
               <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-5 max-w-md">
-                As regulatory requirements tighten, operators must demonstrate robust safer gambling controls. Falcon helps you identify at-risk and vulnerable players early, enabling timely interventions that protect players and your licence.
+                As regulatory requirements tighten, operators must demonstrate
+                robust safer gambling controls. Falcon helps you identify
+                at-risk and vulnerable players early, enabling timely
+                interventions that protect players and your licence.
               </p>
               <p className="text-black/55 text-sm leading-relaxed mb-7 max-w-md">
-                Stay compliant with affordability checks, self-exclusion verification and enhanced due diligence — all in one platform.
+                Stay compliant with affordability checks, self-exclusion
+                verification and enhanced due diligence — all in one platform.
               </p>
               <GoldBtn>Learn more</GoldBtn>
             </Reveal>
@@ -1233,7 +1248,8 @@ function ConnectSafelySection() {
             Connect safely with every genuine identity
           </h2>
           <p className="text-black/45 text-sm max-w-lg mx-auto">
-            The purpose-built platform for gaming identity — preventing fraud and friction at the same time.
+            The purpose-built platform for gaming identity — preventing fraud
+            and friction at the same time.
           </p>
         </Reveal>
 
@@ -1405,7 +1421,10 @@ function FAQSection() {
                 {open === i && (
                   <div
                     className="px-5 pb-5"
-                    style={{ background: "#fafafa", borderTop: "1px solid rgba(0,0,0,0.05)" }}
+                    style={{
+                      background: "#fafafa",
+                      borderTop: "1px solid rgba(0,0,0,0.05)",
+                    }}
                   >
                     <p
                       className="text-sm text-black/55 leading-relaxed pt-3"
@@ -1551,7 +1570,8 @@ function ContactFormSection() {
             Complete customer intelligence
           </h2>
           <p className="text-white/45 text-sm max-w-md mx-auto">
-            Tell us about your player verification challenges and we'll show you exactly how Falcon can help you win players worldwide.
+            Tell us about your player verification challenges and we'll show you
+            exactly how Falcon can help you win players worldwide.
           </p>
         </Reveal>
 

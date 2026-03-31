@@ -432,16 +432,14 @@ function HeroSection() {
               <div
                 className="absolute inset-0 rounded-3xl overflow-hidden"
                 style={{
+                  backgroundImage:"url('https://i.pinimg.com/736x/cd/b8/76/cdb876e10d4d0bdbd688d3d8428f9bb2.jpg')", 
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                   background: "linear-gradient(135deg,#1a1000,#3d2900,#7a5500)",
                   border: "1px solid rgba(201,148,10,0.2)",
                 }}
               >
-                <span
-                  className="absolute inset-0 flex items-center justify-center text-yellow-600/25 text-xs font-bold uppercase tracking-widest"
-                  style={{ fontFamily: "'Georgia',serif" }}
-                >
-                  Policyholder Portrait
-                </span>
+               
                 <div
                   className="absolute inset-0"
                   style={{
@@ -675,6 +673,9 @@ function FraudulentClaimsSection() {
               <div
                 className="absolute inset-0 rounded-3xl overflow-hidden"
                 style={{
+                  backgroundImage:"url('https://i.pinimg.com/736x/4e/8b/69/4e8b69d55928f1f3c849e40e7f91b502.jpg')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                   background: "linear-gradient(135deg,#1a1000,#3d2800)",
                   border: "1px solid rgba(201,148,10,0.18)",
                 }}

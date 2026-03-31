@@ -757,20 +757,36 @@ export default function AboutPage() {
               >
                 <ImgBox
                   className="row-span-2 h-full"
-                  label="AI Infrastructure"
-                  icon="🧠"
                   overlay
-                  style={{ borderRadius: "24px" }}
+                  style={{
+                    borderRadius: "24px",
+                    height: "clamp(320px,45vw,480px)",
+                    backgroundImage:
+                      "url('https://i.pinimg.com/1200x/e9/0c/5e/e90c5eb1955ad9316f10098a5d920499.jpg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
                 />
+
                 <ImgBox
-                  label="Behavioral Analytics"
-                  icon="📱"
-                  style={{ height: "48%" }}
+                  style={{
+                    height: "clamp(220px,35vw,260px)",
+
+                    backgroundImage:
+                      "url('https://i.pinimg.com/736x/9f/1b/3c/9f1b3cc7a89f92825b2850ba1f57b33f.jpg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
                 />
+
                 <ImgBox
-                  label="Fraud Detection"
-                  icon="🛡️"
-                  style={{ height: "48%" }}
+                  style={{
+                    height: "clamp(220px,35vw,120px)",
+                    backgroundImage:
+                      "url('https://i.pinimg.com/1200x/39/d1/c1/39d1c15963e81ccc93a118f83c372767.jpg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
                 />
               </div>
               {/* Floating badge */}
@@ -817,12 +833,16 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <Reveal direction="right">
-              <div className="relative">
-                <ImgBox
-                  className="w-full h-96"
-                  label="Digital Nepal Vision"
-                  icon="🇳🇵"
-                />
+              <div className="relative"
+                style={{
+                  backgroundImage: "url('https://i.pinimg.com/1200x/18/69/c3/1869c30217fbfc20e8f9e494a408854f.jpg')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  height: "clamp(300px,40vw,500px)",
+                  borderRadius: "24px",
+                }}
+              >
+                
                 <div className="absolute -bottom-6 -right-6 bg-black text-white p-6 rounded-2xl max-w-xs shadow-2xl">
                   <p className="text-xs text-white/60 uppercase tracking-wider mb-2">
                     Our Mission
@@ -1096,12 +1116,15 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal delay={0.2} direction="left">
-              <div className="relative">
-                <ImgBox
-                  className="w-full h-80 lg:h-96"
-                  label="Lalitpur Office"
-                  icon="🏢"
-                />
+              <div className="relative"
+                 style={{
+                  backgroundImage: "url('https://i.pinimg.com/1200x/eb/b1/e9/ebb1e9fc163856a520f8f0eb4bd25247.jpg')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  height: "clamp(300px,40vw,400px)",
+                  borderRadius: "24px",
+                }}
+              >
                 <div className="absolute bottom-3 left-6 right-6 bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-lg">
                   <h3
                     className="font-black text-black lg mb-2"
