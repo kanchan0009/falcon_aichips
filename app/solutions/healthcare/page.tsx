@@ -314,7 +314,7 @@ function FeatureCard({ number, title, desc, delay = 0 }: FeatureCardProps) {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 1 — HERO: STOP SCAMS AT CHECKOUT
+   SECTION 1 — HERO: COMPLETE POLICYHOLDER CONFIDENCE
 ═══════════════════════════════════════════════════════════════════ */
 function HeroSection() {
   const [scanPct, setScanPct] = useState(0);
@@ -385,7 +385,7 @@ function HeroSection() {
           {/* LEFT */}
           <div>
             <Reveal delay={0}>
-              <Pill>Retail</Pill>
+              <Pill>Insurance</Pill>
             </Reveal>
             <Reveal delay={0.08}>
               <h1
@@ -395,7 +395,7 @@ function HeroSection() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Stop scams at{" "}
+                Complete policyholder{" "}
                 <span
                   style={{
                     background: "linear-gradient(135deg,#c9940a,#f5d87a)",
@@ -403,15 +403,15 @@ function HeroSection() {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  checkout
+                  confidence
                 </span>
               </h1>
             </Reveal>
             <Reveal delay={0.14}>
               <p className="text-black/55 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
-                Our technology intelligence helps retailers identify, detect and
-                stop increasingly sophisticated real-world and digital checkout
-                scams before they damage your brand and your bottom line.
+                Verify policyholders, investigate claims and reduce fraud
+                quickly and securely for customer identity verification and
+                better results across the complete policy life cycle.
               </p>
             </Reveal>
             <Reveal delay={0.2}>
@@ -422,7 +422,7 @@ function HeroSection() {
             </Reveal>
           </div>
 
-          {/* RIGHT — animated checkout mockup */}
+          {/* RIGHT — animated policyholder mockup */}
           <Reveal delay={0.16} direction="left">
             <div
               className="relative"
@@ -440,7 +440,7 @@ function HeroSection() {
                   className="absolute inset-0 flex items-center justify-center text-yellow-600/25 text-xs font-bold uppercase tracking-widest"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  Customer Portrait
+                  Policyholder Portrait
                 </span>
                 <div
                   className="absolute inset-0"
@@ -451,7 +451,7 @@ function HeroSection() {
                 />
               </div>
 
-              {/* Video call UI card */}
+              {/* Policy status card */}
               <GlassCard
                 className="absolute top-4 right-4 w-52"
                 style={{
@@ -463,7 +463,7 @@ function HeroSection() {
                   <div className="w-2 h-2 rounded-full bg-yellow-400" />
                   <div className="w-2 h-2 rounded-full bg-green-400" />
                   <span className="text-xs text-black/50 ml-1">
-                    Open for a link
+                    Policy status
                   </span>
                 </div>
                 <div
@@ -477,7 +477,7 @@ function HeroSection() {
                     className="text-yellow-600/40 text-xs uppercase tracking-wide"
                     style={{ fontFamily: "'Georgia',serif" }}
                   >
-                    Video Call
+                    Onboarded
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -487,13 +487,13 @@ function HeroSection() {
                       background: "linear-gradient(135deg,#c9940a,#f5d87a)",
                     }}
                   >
-                    J
+                    S
                   </div>
                   <span
                     className="text-xs font-bold text-black"
                     style={{ fontFamily: "'Georgia',serif" }}
                   >
-                    John Dough
+                    Sarah Mitchell
                   </span>
                   <span className="ml-auto text-xs text-black/40">Now</span>
                 </div>
@@ -505,7 +505,9 @@ function HeroSection() {
                   className="text-xs font-black text-black mb-2"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  {verified ? "✓ Identity Confirmed" : "Scanning identity..."}
+                  {verified
+                    ? "✓ Identity Confirmed"
+                    : "Verifying policyholder..."}
                 </div>
                 <div
                   className="h-1.5 rounded-full w-full mb-2"
@@ -521,7 +523,7 @@ function HeroSection() {
                 </div>
                 {verified ? (
                   <p className="text-xs text-green-500 font-bold">
-                    Face Biometric Match ✓
+                    Policyholder Verified ✓
                   </p>
                 ) : (
                   <p className="text-xs text-black/40">
@@ -559,21 +561,19 @@ function TestimonialStrip() {
   const testimonials: TestimonialProps[] = [
     {
       quote:
-        "Using Falcon's data and solutions, we identified significant improvements in identifying and blocking fraudulent onboarding, substantially reducing our fraud risk by almost 50% this year.",
+        "Using Falcon's data and solutions, we identified significant improvements in detecting fraudulent claims, substantially reducing our fraud losses by almost 50% this year.",
       author: "Read full story",
       role: "",
-      logo: "Nike",
+      logo: "Aviva",
     },
     {
       quote:
-        "We are able to detect and stop scam attempts at checkout in real time, protecting our customers without adding any friction to genuine transactions.",
+        "We are able to verify policyholders and detect fraudulent applications in real time, protecting our business without adding friction to genuine customers.",
       author: "See case study",
       role: "",
-      logo: "Spotify",
+      logo: "AXA",
     },
   ];
-
-  const logos = ["VISA", "Nike", "Spotify", "IBM", "Mastercard", "HSBC"];
 
   return (
     <section className="py-14 sm:py-20 bg-white border-y border-black/5">
@@ -621,29 +621,15 @@ function TestimonialStrip() {
             </Reveal>
           ))}
         </div>
-        {/* Logo strip */}
-        <Reveal>
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 opacity-30">
-            {logos.map((l) => (
-              <span
-                key={l}
-                className="font-black text-sm sm:text-base tracking-widest uppercase text-black"
-                style={{ fontFamily: "'Georgia',serif" }}
-              >
-                {l}
-              </span>
-            ))}
-          </div>
-        </Reveal>
       </div>
     </section>
   );
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 3 — REDUCE REFUND FRAUD
+   SECTION 3 — REDUCE FRAUDULENT CLAIMS
 ═══════════════════════════════════════════════════════════════════ */
-function RefundFraudSection() {
+function FraudulentClaimsSection() {
   return (
     <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
       <div
@@ -658,22 +644,22 @@ function RefundFraudSection() {
           {/* LEFT text */}
           <div>
             <Reveal delay={0}>
-              <Pill>Refund Intelligence</Pill>
+              <Pill>Claims Intelligence</Pill>
               <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-4 mb-5 leading-tight"
                 style={{ fontFamily: "'Georgia',serif" }}
               >
-                Reduce refund fraud
+                Reduce fraudulent claims
               </h2>
               <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-5 max-w-md">
-                Retailers across the world face growing volumes of refund fraud.
-                Understanding which customer identity is at the heart of a
-                refund request means you can make confident, data-driven
-                decisions, protecting your profits.
+                Insurers across the world face growing volumes of fraudulent
+                claims. Understanding which customer identity is behind a claim
+                means you can make confident, data-driven decisions, protecting
+                your profitability and your genuine customers.
               </p>
               <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-7 max-w-md">
-                Falcon gives you the power to link returns to real identities
-                and automatically flag suspicious patterns before they escalate.
+                Falcon gives you the power to link claims to real identities and
+                automatically flag suspicious patterns before they escalate.
               </p>
               <GoldBtn>Learn more</GoldBtn>
             </Reveal>
@@ -697,7 +683,7 @@ function RefundFraudSection() {
                   className="absolute inset-0 flex items-center justify-center text-yellow-600/20 text-xs uppercase tracking-widest font-bold"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  Customer Photo
+                  Claimant Photo
                 </span>
               </div>
 
@@ -715,23 +701,25 @@ function RefundFraudSection() {
                       background: "linear-gradient(135deg,#c9940a,#f5d87a)",
                     }}
                   >
-                    AK
+                    SM
                   </div>
                   <div>
                     <p
                       className="text-xs font-black text-black"
                       style={{ fontFamily: "'Georgia',serif" }}
                     >
-                      Anna Klein
+                      Sarah Mitchell
                     </p>
-                    <p className="text-xs text-black/40">anna.k@email.com</p>
+                    <p className="text-xs text-black/40">
+                      s.mitchell@email.com
+                    </p>
                   </div>
                 </div>
                 <div className="space-y-1.5">
                   {[
                     { label: "Identity", status: "Verified", color: "#22c55e" },
-                    { label: "Refund risk", status: "Low", color: "#22c55e" },
-                    { label: "Returns", status: "2 / 90d", color: "#f59e0b" },
+                    { label: "Claim risk", status: "Low", color: "#22c55e" },
+                    { label: "Claims", status: "1 / 12m", color: "#f59e0b" },
                   ].map((row) => (
                     <div
                       key={row.label}
@@ -763,7 +751,7 @@ function RefundFraudSection() {
                     className="text-xs font-black text-black"
                     style={{ fontFamily: "'Georgia',serif" }}
                   >
-                    Refund Approved
+                    Claim Approved
                   </div>
                   <div className="text-xs text-green-500 font-bold">
                     Genuine Customer
@@ -779,9 +767,9 @@ function RefundFraudSection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 4 — CHECKOUT IDENTITY SECURITY
+   SECTION 4 — STOP FRAUD BEFORE ONBOARDING
 ═══════════════════════════════════════════════════════════════════ */
-function CheckoutIdentitySection() {
+function StopFraudSection() {
   return (
     <section
       className="py-16 sm:py-24 relative overflow-hidden"
@@ -806,7 +794,7 @@ function CheckoutIdentitySection() {
                   boxShadow: "0 0 40px rgba(201,148,10,0.5)",
                 }}
               >
-                <span className="text-2xl">👤</span>
+                <span className="text-2xl">🛡️</span>
               </div>
               {/* Pulse rings */}
               {[60, 100, 140].map((s) => (
@@ -871,22 +859,22 @@ function CheckoutIdentitySection() {
           {/* RIGHT text */}
           <div className="order-1 lg:order-2 text-center lg:text-left">
             <Reveal>
-              <Pill>Identity Security</Pill>
+              <Pill>Fraud Prevention</Pill>
               <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-4 mb-5 leading-tight"
                 style={{ fontFamily: "'Georgia',serif" }}
               >
-                Checkout identity security
+                Stop fraud before onboarding
               </h2>
               <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-5 max-w-md mx-auto lg:mx-0">
-                Fraudsters work around the clock to identify vulnerabilities in
-                your checkout process. By connecting identity data, behavioural
-                intelligence and device signals, Falcon gives you a real-time
-                picture of every transaction.
+                Fraudsters work around the clock to exploit vulnerabilities in
+                your policy application process. By connecting identity data,
+                behavioural intelligence and device signals, Falcon gives you a
+                real-time picture of every applicant.
               </p>
               <p className="text-black/55 text-sm leading-relaxed mb-7 max-w-md mx-auto lg:mx-0">
-                Reduce chargebacks, stop account takeovers and protect genuine
-                customers — all without adding unnecessary friction.
+                Prevent ghost broking, stop application fraud and protect
+                genuine customers — all without adding unnecessary friction.
               </p>
               <div className="flex justify-center lg:justify-start">
                 <GoldBtn>Explore solution</GoldBtn>
@@ -900,9 +888,9 @@ function CheckoutIdentitySection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 5 — RECONNECT WITH CUSTOMERS
+   SECTION 5 — INVESTIGATE CLAIMS AND POLICIES
 ═══════════════════════════════════════════════════════════════════ */
-function ReconnectSection() {
+function InvestigateClaimsSection() {
   return (
     <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -910,22 +898,24 @@ function ReconnectSection() {
           {/* LEFT text */}
           <div>
             <Reveal>
-              <Pill>Customer Reconnection</Pill>
+              <Pill>Investigations</Pill>
               <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-4 mb-5 leading-tight"
                 style={{ fontFamily: "'Georgia',serif" }}
               >
-                Reconnect with customers
+                Investigate claims and policies
               </h2>
               <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-5 max-w-md">
-                As customer data grows stale, it becomes harder to reach your
-                most valuable audiences. Falcon helps you reconnect with dormant
-                customers by verifying and enriching identity data, ensuring
-                your communications land with the right people.
+                When a claim or policy raises red flags, your investigators need
+                fast access to reliable identity intelligence. Falcon brings
+                together data from hundreds of sources to help you quickly
+                establish whether a claimant or policyholder is who they say
+                they are.
               </p>
               <p className="text-black/55 text-sm leading-relaxed mb-7 max-w-md">
-                Maintain data hygiene, improve deliverability and ensure
-                compliance with data privacy regulations at the same time.
+                Reduce investigation time, improve accuracy and support fair
+                outcomes for genuine customers — all backed by comprehensive
+                audit trails.
               </p>
               <GoldBtn>Learn more</GoldBtn>
             </Reveal>
@@ -955,16 +945,16 @@ function ReconnectSection() {
                     boxShadow: "0 0 30px rgba(201,148,10,0.4)",
                   }}
                 >
-                  <span className="text-xl">👤</span>
+                  <span className="text-xl">🔍</span>
                 </div>
               </div>
 
-              {/* Connected profiles */}
+              {/* Connected data points */}
               {[
-                { label: "Email ✓", x: "20%", y: "25%" },
-                { label: "Mobile ✓", x: "72%", y: "22%" },
-                { label: "Address ✓", x: "78%", y: "68%" },
-                { label: "ID Match", x: "18%", y: "70%" },
+                { label: "Policy history ✓", x: "20%", y: "25%" },
+                { label: "Claims record ✓", x: "72%", y: "22%" },
+                { label: "Address match ✓", x: "78%", y: "68%" },
+                { label: "ID verified", x: "18%", y: "70%" },
               ].map((n) => (
                 <div
                   key={n.label}
@@ -1054,28 +1044,28 @@ function FeatureCardsSection() {
             className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-2"
             style={{ fontFamily: "'Georgia',serif" }}
           >
-            Built for retail at scale
+            Built for insurance at scale
           </h2>
         </Reveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           <FeatureCard
             number="01"
-            title="Reduce Refund Fraud"
+            title="Accelerate Customer Onboarding"
             delay={0}
-            desc="Accurately identify customers behind every refund request and automatically flag suspicious patterns before they damage your revenue."
+            desc="Verify policyholders instantly at the point of application, reducing drop-off and eliminating friction for genuine customers."
           />
           <FeatureCard
             number="02"
-            title="Lingerie Identity"
+            title="Comprehensive Identity-Driven Decisioning"
             delay={0.08}
-            desc="Match customer identity across multiple touchpoints — online, in-store and returns — to build a single trusted view of every shopper."
+            desc="Connect identity data across the entire policy life cycle to make faster, more accurate underwriting and claims decisions."
           />
           <FeatureCard
             number="03"
-            title="Comprehensive Identity Protection"
+            title="Complete Identity Management"
             delay={0.16}
-            desc="Layer biometric verification, device intelligence and behavioural signals to deliver 360° protection at every stage of the customer journey."
+            desc="Maintain a single trusted view of every policyholder with continuous identity monitoring, ensuring your data stays accurate and compliant."
           />
         </div>
       </div>
@@ -1094,17 +1084,15 @@ function FeatureCardsSection() {
    SECTION 7 — CONNECT SAFELY PRODUCT TABS
 ═══════════════════════════════════════════════════════════════════ */
 function ConnectSafelySection() {
-  const [activeTab, setActiveTab] = useState<0 | 1>(0);
-
   const products: ProductData[] = [
     {
-      label: "Falcon Go",
+      label: "Falcon ",
       headline: "Launch identity verification in hours, not weeks.",
-      desc: "Falcon Go is the fastest way to get identity verification live for your retail business — no complex integration required. Ideal for growing businesses that need KYC quickly.",
+      desc: "Falcon  is the fastest way to get identity verification live for your insurance business — no complex integration required. Ideal for insurers that need KYC and fraud screening quickly.",
       features: [
         "No-code setup in hours",
         "Pre-built compliance rules",
-        "Plug-in to existing checkout",
+        "Plug-in to existing workflows",
         "Instant pass/fail decisions",
       ],
       ui: (
@@ -1113,7 +1101,7 @@ function ConnectSafelySection() {
             className="text-xs font-black text-black mb-2"
             style={{ fontFamily: "'Georgia',serif" }}
           >
-            Falcon Go Dashboard
+            Falcon Dashboard
           </div>
           <div className="grid grid-cols-2 gap-2">
             {[
@@ -1149,17 +1137,17 @@ function ConnectSafelySection() {
           >
             <span className="text-sm">✅</span>
             <span className="text-xs text-black/60">
-              Customer verified in 0.18s
+              Policyholder verified in 0.18s
             </span>
           </div>
         </div>
       ),
     },
     {
-      label: "Falcon Trust Network",
+      label: "Falcon Trust",
       headline:
         "Stop fraud with consortium intelligence across 20,000+ businesses.",
-      desc: "Falcon Trust Network shares anonymised fraud signals across our global customer base, so you benefit from intelligence gathered across thousands of organisations.",
+      desc: "Falcon Trust shares anonymised fraud signals across our global customer base, so you benefit from intelligence gathered across thousands of insurance and non-insurance organisations.",
       features: [
         "Shared fraud signals",
         "Synthetic identity detection",
@@ -1247,7 +1235,7 @@ function ConnectSafelySection() {
             Connect safely with every genuine identity
           </h2>
           <p className="text-black/45 text-sm max-w-lg mx-auto">
-            The purpose-built platform for retail identity — preventing fraud
+            The purpose-built platform for insurance identity — preventing fraud
             and friction at the same time.
           </p>
         </Reveal>
@@ -1353,7 +1341,7 @@ function ConnectSafelySection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 8 — CONTACT FORM (TYPESCRIPT)
+   SECTION 8 — CONTACT FORM
 ═══════════════════════════════════════════════════════════════════ */
 const COUNTRIES = [
   "United Kingdom",
@@ -1412,7 +1400,6 @@ function ContactFormSection() {
     (field: keyof ContactFormData, val: string | boolean) => {
       setForm((f) => ({ ...f, [field]: val }));
       setTouched((t) => new Set(t).add(field));
-      // Live validation for touched field
       setErrors((e) => {
         const newForm = { ...form, [field]: val };
         const newErrs = validate(newForm as ContactFormData);
@@ -1468,11 +1455,11 @@ function ContactFormSection() {
             className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-2 mb-3"
             style={{ fontFamily: "'Georgia',serif" }}
           >
-            Stop scams. Start a conversation.
+            Complete customer intelligence
           </h2>
           <p className="text-black/45 text-sm max-w-md mx-auto">
-            Tell us about your checkout fraud challenges and we'll show you
-            exactly how Falcon can help.
+            Tell us about your policyholder verification challenges and we'll
+            show you exactly how Falcon can help.
           </p>
         </Reveal>
 
@@ -1549,7 +1536,7 @@ function ContactFormSection() {
                             value={form[field]}
                             onChange={(e) => set(field, e.target.value)}
                             placeholder={
-                              field === "firstName" ? "James" : "Harlow"
+                              field === "firstName" ? "Sarah" : "Mitchell"
                             }
                             style={inputStyle(field)}
                             onFocus={(e) => {
@@ -1586,7 +1573,7 @@ function ContactFormSection() {
                         type="email"
                         value={form.email}
                         onChange={(e) => set("email", e.target.value)}
-                        placeholder="james@company.com"
+                        placeholder="sarah@company.com"
                         style={inputStyle("email")}
                         onFocus={(e) => {
                           e.target.style.borderColor = "#c9940a";
@@ -1616,7 +1603,7 @@ function ContactFormSection() {
                           type="text"
                           value={form.company}
                           onChange={(e) => set("company", e.target.value)}
-                          placeholder="Acme Retail Ltd"
+                          placeholder="Acme Insurance Ltd"
                           style={inputStyle("company")}
                           onFocus={(e) => {
                             e.target.style.borderColor = "#c9940a";
@@ -1710,7 +1697,7 @@ function ContactFormSection() {
                         value={form.message}
                         onChange={(e) => set("message", e.target.value)}
                         rows={4}
-                        placeholder="Tell us about your checkout fraud challenges, current volumes and what you're looking to solve..."
+                        placeholder="Tell us about your policyholder verification challenges, current claims volumes and what you're looking to solve..."
                         style={{ ...inputStyle("message"), resize: "none" }}
                         onFocus={(e) => {
                           e.target.style.borderColor = "#c9940a";
@@ -1848,17 +1835,17 @@ function ContactFormSection() {
                       {
                         icon: "📞",
                         t: "Expert call",
-                        d: "A specialist will reach out within one business day to understand your needs.",
+                        d: "An insurance specialist will reach out within one business day to understand your needs.",
                       },
                       {
                         icon: "🎯",
                         t: "Tailored demo",
-                        d: "We'll prepare a personalised demo focused on your specific fraud challenges.",
+                        d: "We'll prepare a personalised demo focused on your specific claims and fraud challenges.",
                       },
                       {
                         icon: "🚀",
                         t: "Fast onboarding",
-                        d: "Most retail customers go live within 2–4 weeks of signing.",
+                        d: "Most insurance customers go live within 2–4 weeks of signing.",
                       },
                     ].map((item) => (
                       <li key={item.t} className="flex gap-3">
@@ -1923,7 +1910,7 @@ function ContactFormSection() {
 /* ═══════════════════════════════════════════════════════════════════
    ROOT
 ═══════════════════════════════════════════════════════════════════ */
-export default function RetailPage() {
+export default function InsurancePage() {
   return (
     <main
       className="bg-white overflow-x-hidden w-full"
@@ -1943,9 +1930,9 @@ export default function RetailPage() {
 
       <HeroSection />
       <TestimonialStrip />
-      <RefundFraudSection />
-      <CheckoutIdentitySection />
-      <ReconnectSection />
+      <FraudulentClaimsSection />
+      <StopFraudSection />
+      <InvestigateClaimsSection />
       <FeatureCardsSection />
       <ConnectSafelySection />
       <ContactFormSection />

@@ -314,7 +314,7 @@ function FeatureCard({ number, title, desc, delay = 0 }: FeatureCardProps) {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 1 — HERO: STOP SCAMS AT CHECKOUT
+   SECTION 1 — HERO: WIN PLAYERS WORLDWIDE
 ═══════════════════════════════════════════════════════════════════ */
 function HeroSection() {
   const [scanPct, setScanPct] = useState(0);
@@ -385,7 +385,7 @@ function HeroSection() {
           {/* LEFT */}
           <div>
             <Reveal delay={0}>
-              <Pill>Retail</Pill>
+              <Pill>Gaming</Pill>
             </Reveal>
             <Reveal delay={0.08}>
               <h1
@@ -395,7 +395,7 @@ function HeroSection() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Stop scams at{" "}
+                Win players{" "}
                 <span
                   style={{
                     background: "linear-gradient(135deg,#c9940a,#f5d87a)",
@@ -403,15 +403,13 @@ function HeroSection() {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  checkout
+                  worldwide
                 </span>
               </h1>
             </Reveal>
             <Reveal delay={0.14}>
               <p className="text-black/55 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
-                Our technology intelligence helps retailers identify, detect and
-                stop increasingly sophisticated real-world and digital checkout
-                scams before they damage your brand and your bottom line.
+                Falcon helps operators retain and grow players across all markets and regulations while creating genuine player trust, so you always stay ahead of the game.
               </p>
             </Reveal>
             <Reveal delay={0.2}>
@@ -422,7 +420,7 @@ function HeroSection() {
             </Reveal>
           </div>
 
-          {/* RIGHT — animated checkout mockup */}
+          {/* RIGHT — animated player mockup */}
           <Reveal delay={0.16} direction="left">
             <div
               className="relative"
@@ -440,7 +438,7 @@ function HeroSection() {
                   className="absolute inset-0 flex items-center justify-center text-yellow-600/25 text-xs font-bold uppercase tracking-widest"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  Customer Portrait
+                  Player Portrait
                 </span>
                 <div
                   className="absolute inset-0"
@@ -463,7 +461,7 @@ function HeroSection() {
                   <div className="w-2 h-2 rounded-full bg-yellow-400" />
                   <div className="w-2 h-2 rounded-full bg-green-400" />
                   <span className="text-xs text-black/50 ml-1">
-                    Open for a link
+                    Player profile
                   </span>
                 </div>
                 <div
@@ -477,7 +475,7 @@ function HeroSection() {
                     className="text-yellow-600/40 text-xs uppercase tracking-wide"
                     style={{ fontFamily: "'Georgia',serif" }}
                   >
-                    Video Call
+                    Onboarding
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -487,13 +485,13 @@ function HeroSection() {
                       background: "linear-gradient(135deg,#c9940a,#f5d87a)",
                     }}
                   >
-                    J
+                    H
                   </div>
                   <span
                     className="text-xs font-bold text-black"
                     style={{ fontFamily: "'Georgia',serif" }}
                   >
-                    John Dough
+                    Harrie Veltjer
                   </span>
                   <span className="ml-auto text-xs text-black/40">Now</span>
                 </div>
@@ -505,7 +503,7 @@ function HeroSection() {
                   className="text-xs font-black text-black mb-2"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  {verified ? "✓ Identity Confirmed" : "Scanning identity..."}
+                  {verified ? "✓ Identity Confirmed" : "Verifying identity..."}
                 </div>
                 <div
                   className="h-1.5 rounded-full w-full mb-2"
@@ -521,7 +519,7 @@ function HeroSection() {
                 </div>
                 {verified ? (
                   <p className="text-xs text-green-500 font-bold">
-                    Face Biometric Match ✓
+                    Player Verified ✓
                   </p>
                 ) : (
                   <p className="text-xs text-black/40">
@@ -562,18 +560,18 @@ function TestimonialStrip() {
         "Using Falcon's data and solutions, we identified significant improvements in identifying and blocking fraudulent onboarding, substantially reducing our fraud risk by almost 50% this year.",
       author: "Read full story",
       role: "",
-      logo: "Nike",
+      logo: "Flutter",
     },
     {
       quote:
-        "We are able to detect and stop scam attempts at checkout in real time, protecting our customers without adding any friction to genuine transactions.",
+        "We are able to detect and stop bonus abuse attempts in real time, protecting our platform without adding any friction to genuine players.",
       author: "See case study",
       role: "",
-      logo: "Spotify",
+      logo: "Betano",
     },
   ];
 
-  const logos = ["VISA", "Nike", "Spotify", "IBM", "Mastercard", "HSBC"];
+  const logos = ["Flutter", "Betano", "SBG", "Entain", "Kindred", "Bet365"];
 
   return (
     <section className="py-14 sm:py-20 bg-white border-y border-black/5">
@@ -641,9 +639,9 @@ function TestimonialStrip() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 3 — REDUCE REFUND FRAUD
+   SECTION 3 — COMPLETE PLAYER ONBOARDING
 ═══════════════════════════════════════════════════════════════════ */
-function RefundFraudSection() {
+function PlayerOnboardingSection() {
   return (
     <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
       <div
@@ -658,22 +656,18 @@ function RefundFraudSection() {
           {/* LEFT text */}
           <div>
             <Reveal delay={0}>
-              <Pill>Refund Intelligence</Pill>
+              <Pill>Onboarding</Pill>
               <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-4 mb-5 leading-tight"
                 style={{ fontFamily: "'Georgia',serif" }}
               >
-                Reduce refund fraud
+                Complete player onboarding
               </h2>
               <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-5 max-w-md">
-                Retailers across the world face growing volumes of refund fraud.
-                Understanding which customer identity is at the heart of a
-                refund request means you can make confident, data-driven
-                decisions, protecting your profits.
+                Operators across the world face growing pressure to verify players quickly and compliantly. Understanding player identity at the point of registration means you can make confident, data-driven decisions, protecting your platform and your players.
               </p>
               <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-7 max-w-md">
-                Falcon gives you the power to link returns to real identities
-                and automatically flag suspicious patterns before they escalate.
+                Falcon gives you the power to verify identities in real time and automatically flag suspicious registrations before they escalate.
               </p>
               <GoldBtn>Learn more</GoldBtn>
             </Reveal>
@@ -697,7 +691,7 @@ function RefundFraudSection() {
                   className="absolute inset-0 flex items-center justify-center text-yellow-600/20 text-xs uppercase tracking-widest font-bold"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  Customer Photo
+                  Player Photo
                 </span>
               </div>
 
@@ -715,23 +709,23 @@ function RefundFraudSection() {
                       background: "linear-gradient(135deg,#c9940a,#f5d87a)",
                     }}
                   >
-                    AK
+                    HV
                   </div>
                   <div>
                     <p
                       className="text-xs font-black text-black"
                       style={{ fontFamily: "'Georgia',serif" }}
                     >
-                      Anna Klein
+                      Harrie Veltjer
                     </p>
-                    <p className="text-xs text-black/40">anna.k@email.com</p>
+                    <p className="text-xs text-black/40">h.veltjer@email.com</p>
                   </div>
                 </div>
                 <div className="space-y-1.5">
                   {[
                     { label: "Identity", status: "Verified", color: "#22c55e" },
-                    { label: "Refund risk", status: "Low", color: "#22c55e" },
-                    { label: "Returns", status: "2 / 90d", color: "#f59e0b" },
+                    { label: "Age check", status: "Passed", color: "#22c55e" },
+                    { label: "Risk score", status: "Low", color: "#f59e0b" },
                   ].map((row) => (
                     <div
                       key={row.label}
@@ -763,10 +757,10 @@ function RefundFraudSection() {
                     className="text-xs font-black text-black"
                     style={{ fontFamily: "'Georgia',serif" }}
                   >
-                    Refund Approved
+                    Player Approved
                   </div>
                   <div className="text-xs text-green-500 font-bold">
-                    Genuine Customer
+                    Genuine Player
                   </div>
                 </div>
               </GlassCard>
@@ -779,9 +773,9 @@ function RefundFraudSection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 4 — CHECKOUT IDENTITY SECURITY
+   SECTION 4 — MINIMISE BONUS ABUSE AND FRAUD
 ═══════════════════════════════════════════════════════════════════ */
-function CheckoutIdentitySection() {
+function BonusAbuseSection() {
   return (
     <section
       className="py-16 sm:py-24 relative overflow-hidden"
@@ -806,7 +800,7 @@ function CheckoutIdentitySection() {
                   boxShadow: "0 0 40px rgba(201,148,10,0.5)",
                 }}
               >
-                <span className="text-2xl">👤</span>
+                <span className="text-2xl">🎮</span>
               </div>
               {/* Pulse rings */}
               {[60, 100, 140].map((s) => (
@@ -871,22 +865,18 @@ function CheckoutIdentitySection() {
           {/* RIGHT text */}
           <div className="order-1 lg:order-2 text-center lg:text-left">
             <Reveal>
-              <Pill>Identity Security</Pill>
+              <Pill>Fraud Prevention</Pill>
               <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-4 mb-5 leading-tight"
                 style={{ fontFamily: "'Georgia',serif" }}
               >
-                Checkout identity security
+                Minimise bonus abuse and fraud
               </h2>
               <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-5 max-w-md mx-auto lg:mx-0">
-                Fraudsters work around the clock to identify vulnerabilities in
-                your checkout process. By connecting identity data, behavioural
-                intelligence and device signals, Falcon gives you a real-time
-                picture of every transaction.
+                Fraudsters exploit bonus offers and multiple accounts to drain operator margins. By connecting identity data, behavioural intelligence and device signals, Falcon gives you a real-time picture of every player.
               </p>
               <p className="text-black/55 text-sm leading-relaxed mb-7 max-w-md mx-auto lg:mx-0">
-                Reduce chargebacks, stop account takeovers and protect genuine
-                customers — all without adding unnecessary friction.
+                Reduce bonus abuse, stop account takeovers and protect genuine players — all without adding unnecessary friction.
               </p>
               <div className="flex justify-center lg:justify-start">
                 <GoldBtn>Explore solution</GoldBtn>
@@ -900,9 +890,9 @@ function CheckoutIdentitySection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 5 — RECONNECT WITH CUSTOMERS
+   SECTION 5 — PROTECT VULNERABLE PLAYERS
 ═══════════════════════════════════════════════════════════════════ */
-function ReconnectSection() {
+function VulnerablePlayersSection() {
   return (
     <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -910,22 +900,18 @@ function ReconnectSection() {
           {/* LEFT text */}
           <div>
             <Reveal>
-              <Pill>Customer Reconnection</Pill>
+              <Pill>Player Safety</Pill>
               <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-4 mb-5 leading-tight"
                 style={{ fontFamily: "'Georgia',serif" }}
               >
-                Reconnect with customers
+                Protect vulnerable players
               </h2>
               <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-5 max-w-md">
-                As customer data grows stale, it becomes harder to reach your
-                most valuable audiences. Falcon helps you reconnect with dormant
-                customers by verifying and enriching identity data, ensuring
-                your communications land with the right people.
+                As regulatory requirements tighten, operators must demonstrate robust safer gambling controls. Falcon helps you identify at-risk and vulnerable players early, enabling timely interventions that protect players and your licence.
               </p>
               <p className="text-black/55 text-sm leading-relaxed mb-7 max-w-md">
-                Maintain data hygiene, improve deliverability and ensure
-                compliance with data privacy regulations at the same time.
+                Stay compliant with affordability checks, self-exclusion verification and enhanced due diligence — all in one platform.
               </p>
               <GoldBtn>Learn more</GoldBtn>
             </Reveal>
@@ -955,16 +941,16 @@ function ReconnectSection() {
                     boxShadow: "0 0 30px rgba(201,148,10,0.4)",
                   }}
                 >
-                  <span className="text-xl">👤</span>
+                  <span className="text-xl">🛡️</span>
                 </div>
               </div>
 
-              {/* Connected profiles */}
+              {/* Connected checks */}
               {[
-                { label: "Email ✓", x: "20%", y: "25%" },
-                { label: "Mobile ✓", x: "72%", y: "22%" },
-                { label: "Address ✓", x: "78%", y: "68%" },
-                { label: "ID Match", x: "18%", y: "70%" },
+                { label: "Affordability ✓", x: "20%", y: "25%" },
+                { label: "Self-Exclusion ✓", x: "72%", y: "22%" },
+                { label: "Age Verified ✓", x: "78%", y: "68%" },
+                { label: "Risk Flag", x: "18%", y: "70%" },
               ].map((n) => (
                 <div
                   key={n.label}
@@ -1054,28 +1040,28 @@ function FeatureCardsSection() {
             className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-2"
             style={{ fontFamily: "'Georgia',serif" }}
           >
-            Built for retail at scale
+            Built for gaming at scale
           </h2>
         </Reveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           <FeatureCard
             number="01"
-            title="Reduce Refund Fraud"
+            title="Accelerate Player Transactions"
             delay={0}
-            desc="Accurately identify customers behind every refund request and automatically flag suspicious patterns before they damage your revenue."
+            desc="Verify players in milliseconds with frictionless identity checks that keep genuine players in the game and fraudsters out."
           />
           <FeatureCard
             number="02"
-            title="Lingerie Identity"
+            title="Know Your Players"
             delay={0.08}
-            desc="Match customer identity across multiple touchpoints — online, in-store and returns — to build a single trusted view of every shopper."
+            desc="Build a single trusted view of every player across multiple touchpoints — online, mobile and in-venue — to stay compliant and competitive."
           />
           <FeatureCard
             number="03"
-            title="Comprehensive Identity Protection"
+            title="Beat Bonus Abuse"
             delay={0.16}
-            desc="Layer biometric verification, device intelligence and behavioural signals to deliver 360° protection at every stage of the customer journey."
+            desc="Layer device intelligence, behavioural signals and identity verification to detect multi-accounting and bonus abuse before it impacts your margins."
           />
         </div>
       </div>
@@ -1098,14 +1084,14 @@ function ConnectSafelySection() {
 
   const products: ProductData[] = [
     {
-      label: "Falcon Go",
-      headline: "Launch identity verification in hours, not weeks.",
-      desc: "Falcon Go is the fastest way to get identity verification live for your retail business — no complex integration required. Ideal for growing businesses that need KYC quickly.",
+      label: "Protected Players",
+      headline: "Keep players safe with real-time safer gambling controls.",
+      desc: "Protected Players gives operators the tools to identify, monitor and interact with at-risk players in real time — meeting regulatory requirements without disrupting the player experience.",
       features: [
-        "No-code setup in hours",
-        "Pre-built compliance rules",
-        "Plug-in to existing checkout",
-        "Instant pass/fail decisions",
+        "Real-time risk monitoring",
+        "Automated intervention triggers",
+        "Affordability check integration",
+        "Self-exclusion verification",
       ],
       ui: (
         <div className="p-4 space-y-3">
@@ -1113,14 +1099,14 @@ function ConnectSafelySection() {
             className="text-xs font-black text-black mb-2"
             style={{ fontFamily: "'Georgia',serif" }}
           >
-            Falcon Go Dashboard
+            Protected Players Dashboard
           </div>
           <div className="grid grid-cols-2 gap-2">
             {[
-              { v: "99.1%", l: "Pass Rate", c: "#22c55e" },
-              { v: "0.2s", l: "Avg Decision", c: "#c9940a" },
+              { v: "99.2%", l: "Compliance", c: "#22c55e" },
+              { v: "0.3s", l: "Avg Check", c: "#c9940a" },
               { v: "24/7", l: "Monitoring", c: "#3b82f6" },
-              { v: "80+", l: "Countries", c: "#c9940a" },
+              { v: "100+", l: "Markets", c: "#c9940a" },
             ].map((s) => (
               <div
                 key={s.l}
@@ -1149,17 +1135,17 @@ function ConnectSafelySection() {
           >
             <span className="text-sm">✅</span>
             <span className="text-xs text-black/60">
-              Customer verified in 0.18s
+              Player verified in 0.28s
             </span>
           </div>
         </div>
       ),
     },
     {
-      label: "Falcon Trust Network",
+      label: "Falcon Trust",
       headline:
         "Stop fraud with consortium intelligence across 20,000+ businesses.",
-      desc: "Falcon Trust Network shares anonymised fraud signals across our global customer base, so you benefit from intelligence gathered across thousands of organisations.",
+      desc: "Falcon Trust shares anonymised fraud signals across our global customer base, so you benefit from intelligence gathered across thousands of gaming and non-gaming organisations worldwide.",
       features: [
         "Shared fraud signals",
         "Synthetic identity detection",
@@ -1247,8 +1233,7 @@ function ConnectSafelySection() {
             Connect safely with every genuine identity
           </h2>
           <p className="text-black/45 text-sm max-w-lg mx-auto">
-            The purpose-built platform for retail identity — preventing fraud
-            and friction at the same time.
+            The purpose-built platform for gaming identity — preventing fraud and friction at the same time.
           </p>
         </Reveal>
 
@@ -1353,7 +1338,94 @@ function ConnectSafelySection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 8 — CONTACT FORM (TYPESCRIPT)
+   SECTION 8 — FAQ ABOUT AFFORDABILITY
+═══════════════════════════════════════════════════════════════════ */
+function FAQSection() {
+  const faqs = [
+    {
+      q: "How do affordability checks work?",
+      a: "Affordability checks use a combination of open banking data, credit reference data and behavioural signals to assess whether a player's gambling activity is within their financial means — all without requiring players to submit payslips.",
+    },
+    {
+      q: "Are affordability checks mandatory?",
+      a: "Regulations vary by market. In Great Britain, the Gambling Commission has introduced frictionless affordability checks for most players and enhanced checks for high-spending customers. Falcon helps you stay compliant across all markets.",
+    },
+    {
+      q: "How quickly can we go live with affordability checks?",
+      a: "Most operators can go live within 2–4 weeks using Falcon's pre-built integrations and compliance rulesets. Our team works with you to configure the solution to your specific needs.",
+    },
+    {
+      q: "Can Falcon help with self-exclusion verification?",
+      a: "Yes. Falcon integrates with national self-exclusion registers such as GAMSTOP in the UK, helping operators automatically block self-excluded players at registration and login.",
+    },
+  ];
+
+  const [open, setOpen] = useState<number | null>(null);
+
+  return (
+    <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Reveal className="text-center mb-10 sm:mb-14">
+          <GoldLabel>FAQs</GoldLabel>
+          <h2
+            className="text-3xl sm:text-4xl font-black text-black mt-2 mb-3"
+            style={{ fontFamily: "'Georgia',serif" }}
+          >
+            Frequently asked questions about affordability
+          </h2>
+        </Reveal>
+        <div className="space-y-3">
+          {faqs.map((faq, i) => (
+            <Reveal key={faq.q} delay={i * 0.07}>
+              <div
+                className="rounded-2xl overflow-hidden cursor-pointer"
+                style={{
+                  border: "1px solid rgba(0,0,0,0.08)",
+                  boxShadow: "0 2px 12px rgba(0,0,0,0.04)",
+                }}
+                onClick={() => setOpen(open === i ? null : i)}
+              >
+                <div
+                  className="flex items-center justify-between p-5"
+                  style={{ background: open === i ? "#fafafa" : "#fff" }}
+                >
+                  <span
+                    className="font-black text-sm text-black"
+                    style={{ fontFamily: "'Georgia',serif" }}
+                  >
+                    {faq.q}
+                  </span>
+                  <span
+                    className="text-yellow-600 font-black text-lg ml-4 flex-shrink-0 transition-transform duration-300"
+                    style={{ transform: open === i ? "rotate(45deg)" : "none" }}
+                  >
+                    +
+                  </span>
+                </div>
+                {open === i && (
+                  <div
+                    className="px-5 pb-5"
+                    style={{ background: "#fafafa", borderTop: "1px solid rgba(0,0,0,0.05)" }}
+                  >
+                    <p
+                      className="text-sm text-black/55 leading-relaxed pt-3"
+                      style={{ fontFamily: "'Georgia',serif" }}
+                    >
+                      {faq.a}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SECTION 9 — CONTACT FORM (TYPESCRIPT)
 ═══════════════════════════════════════════════════════════════════ */
 const COUNTRIES = [
   "United Kingdom",
@@ -1412,7 +1484,6 @@ function ContactFormSection() {
     (field: keyof ContactFormData, val: string | boolean) => {
       setForm((f) => ({ ...f, [field]: val }));
       setTouched((t) => new Set(t).add(field));
-      // Live validation for touched field
       setErrors((e) => {
         const newForm = { ...form, [field]: val };
         const newErrs = validate(newForm as ContactFormData);
@@ -1452,27 +1523,35 @@ function ContactFormSection() {
   return (
     <section
       className="py-16 sm:py-24 relative overflow-hidden"
-      style={{ background: "#f8f8f8" }}
+      style={{
+        background: "linear-gradient(160deg,#000 0%,#1a1000 50%,#3d2900 100%)",
+      }}
     >
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,148,10,0.05) 0%, transparent 60%)",
+            "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,148,10,0.08) 0%, transparent 60%)",
+        }}
+      />
+      <div
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background:
+            "linear-gradient(90deg,transparent,#c9940a 30%,#f5d87a 50%,#c9940a 70%,transparent)",
         }}
       />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Reveal className="text-center mb-10 sm:mb-14">
           <GoldLabel>Get In Touch</GoldLabel>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-2 mb-3"
+            className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-2 mb-3"
             style={{ fontFamily: "'Georgia',serif" }}
           >
-            Stop scams. Start a conversation.
+            Complete customer intelligence
           </h2>
-          <p className="text-black/45 text-sm max-w-md mx-auto">
-            Tell us about your checkout fraud challenges and we'll show you
-            exactly how Falcon can help.
+          <p className="text-white/45 text-sm max-w-md mx-auto">
+            Tell us about your player verification challenges and we'll show you exactly how Falcon can help you win players worldwide.
           </p>
         </Reveal>
 
@@ -1616,7 +1695,7 @@ function ContactFormSection() {
                           type="text"
                           value={form.company}
                           onChange={(e) => set("company", e.target.value)}
-                          placeholder="Acme Retail Ltd"
+                          placeholder="Acme Gaming Ltd"
                           style={inputStyle("company")}
                           onFocus={(e) => {
                             e.target.style.borderColor = "#c9940a";
@@ -1710,7 +1789,7 @@ function ContactFormSection() {
                         value={form.message}
                         onChange={(e) => set("message", e.target.value)}
                         rows={4}
-                        placeholder="Tell us about your checkout fraud challenges, current volumes and what you're looking to solve..."
+                        placeholder="Tell us about your player verification challenges, current volumes and what you're looking to solve..."
                         style={{ ...inputStyle("message"), resize: "none" }}
                         onFocus={(e) => {
                           e.target.style.borderColor = "#c9940a";
@@ -1848,17 +1927,17 @@ function ContactFormSection() {
                       {
                         icon: "📞",
                         t: "Expert call",
-                        d: "A specialist will reach out within one business day to understand your needs.",
+                        d: "A gaming specialist will reach out within one business day to understand your needs.",
                       },
                       {
                         icon: "🎯",
                         t: "Tailored demo",
-                        d: "We'll prepare a personalised demo focused on your specific fraud challenges.",
+                        d: "We'll prepare a personalised demo focused on your specific player verification challenges.",
                       },
                       {
                         icon: "🚀",
                         t: "Fast onboarding",
-                        d: "Most retail customers go live within 2–4 weeks of signing.",
+                        d: "Most gaming operators go live within 2–4 weeks of signing.",
                       },
                     ].map((item) => (
                       <li key={item.t} className="flex gap-3">
@@ -1884,7 +1963,7 @@ function ContactFormSection() {
                 <div className="grid grid-cols-2 gap-3 mt-auto">
                   {[
                     { v: "20k+", l: "Clients" },
-                    { v: "80+", l: "Countries" },
+                    { v: "100+", l: "Markets" },
                     { v: "99%", l: "Accuracy" },
                     { v: "24/7", l: "Support" },
                   ].map((s) => (
@@ -1923,7 +2002,7 @@ function ContactFormSection() {
 /* ═══════════════════════════════════════════════════════════════════
    ROOT
 ═══════════════════════════════════════════════════════════════════ */
-export default function RetailPage() {
+export default function GamingPage() {
   return (
     <main
       className="bg-white overflow-x-hidden w-full"
@@ -1943,11 +2022,12 @@ export default function RetailPage() {
 
       <HeroSection />
       <TestimonialStrip />
-      <RefundFraudSection />
-      <CheckoutIdentitySection />
-      <ReconnectSection />
+      <PlayerOnboardingSection />
+      <BonusAbuseSection />
+      <VulnerablePlayersSection />
       <FeatureCardsSection />
       <ConnectSafelySection />
+      <FAQSection />
       <ContactFormSection />
     </main>
   );

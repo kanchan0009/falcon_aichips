@@ -630,13 +630,13 @@ function HeroSection() {
                     fontFamily: "'Georgia',serif",
                   }}
                 >
-                  G
+                  F
                 </div>
                 <span
                   className="text-yellow-400 text-xs font-bold uppercase tracking-wider"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  Falcon Go
+                  Falcon 
                 </span>
               </div>
               <p
@@ -650,7 +650,7 @@ function HeroSection() {
               </p>
             </div>
             <div className="flex-shrink-0">
-              <GoldBtn sm>Explore Falcon Go →</GoldBtn>
+              <GoldBtn sm>Explore Falcon  →</GoldBtn>
             </div>
           </div>
         </Reveal>

@@ -55,8 +55,6 @@ const navItems: NavItem[] = [
   },
 ];
 
-const languages = ["English", "Deutsch", "Français", "Español", "中文"];
-
 function slugify(str: string): string {
   return str
     .toLowerCase()
@@ -100,7 +98,7 @@ export default function Navbar(): React.ReactElement {
     closeMobileMenu();
   }, [closeMobileMenu]);
 
-  // Handle mobile dropdown toggle
+  
   const handleMobileDropdownToggle = useCallback(
     (item: NavItem) => {
       if (item.dropdown) {
@@ -122,7 +120,7 @@ export default function Navbar(): React.ReactElement {
   return (
     <nav
       ref={navRef}
-      className="w-full relative z-50"
+      className="w-full sticky top-0 z-50"
       style={{
         background:
           "linear-gradient(135deg, #000000 0%, #1a1000 40%, #7a5500 75%, #c9940a 100%)",
@@ -143,11 +141,11 @@ export default function Navbar(): React.ReactElement {
           {/* Logo */}
           <Link href="/" onClick={handleMobileLinkClick}>
             <div className="flex items-center gap-3 flex-shrink-0 cursor-pointer hover:scale-[1.02] transition-transform duration-200">
-              {/* Logo placeholder */}
+              
 
               <div className="w-14 h-14 relative">
                 <Image
-                  src="/image0.jpeg" // place your logo in /public folder
+                  src="/image0.jpeg" 
                   alt="Logo"
                   fill
                   className="rounded-lg object-cover"

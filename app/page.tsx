@@ -112,25 +112,6 @@ function Reveal({
     </div>
   );
 }
-<style
-  dangerouslySetInnerHTML={{
-    __html: `
-      @keyframes marquee {
-        0% {
-          transform: translateX(0%);
-        }
-        100% {
-          transform: translateX(-50%);
-        }
-      }
-
-      .animate-marquee {
-        animation: marquee 25s linear infinite;
-      }
-    `,
-  }}
-/>
-
 
 /* ── Golden CTA button ──────────────────────────────────────────── */
 function GoldBtn({ children }: { children: React.ReactNode }) {
@@ -240,35 +221,10 @@ function FeatureCard({ icon, title, desc, linkLabel }: FeatureCardProps) {
   );
 }
 
-/* ── Partner logo ───────────────────────────────────────────────── */
-function LogoPlaceholder({ name }: { name: string }) {
-  return (
-    <div className="h-9 flex items-center justify-center px-3 sm:px-5 opacity-40 hover:opacity-90 transition-all duration-300">
-      <span
-        className="font-bold text-black text-xs sm:text-sm tracking-widest uppercase"
-        style={{ fontFamily: "'Georgia',serif" }}
-      >
-        {name}
-      </span>
-    </div>
-  );
-}
-
 /* ══════════════════════════════════════════════════════════════════
    MAIN PAGE
 ══════════════════════════════════════════════════════════════════ */
 export default function HomePage() {
-  const partners = [
-    "Airwallex",
-    "Monzo",
-    "Klarna",
-    "Wise",
-    "Revolut",
-    "Paysafe",
-    "Luno",
-    "Robinhood",
-  ];
-
   const valueProps = [
     {
       icon: "🛡️",
@@ -392,6 +348,24 @@ export default function HomePage() {
       className="bg-white overflow-x-hidden w-full"
       style={{ fontFamily: "'Georgia',serif" }}
     >
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+      @keyframes marquee {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .animate-marquee {
+        animation: marquee 25s linear infinite;
+      }
+    `,
+        }}
+      />
       {/* ── HERO ──────────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div
@@ -478,7 +452,7 @@ export default function HomePage() {
 
       {/* ── PARTNER LOGOS ─────────────────────────────────────────── */}
       <Reveal className="mt-16 text-center">
-        <p className="text-black/30 text-xs uppercase tracking-widest mb-6">
+        <p className="text-black/60 text-xm uppercase tracking-widest mb-6">
           Trusted By Leading Institutions
         </p>
         <div className="relative overflow-hidden">
@@ -568,9 +542,8 @@ export default function HomePage() {
                   </span>
                 </h2>
                 <p className="text-white/55 leading-relaxed mb-7 max-w-md mx-auto lg:mx-0">
-                  Falcon GBG Identify lets you offer fast, personal and
-                  compliant customer journeys you — and your customers — can
-                  trust.
+                  Falcon Identify lets you offer fast, personal and compliant
+                  customer journeys you — and your customers — can trust.
                 </p>
                 <div className="flex justify-center lg:justify-start">
                   <GoldBtn>See it in action</GoldBtn>
