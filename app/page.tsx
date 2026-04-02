@@ -15,7 +15,8 @@ interface FeatureCardProps {
   icon: string;
   title: string;
   desc: string;
-  linkLabel: string;
+  linkLabel?: string;
+  onClick?: () => void;
 }
 
 interface StatItem {
@@ -166,7 +167,7 @@ function Pill({ children }: { children: React.ReactNode }) {
 /* ── Image placeholder ──────────────────────────────────────────── */
 function ImgBox({
   className = "",
-  label = "",
+
   style = {},
 }: {
   className?: string;
@@ -188,28 +189,36 @@ function ImgBox({
 }
 
 /* ── Feature card ───────────────────────────────────────────────── */
-function FeatureCard({ icon, title, desc, linkLabel }: FeatureCardProps) {
+function FeatureCard({
+  icon,
+  title,
+  desc,
+  linkLabel = "Learn more",
+  onClick,
+}: FeatureCardProps) {
   return (
-    <div className="group h-full">
-      <div
-        className="p-5 sm:p-6 rounded-2xl h-full transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1"
-        style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.07)" }}
+    <div
+      className="group p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer h-full"
+      style={{
+        background: "#fff",
+        border: "1px solid rgba(0,0,0,0.07)",
+      }}
+    >
+      <div className="text-3xl mb-3">{icon}</div>
+      <h4
+        className="font-black text-black text-base mb-2 group-hover:text-yellow-700 transition-colors"
+        style={{ fontFamily: "'Georgia',serif" }}
       >
-        <div className="text-3xl mb-3">{icon}</div>
-        <h4
-          className="font-bold text-black text-base mb-2"
-          style={{ fontFamily: "'Georgia',serif" }}
-        >
-          {title}
-        </h4>
-        <p className="text-sm text-black/55 leading-relaxed mb-4">{desc}</p>
-        <span
-          className="text-xs font-bold text-yellow-600 hover:text-yellow-500 cursor-pointer"
-          style={{ fontFamily: "'Georgia',serif" }}
-        >
-          {linkLabel} →
-        </span>
-      </div>
+        {title}
+      </h4>
+      <p className="text-black/50 text-sm leading-relaxed mb-4">{desc}</p>
+      <button
+        onClick={onClick}
+        className="text-xs font-bold transition-colors hover:text-yellow-700 flex items-center gap-1"
+        style={{ color: "#c9940a" }}
+      >
+        {linkLabel} →
+      </button>
     </div>
   );
 }
@@ -223,16 +232,19 @@ export default function HomePage() {
       icon: "🛡️",
       title: "Verify identity",
       desc: "Confirm customers are who they claim to be with multi-layered document and biometric checks.",
+      linkHref: "/products/identity-verification",
     },
     {
       icon: "📊",
       title: "Assess risk",
       desc: "Understand and manage risk across your customer base with continuous, AI-driven signals.",
+      linkHref: "/products/document-verification",
     },
     {
       icon: "🔒",
       title: "Protect against fraud",
       desc: "Detect and block synthetic, stolen and fraudulent identities before they cause damage.",
+      linkHref: "/products/fraud-detection",
     },
   ];
 
@@ -241,16 +253,19 @@ export default function HomePage() {
       icon: "📄",
       title: "Data verification",
       desc: "Verify customer identity data against authoritative global sources in real time, with minimal friction.",
+      linkHref: "/products/document-verification",
     },
     {
       icon: "🤳",
       title: "Biometric verification",
       desc: "Confirm customers are genuinely present using advanced facial biometric and liveness checks.",
+      linkHref: "/products/identity-verification",
     },
     {
       icon: "🆔",
       title: "Identity scores",
       desc: "Combine signals into a single confidence score to assess identity reliability at every touchpoint.",
+      linkHref: "/products/identity-verification",
     },
   ];
 
@@ -259,16 +274,19 @@ export default function HomePage() {
       icon: "👤",
       title: "Know your customer",
       desc: "Comprehensive KYC checks drawn from hundreds of global data sources, delivered in milliseconds.",
+      linkHref: "/products/kyc",
     },
     {
       icon: "🏢",
       title: "Know your business",
       desc: "Verify corporate entities, UBOs and business relationships to meet AML and compliance obligations.",
+      linkHref: "/products/kyb",
     },
     {
       icon: "🧠",
       title: "Risk intelligence",
       desc: "Continuously evaluate behavioural and transactional risk with adaptive AI models.",
+      linkHref: "/products/document-verification",
     },
   ];
 
@@ -425,7 +443,10 @@ export default function HomePage() {
                   <Link href="/demo">
                     <GoldBtn>Get a demo</GoldBtn>
                   </Link>
-                  <OutlineBtn>Learn more</OutlineBtn>
+                  <Link href="/learn_more">
+                    <OutlineBtn>Learn more</OutlineBtn>
+                  </Link>
+                  
                 </div>
               </Reveal>
             </div>
@@ -518,7 +539,16 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
             {valueProps.map((item, i) => (
               <Reveal key={item.title} delay={i * 0.1}>
-                <FeatureCard {...item} linkLabel="Learn more" />
+                <FeatureCard
+                  {...item}
+                  linkLabel="Learn more"
+                  onClick={() => {
+                    // Use Next.js router or window.location for navigation
+                    if (typeof window !== "undefined") {
+                      window.location.href = item.linkHref;
+                    }
+                  }}
+                />
               </Reveal>
             ))}
           </div>
@@ -565,7 +595,9 @@ export default function HomePage() {
                   customer journeys you — and your customers — can trust.
                 </p>
                 <div className="flex justify-center lg:justify-start">
-                  <GoldBtn>See it in action</GoldBtn>
+                  <a href="/see_action">
+                    <GoldBtn>See it in action</GoldBtn>
+                  </a>
                 </div>
               </Reveal>
             </div>
@@ -574,7 +606,7 @@ export default function HomePage() {
                 <ImgBox
                   className="w-full"
                   style={{
-                    height: "clamp(250px,45vw,400px)", // slightly increased height
+                    height: "clamp(250px,45vw,400px)",
                     backgroundImage:
                       "url('https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1200&auto=format&fit=crop')",
                     backgroundSize: "cover",
@@ -667,10 +699,18 @@ export default function HomePage() {
               </div>
             </div>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 mt-16 sm:mt-20">
             {verifyFeatures.map((item, i) => (
               <Reveal key={item.title} delay={i * 0.1}>
-                <FeatureCard {...item} linkLabel="Learn more" />
+                <FeatureCard
+                  {...item}
+                  linkLabel="Explore"
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      window.location.href = item.linkHref;
+                    }
+                  }}
+                />
               </Reveal>
             ))}
           </div>
@@ -780,7 +820,15 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 mt-16 sm:mt-20">
             {riskFeatures.map((item, i) => (
               <Reveal key={item.title} delay={i * 0.1}>
-                <FeatureCard {...item} linkLabel="Explore" />
+                <FeatureCard
+                  {...item}
+                  linkLabel="Explore"
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      window.location.href = item.linkHref;
+                    }
+                  }}
+                />
               </Reveal>
             ))}
           </div>
@@ -867,9 +915,6 @@ export default function HomePage() {
                   <p className="text-white/45 text-sm leading-relaxed mb-3">
                     {item.desc}
                   </p>
-                  <span className="text-xs font-bold text-yellow-500 cursor-pointer hover:text-yellow-400">
-                    Learn more →
-                  </span>
                 </div>
               </Reveal>
             ))}

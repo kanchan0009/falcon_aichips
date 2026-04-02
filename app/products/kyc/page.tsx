@@ -47,11 +47,7 @@ interface StatNode {
   city: string;
 }
 
-interface FeatureItem {
-  icon: string;
-  title: string;
-  desc: string;
-}
+
 
 interface TabContent {
   headline: string;
@@ -65,11 +61,7 @@ interface FAQItem {
   a: string;
 }
 
-interface CTACard {
-  icon: string;
-  t: string;
-  d: string;
-}
+
 
 /* ═══════════════════════════════════════════════════════════════════
    HOOKS
