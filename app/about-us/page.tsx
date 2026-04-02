@@ -722,7 +722,7 @@ export default function AboutPage() {
               >
                 <span className="text-white">Building the Digital</span>
                 <br />
-                <span className="shimmer-text">Fortress for Nepal.</span>
+                <span className="shimmer-text">Fortress for Nepal Ecosystem.</span>
               </h1>
               <p className="hero-animate-3 text-white/55 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
                 Nepal's premier Artificial Intelligence infrastructure company,
@@ -730,7 +730,6 @@ export default function AboutPage() {
                 fraud intelligence for Tier-A financial institutions.
               </p>
               <div className="hero-animate-4 flex flex-wrap gap-3">
-                <GoldBtn>Partner With Us</GoldBtn>
                 <GoldBtn outline>Explore Solutions →</GoldBtn>
               </div>
 
@@ -1188,12 +1187,7 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <GoldBtn>Request Demo</GoldBtn>
-              <button
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white border border-white/15 hover:border-white/30 transition-colors"
-                style={{ fontFamily: "'Georgia',serif" }}
-              >
-                Contact Sales →
-              </button>
+              
             </div>
           </Reveal>
         </div>

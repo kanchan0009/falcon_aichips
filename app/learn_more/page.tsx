@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, ReactNode,RefObject } from "react";
+import { useEffect, useRef, useState, ReactNode } from "react";
 
 /* ─── Types ─── */
 interface Section {
@@ -172,7 +172,7 @@ const TOPICS: Topic[] = [
       },
     ],
     keyTerms: ["OCR", "NFC Reading", "Liveness Detection", "Deepfake Detection", "Injection Attacks", "ICAO 9303"],
-    stats: [{ val: "650+", label: "Document types supported by Falcon" }, { val: "0.3s", label: "Average OCR extraction time" }, { val: "99.7%", label: "Forgery detection accuracy" }],
+    stats: [{ val: "650+", label: "Document types supported by Falcon" }, { val: "0.3s", label: "Avg. OCR extraction time" }, { val: "99.7%", label: "Forgery detection accuracy" }],
   },
   {
     id: "fraud-detection",
@@ -329,8 +329,9 @@ const TOPICS: Topic[] = [
 const CATEGORIES: string[] = ["All", ...Array.from(new Set(TOPICS.map(t => t.category)))];
 
 /* ─── Topic Card ─── */
+// FIXED: useInView returns an object, not an array
 function TopicCard({ topic, onClick, index }: TopicCardProps) {
-  const [ref, inView] = useInView(0.08);
+  const { ref, inView } = useInView(0.08); // ← FIXED: object destructuring
   const isAmber = topic.color === "amber";
   return (
     <div ref={ref} style={{ transitionDelay: `${(index % 3) * 80}ms` }}
@@ -408,7 +409,7 @@ function TopicModal({ topic, onClose }: TopicModalProps) {
           <div className="grid grid-cols-3 gap-3">
             {topic.stats.map((s, i) => (
               <div key={i} className="rounded-xl bg-zinc-50 border border-zinc-200 p-3 text-center">
-                <div className="text-xl font-black gs-light" style={{ fontFamily: "'Playfair Display',serif" }}>{s.val}</div>
+                <div className="text-xl font-black" style={{ fontFamily: "'Playfair Display',serif", background: "linear-gradient(90deg,#B8960C,#D4AF37,#8B6914,#D4AF37,#B8960C)", backgroundSize: "200% auto", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", animation: "shimmer 4s linear infinite" }}>{s.val}</div>
                 <div className="text-zinc-500 text-xs mt-0.5">{s.label}</div>
               </div>
             ))}
@@ -471,7 +472,7 @@ const FAQS: FAQ[] = [
 
 function FAQItem({ faq, index }: FAQItemProps) {
   const [open, setOpen] = useState<boolean>(false);
-  const [ref, inView] = useInView(0.1);
+  const { ref, inView } = useInView(0.1); // ← FIXED: object destructuring
   return (
     <div ref={ref} style={{ transitionDelay: `${index * 60}ms` }}
       className={`transition-all duration-600 ease-out border-b border-zinc-100 last:border-0 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
@@ -546,23 +547,43 @@ export default function LearnMorePage() {
         .gs-dark {
           background:linear-gradient(90deg,#D4AF37,#F5E17B,#D4AF37,#B8960C,#D4AF37);
           background-size:200% auto;
-          -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-          background-clip:text;animation:shimmer 4s linear infinite;
+          -webkit-background-clip:text;
+          -webkit-text-fill-color:transparent;
+          background-clip:text;
+          animation:shimmer 4s linear infinite;
         }
         .gs-light {
           background:linear-gradient(90deg,#B8960C,#D4AF37,#8B6914,#D4AF37,#B8960C);
           background-size:200% auto;
-          -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-          background-clip:text;animation:shimmer 4s linear infinite;
+          -webkit-background-clip:text;
+          -webkit-text-fill-color:transparent;
+          background-clip:text;
+          animation:shimmer 4s linear infinite;
         }
 
-        .gold-btn { background:linear-gradient(135deg,#D4AF37,#B8960C); color:#000; font-weight:700; transition:all .3s cubic-bezier(.23,1,.32,1); }
-        .gold-btn:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(212,175,55,.45); }
+        .gold-btn { 
+          background:linear-gradient(135deg,#D4AF37,#B8960C); 
+          color:#000; 
+          font-weight:700; 
+          transition:all .3s cubic-bezier(.23,1,.32,1); 
+        }
+        .gold-btn:hover { 
+          transform:translateY(-2px); 
+          box-shadow:0 8px 30px rgba(212,175,55,.45); 
+        }
 
-        .topic-card { transition:all .4s cubic-bezier(.23,1,.32,1); }
-        .topic-card:hover { transform:translateY(-4px); box-shadow:0 20px 60px rgba(212,175,55,.12); }
+        .topic-card { 
+          transition:all .4s cubic-bezier(.23,1,.32,1); 
+        }
+        .topic-card:hover { 
+          transform:translateY(-4px); 
+          box-shadow:0 20px 60px rgba(212,175,55,.12); 
+        }
 
-        .tab-active { background:linear-gradient(135deg,#D4AF37,#B8960C); color:#000; }
+        .tab-active { 
+          background:linear-gradient(135deg,#D4AF37,#B8960C); 
+          color:#000; 
+        }
 
         .grid-dots {
           background-image: radial-gradient(rgba(212,175,55,.12) 1px, transparent 1px);
@@ -570,10 +591,19 @@ export default function LearnMorePage() {
         }
 
         .line-clamp-3 {
-          display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+          display:-webkit-box;
+          -webkit-line-clamp:3;
+          -webkit-box-orient:vertical;
+          overflow:hidden;
         }
-        .filter-chip { transition:all .25s cubic-bezier(.23,1,.32,1); }
-        .filter-chip.active { background:linear-gradient(135deg,#D4AF37,#B8960C);color:#000;box-shadow:0 0 16px rgba(212,175,55,.35); }
+        .filter-chip { 
+          transition:all .25s cubic-bezier(.23,1,.32,1); 
+        }
+        .filter-chip.active { 
+          background:linear-gradient(135deg,#D4AF37,#B8960C);
+          color:#000;
+          box-shadow:0 0 16px rgba(212,175,55,.35); 
+        }
       `}</style>
 
       {/* ── ambient orbs ── */}

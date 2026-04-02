@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import React, { useEffect, useRef, useState, ReactNode, CSSProperties, ChangeEvent, FocusEvent ,JSX} from "react";
 
 
@@ -377,134 +377,6 @@ function ScheduleDemo() {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   SECTION 2 — OFFICE LOCATIONS MAP
-═══════════════════════════════════════════════════════════════════ */
-const OFFICES: Office[] = [
-  { city: "London", x: "48%", y: "30%", main: true },
-  { city: "New York", x: "24%", y: "36%", main: false },
-  { city: "Singapore", x: "76%", y: "58%", main: false },
-  { city: "Sydney", x: "82%", y: "75%", main: false },
-  { city: "Dubai", x: "62%", y: "44%", main: false },
-  { city: "Toronto", x: "20%", y: "28%", main: false },
-];
-
-function OfficeMap() {
-  const [activeCity, setActiveCity] = useState<string>("London");
-
-  return (
-    <section className="py-16 sm:py-24 relative overflow-hidden"
-      style={{ background: "linear-gradient(160deg,#050200 0%,#0d0800 30%,#1a1000 60%,#3d2900 85%,#7a5500 100%)" }}>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <Reveal className="text-center mb-12">
-          <Pill>Global Presence</Pill>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4" style={{ fontFamily: "'Georgia',serif" }}>
-            Visit us <span style={{ color: "#c9940a" }}>anywhere</span>
-          </h2>
-        </Reveal>
-
-        {/* Map Container */}
-        <Reveal delay={0.2}>
-          <div className="relative rounded-3xl overflow-hidden" style={{ height: "clamp(300px, 50vw, 500px)", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(201,148,10,0.2)" }}>
-            
-            {/* World Map SVG Background */}
-            <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice">
-              <path 
-                d="M150,200 Q200,150 250,200 T350,200 T450,180 T550,220 T650,200 T750,180 T850,200" 
-                fill="none" 
-                stroke="rgba(201,148,10,0.3)" 
-                strokeWidth="1"
-              />
-              {/* Simplified world map paths */}
-              <ellipse cx="500" cy="250" rx="400" ry="200" fill="none" stroke="rgba(201,148,10,0.1)" strokeWidth="1" />
-            </svg>
-
-            {/* Office Markers */}
-            {OFFICES.map((office) => {
-              const isActive = activeCity === office.city;
-              return (
-                <button
-                  key={office.city}
-                  onClick={() => setActiveCity(office.city)}
-                  className="absolute transform -translate-x-1/2 -translate-y-1/2 group"
-                  style={{ left: office.x, top: office.y }}
-                >
-                  {/* Pulse ring animation */}
-                  <span className="absolute inset-0 rounded-full animate-ping opacity-75"
-                    style={{ 
-                      background: isActive ? "rgba(201,148,10,0.5)" : "rgba(201,148,10,0.3)",
-                      width: office.main ? "40px" : "30px",
-                      height: office.main ? "40px" : "30px",
-                      left: office.main ? "-20px" : "-15px",
-                      top: office.main ? "-20px" : "-15px",
-                    }} 
-                  />
-                  
-                  {/* Main dot */}
-                  <span 
-                    className="relative block rounded-full transition-all duration-300"
-                    style={{
-                      width: office.main ? "16px" : "12px",
-                      height: office.main ? "16px" : "12px",
-                      background: isActive ? "linear-gradient(135deg,#c9940a,#f5d87a)" : "rgba(201,148,10,0.6)",
-                      boxShadow: isActive ? "0 0 20px rgba(201,148,10,0.8)" : "0 0 10px rgba(201,148,10,0.4)",
-                    }}
-                  />
-                  
-                  {/* Label */}
-                  <span 
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-xs font-bold whitespace-nowrap transition-colors duration-200"
-                    style={{ 
-                      color: isActive ? "#f5d87a" : "rgba(255,255,255,0.6)",
-                      fontFamily: "'Georgia',serif"
-                    }}
-                  >
-                    {office.city}
-                  </span>
-                </button>
-              );
-            })}
-
-            {/* Active City Info Card */}
-            <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 p-4 sm:p-5 rounded-2xl max-w-xs"
-              style={{ 
-                background: "rgba(0,0,0,0.6)", 
-                backdropFilter: "blur(12px)",
-                border: "1px solid rgba(201,148,10,0.3)"
-              }}>
-              <div className="text-xs text-yellow-400 uppercase tracking-widest mb-1" style={{ fontFamily: "'Georgia',serif" }}>Headquarters</div>
-              <div className="text-lg font-black text-white mb-1" style={{ fontFamily: "'Georgia',serif" }}>{activeCity}</div>
-              <div className="text-xs text-white/50">Global identity intelligence hub</div>
-            </div>
-          </div>
-        </Reveal>
-
-        {/* Office List */}
-        <Reveal delay={0.3}>
-          <div className="flex flex-wrap justify-center gap-3 mt-8">
-            {OFFICES.map((office) => (
-              <button
-                key={office.city}
-                onClick={() => setActiveCity(office.city)}
-                className="px-4 py-2 rounded-full text-sm font-bold transition-all duration-200"
-                style={{
-                  background: activeCity === office.city ? "linear-gradient(135deg,#c9940a,#f5d87a)" : "rgba(255,255,255,0.05)",
-                  color: activeCity === office.city ? "#000" : "rgba(255,255,255,0.6)",
-                  border: activeCity === office.city ? "none" : "1px solid rgba(201,148,10,0.3)",
-                  fontFamily: "'Georgia',serif"
-                }}
-              >
-                {office.city}
-                {office.main && <span className="ml-2 text-xs opacity-60">HQ</span>}
-              </button>
-            ))}
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
 
 /* ═══════════════════════════════════════════════════════════════════
    SECTION 3 — CLIENT SUCCESS STORIES CAROUSEL
@@ -820,17 +692,15 @@ function BottomCTA() {
             Join 20,000+ businesses using Falcon to verify identities, prevent fraud, and stay compliant — all in real time.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <GoldBtn>Schedule a Demo</GoldBtn>
-            <button 
-              className="px-6 py-3 rounded-xl text-sm font-bold text-white border border-white/20 hover:border-white/40 transition-colors"
-              style={{ fontFamily: "'Georgia',serif" }}
-            >
-              Contact Sales →
-            </button>
+            <Link href="/see_action"><GoldBtn>Explore Falcon</GoldBtn></Link >
+            
           </div>
         </Reveal>
       </div>
+      
     </section>
+    
+    
   );
 }
 
@@ -870,7 +740,7 @@ export default function DemoPage(): JSX.Element {
       `}</style>
 
       <ScheduleDemo />
-      <OfficeMap />
+      
       <ClientSuccessStories />
       <FAQSection />
       <BottomCTA />

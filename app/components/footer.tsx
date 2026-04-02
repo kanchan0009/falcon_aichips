@@ -18,30 +18,18 @@ const footerDataLeft: Array<{ heading: string; links: string[] }> = [
       "Identity fraud",
       "Know your customer",
       "Know your business",
-      "Falcon Trust",
-      "Roadmap",
     ],
   },
   {
     heading: "Platform",
-    links: ["Falcon Go"],
+    links: ["Falcon "],
   },
 ];
 
 const footerDataSolutions: Array<{ heading: string; links: string[] }> = [
   {
     heading: "Solutions",
-    links: [
-      "Financial services",
-      "Retail",
-      "Gaming",
-      "Events",
-      "Crypto & FX",
-      "Pensions",
-      "Public sector",
-      "Insurance",
-      "Marketplace",
-    ],
+    links: ["Financial services", "Retail", "Gaming", "Insurance"],
   },
 ];
 
@@ -53,22 +41,8 @@ const footerDataResources: Array<{ heading: string; links: LinkItem[] }> = [
       { label: "Blog" },
       { label: "Events" },
       { label: "News" },
-      { label: "Falcon Trust Centre", external: true },
       { label: "Our customers" },
       { label: "AI at Falcon" },
-    ],
-  },
-];
-
-const footerDataLegal: Array<{ heading: string; links: LinkItem[] }> = [
-  {
-    heading: "Legal",
-    links: [
-      { label: "Legal and regulatory centre", external: true },
-      { label: "Privacy policy" },
-      { label: "Products and services privacy policy" },
-      { label: "Cookie policy" },
-      { label: "Accessibility" },
     ],
   },
 ];
@@ -80,9 +54,6 @@ const footerDataCompany: Array<{ heading: string; links: LinkItem[] }> = [
       { label: "Investors", external: true },
       { label: "Careers", external: true },
       { label: "About us", external: true },
-      { label: "Partners" },
-      { label: "ESG", external: true },
-      { label: "Loqate.com", external: true },
     ],
   },
   {
@@ -289,9 +260,6 @@ export default function Footer() {
 
             {/* Column 3: Resources */}
             <FooterColumn sections={footerDataResources} />
-
-            {/* Column 4: Legal */}
-            <FooterColumn sections={footerDataLegal} />
 
             {/* Column 5: Company + Contact us */}
             <FooterColumn sections={footerDataCompany} />

@@ -441,11 +441,9 @@ export default function HomePage() {
               <Reveal delay={0.3}>
                 <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
                   <Link href="/demo">
-                    <GoldBtn>Get a demo</GoldBtn>
+                    <GoldBtn>Get a demo </GoldBtn>
                   </Link>
-                  <Link href="/learn_more">
-                    <OutlineBtn>Learn more</OutlineBtn>
-                  </Link>
+                  
                   
                 </div>
               </Reveal>

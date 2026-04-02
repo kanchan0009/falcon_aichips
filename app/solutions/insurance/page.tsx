@@ -659,7 +659,7 @@ function FraudulentClaimsSection() {
                 Falcon gives you the power to link claims to real identities and
                 automatically flag suspicious patterns before they escalate.
               </p>
-              <GoldBtn>Learn more</GoldBtn>
+              
             </Reveal>
           </div>
 
@@ -878,7 +878,7 @@ function StopFraudSection() {
                 genuine customers — all without adding unnecessary friction.
               </p>
               <div className="flex justify-center lg:justify-start">
-                <GoldBtn>Explore solution</GoldBtn>
+                
               </div>
             </Reveal>
           </div>
@@ -918,7 +918,7 @@ function InvestigateClaimsSection() {
                 outcomes for genuine customers — all backed by comprehensive
                 audit trails.
               </p>
-              <GoldBtn>Learn more</GoldBtn>
+              
             </Reveal>
           </div>
 
@@ -1328,9 +1328,7 @@ function ConnectSafelySection() {
                       </li>
                     ))}
                   </ul>
-                  <GoldBtn full sm>
-                    Learn more →
-                  </GoldBtn>
+                  
                 </div>
               </div>
             </Reveal>

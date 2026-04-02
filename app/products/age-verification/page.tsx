@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -264,7 +264,12 @@ function CheckItem({ children, gold = false }: CheckItemProps) {
    SECTION 1 — HERO: FAST AND SECURE AGE CERTAINTY
 ═══════════════════════════════════════════════════════════════════ */
 function HeroSection() {
-  const words: string[] = ["certainty", "protection", "compliance", "confidence"];
+  const words: string[] = [
+    "certainty",
+    "protection",
+    "compliance",
+    "confidence",
+  ];
   const [wordIdx, setWordIdx] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [deleting, setDeleting] = useState(false);
@@ -391,12 +396,16 @@ function HeroSection() {
             </Reveal>
             <Reveal delay={0.16}>
               <p className="text-black/55 text-base sm:text-lg leading-relaxed mb-8 max-w-md">
-                Prevent underage access to age-restricted content, services, products and venues, ensuring minors and your business are fully protected.
+                Prevent underage access to age-restricted content, services,
+                products and venues, ensuring minors and your business are fully
+                protected.
               </p>
             </Reveal>
             <Reveal delay={0.24}>
               <div className="flex flex-wrap gap-3">
-                <GoldBtn>Get a demo</GoldBtn>
+                <Link href="/demo">
+                  <GoldBtn>Get a demo</GoldBtn>
+                </Link>
                 <GoldBtn outline>Learn more →</GoldBtn>
               </div>
             </Reveal>
@@ -487,7 +496,9 @@ function HeroSection() {
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-xs text-black/50">Age: 25+ Verified</span>
+                  <span className="text-xs text-black/50">
+                    Age: 25+ Verified
+                  </span>
                 </div>
               </UICard>
 
@@ -636,21 +647,22 @@ function HeroSection() {
                   className="text-yellow-400 text-xs font-bold uppercase tracking-wider"
                   style={{ fontFamily: "'Georgia',serif" }}
                 >
-                  Falcon 
+                  Falcon
                 </span>
               </div>
               <p
                 className="text-white font-bold text-sm sm:text-base"
                 style={{ fontFamily: "'Georgia',serif" }}
               >
-                The all-in-one identity platform for fast, easy, and safe business growth.
+                The all-in-one identity platform for fast, easy, and safe
+                business growth.
               </p>
               <p className="text-white/45 text-xs mt-1">
                 Verify genuine customers everywhere with 80+ checks and one API.
               </p>
             </div>
             <div className="flex-shrink-0">
-              <GoldBtn sm>Explore Falcon  →</GoldBtn>
+              <GoldBtn sm>Explore Falcon →</GoldBtn>
             </div>
           </div>
         </Reveal>
@@ -725,7 +737,8 @@ function GlobalCoverageSection() {
             Complete business onboarding faster
           </h2>
           <p className="text-black/50 text-sm max-w-lg mx-auto leading-relaxed">
-            Reduced time to revenue around the world with comprehensive identity intelligence.
+            Reduced time to revenue around the world with comprehensive identity
+            intelligence.
           </p>
         </Reveal>
 
@@ -802,7 +815,9 @@ function TestimonialBanner() {
             className="text-white/80 text-base sm:text-xl lg:text-2xl italic leading-relaxed mb-8 font-bold"
             style={{ fontFamily: "'Georgia',serif" }}
           >
-            We achieved a 30% uplift in successful age verifications and preventing underage sign-ups, while allowing GGPoker to let more legitimate customers start playing.
+            We achieved a 30% uplift in successful age verifications and
+            preventing underage sign-ups, while allowing GGPoker to let more
+            legitimate customers start playing.
           </p>
           <div className="flex items-center justify-center gap-4">
             <div
@@ -856,7 +871,8 @@ function ConnectSafelySection() {
 
   const tabContent: TabContent[] = [
     {
-      headline: "Accelerate safe customer-centric growth with worldwide identity intelligence",
+      headline:
+        "Accelerate safe customer-centric growth with worldwide identity intelligence",
       desc: "Falcon Go is the all-in-one identity platform for fast, easy, and safe business growth. Verify genuine customers everywhere with 80+ checks and one API.",
       features: [
         "Complete customer compliance and conversion",
@@ -953,7 +969,8 @@ function ConnectSafelySection() {
       ),
     },
     {
-      headline: "Authenticate government-issued IDs online or in-person with 50+ forensic tests",
+      headline:
+        "Authenticate government-issued IDs online or in-person with 50+ forensic tests",
       desc: "Tech-first document authentication using FaceMatch technology, active and passive liveness checks, and Smart Capture technology to validate over 4,000 different forms of identification.",
       features: [
         "50+ forensic document tests in seconds",
@@ -1049,7 +1066,8 @@ function ConnectSafelySection() {
             Prevent fake IDs & underage access
           </h2>
           <p className="text-black/50 text-sm max-w-lg mx-auto">
-            Transact with confidence while delivering a verification experience that is fast, easy and hassle-free.
+            Transact with confidence while delivering a verification experience
+            that is fast, easy and hassle-free.
           </p>
         </Reveal>
 

@@ -432,7 +432,8 @@ function HeroSection() {
               <div
                 className="absolute inset-0 rounded-3xl overflow-hidden"
                 style={{
-                  backgroundImage:'url("https://i.pinimg.com/736x/18/a8/83/18a88374b6fd595f4b5ed69669b5c235.jpg")',
+                  backgroundImage:
+                    'url("https://i.pinimg.com/736x/18/a8/83/18a88374b6fd595f4b5ed69669b5c235.jpg")',
                   background: "linear-gradient(135deg,#1a1000,#3d2900,#7a5500)",
                   border: "1px solid rgba(201,148,10,0.2)",
                 }}
@@ -453,7 +454,6 @@ function HeroSection() {
               </div>
 
               {/* Video call UI card */}
-              
 
               {/* Scan progress card */}
               <GlassCard className="absolute bottom-6 left-5 w-52">
@@ -509,94 +509,6 @@ function HeroSection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SECTION 2 — TESTIMONIAL + LOGOS STRIP
-═══════════════════════════════════════════════════════════════════ */
-function TestimonialStrip() {
-  const testimonials: TestimonialProps[] = [
-    {
-      quote:
-        "Using Falcon's data and solutions, we identified significant improvements in identifying and blocking fraudulent onboarding, substantially reducing our fraud risk by almost 50% this year.",
-      author: "Read full story",
-      role: "",
-      logo: "Nike",
-    },
-    {
-      quote:
-        "We are able to detect and stop scam attempts at checkout in real time, protecting our customers without adding any friction to genuine transactions.",
-      author: "See case study",
-      role: "",
-      logo: "Spotify",
-    },
-  ];
-
-  const logos = ["VISA", "Nike", "Spotify", "IBM", "Mastercard", "HSBC"];
-
-  return (
-    <section className="py-14 sm:py-20 bg-white border-y border-black/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 mb-12">
-          {testimonials.map((t, i) => (
-            <Reveal key={t.logo || i} delay={i * 0.12}>
-              <div
-                className="p-7 rounded-2xl h-full"
-                style={{
-                  background: "#f8f8f8",
-                  border: "1px solid rgba(0,0,0,0.07)",
-                }}
-              >
-                <div
-                  className="text-4xl font-black mb-4"
-                  style={{
-                    color: "rgba(201,148,10,0.3)",
-                    fontFamily: "'Georgia',serif",
-                  }}
-                >
-                  "
-                </div>
-                <p
-                  className="text-black/70 text-sm leading-relaxed italic mb-5"
-                  style={{ fontFamily: "'Georgia',serif" }}
-                >
-                  {t.quote}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span
-                    className="text-xs font-black text-yellow-600 cursor-pointer hover:text-yellow-500 transition-colors"
-                    style={{ fontFamily: "'Georgia',serif" }}
-                  >
-                    {t.author} →
-                  </span>
-                  <span
-                    className="font-black text-sm tracking-widest uppercase text-black/40"
-                    style={{ fontFamily: "'Georgia',serif" }}
-                  >
-                    {t.logo}
-                  </span>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-        {/* Logo strip */}
-        <Reveal>
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 opacity-30">
-            {logos.map((l) => (
-              <span
-                key={l}
-                className="font-black text-sm sm:text-base tracking-widest uppercase text-black"
-                style={{ fontFamily: "'Georgia',serif" }}
-              >
-                {l}
-              </span>
-            ))}
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════════
    SECTION 3 — REDUCE REFUND FRAUD
 ═══════════════════════════════════════════════════════════════════ */
 function RefundFraudSection() {
@@ -631,7 +543,6 @@ function RefundFraudSection() {
                 Falcon gives you the power to link returns to real identities
                 and automatically flag suspicious patterns before they escalate.
               </p>
-              <GoldBtn>Learn more</GoldBtn>
             </Reveal>
           </div>
 
@@ -844,9 +755,7 @@ function CheckoutIdentitySection() {
                 Reduce chargebacks, stop account takeovers and protect genuine
                 customers — all without adding unnecessary friction.
               </p>
-              <div className="flex justify-center lg:justify-start">
-                <GoldBtn>Explore solution</GoldBtn>
-              </div>
+              <div className="flex justify-center lg:justify-start"></div>
             </Reveal>
           </div>
         </div>
@@ -883,7 +792,6 @@ function ReconnectSection() {
                 Maintain data hygiene, improve deliverability and ensure
                 compliance with data privacy regulations at the same time.
               </p>
-              <GoldBtn>Learn more</GoldBtn>
             </Reveal>
           </div>
 
@@ -1295,9 +1203,6 @@ function ConnectSafelySection() {
                       </li>
                     ))}
                   </ul>
-                  <GoldBtn full sm>
-                    Learn more →
-                  </GoldBtn>
                 </div>
               </div>
             </Reveal>
@@ -1898,7 +1803,7 @@ export default function RetailPage() {
       `}</style>
 
       <HeroSection />
-      <TestimonialStrip />
+
       <RefundFraudSection />
       <CheckoutIdentitySection />
       <ReconnectSection />
