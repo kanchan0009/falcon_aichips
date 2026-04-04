@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import React, { useEffect, useRef, useState } from "react";
 
@@ -374,10 +375,12 @@ function HeroSection() {
               </p>
             </Reveal>
             <Reveal delay={0.24}>
+              <Link href="/demo">
               <div className="flex flex-wrap gap-3">
                 <GoldBtn>Get started</GoldBtn>
-                <GoldBtn outline>Talk to sales →</GoldBtn>
+                
               </div>
+              </Link>
             </Reveal>
 
             {/* Feature bullet list */}
@@ -648,7 +651,7 @@ function KYCAutomationSection() {
               <CheckItem>Ongoing monitoring and risk assessment</CheckItem>
               <CheckItem>Audit trails and compliance reporting</CheckItem>
             </ul>
-            <GoldBtn>Explore compliance solutions →</GoldBtn>
+            
           </Reveal>
 
           {/* RIGHT - Global Map UI */}
@@ -956,7 +959,7 @@ function FalconGoSection() {
               className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-3 mb-5 leading-tight"
               style={{ fontFamily: "'Georgia',serif" }}
             >
-              Falcon Go
+              Falcon 
             </h2>
             <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-6 max-w-lg">
               Get started in hours, not weeks. Falcon Go is our no-code solution
@@ -970,8 +973,8 @@ function FalconGoSection() {
               <CheckItem gold>Pay-per-verification pricing</CheckItem>
             </ul>
             <div className="flex gap-3">
-              <GoldBtn>Start free trial</GoldBtn>
-              <GoldBtn outline>View pricing</GoldBtn>
+              
+              
             </div>
           </Reveal>
 
@@ -1205,7 +1208,7 @@ function FalconGoSection() {
               <CheckItem gold>Deepfake and spoofing prevention</CheckItem>
               <CheckItem gold>Cross-device biometric matching</CheckItem>
             </ul>
-            <GoldBtn outline>Learn about biometrics →</GoldBtn>
+            
           </Reveal>
         </div>
       </div>
@@ -1444,7 +1447,7 @@ function DocumentAuthSection() {
                   <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-6 max-w-md">
                     {feat.desc}
                   </p>
-                  <GoldBtn>Learn more</GoldBtn>
+                  
                 </Reveal>
               </div>
               {/* UI card */}
@@ -1501,7 +1504,7 @@ function HardwareBanner() {
               </div>
             </div>
             <div className="flex-shrink-0">
-              <GoldBtn sm>Explore hardware →</GoldBtn>
+              
             </div>
           </div>
         </Reveal>
@@ -1767,7 +1770,7 @@ function ConnectSafelySection() {
               className="text-xs font-black text-black"
               style={{ fontFamily: "'Georgia',serif" }}
             >
-              Falcon Go Dashboard
+              Falcon  Dashboard
             </span>
             <span
               className="text-xs px-2 py-0.5 rounded-full font-bold"
@@ -1969,7 +1972,7 @@ function ConnectSafelySection() {
                 <CheckItem key={f}>{f}</CheckItem>
               ))}
             </ul>
-            <GoldBtn>Get started</GoldBtn>
+            
           </Reveal>
 
           <Reveal delay={0.2} direction="left">

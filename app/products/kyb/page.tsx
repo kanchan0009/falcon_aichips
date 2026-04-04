@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -133,23 +133,6 @@ function Reveal({
   );
 }
 
-function useCounter(end: number, active: boolean): number {
-  const [val, setVal] = useState(0);
-  useEffect(() => {
-    if (!active) return;
-    let n = 0;
-    const step = Math.ceil(end / 70);
-    const t = setInterval(() => {
-      n += step;
-      if (n >= end) {
-        setVal(end);
-        clearInterval(t);
-      } else setVal(n);
-    }, 18);
-    return () => clearInterval(t);
-  }, [active, end]);
-  return val;
-}
 
 /* ═══════════════════════════════════════════════════════════════════
    ATOMS
@@ -355,24 +338,32 @@ function HeroSection() {
             </Reveal>
             <Reveal delay={0.16}>
               <p className="text-black/55 text-base sm:text-lg leading-relaxed mb-8 max-w-md">
-                Verify business entities with confidence. Our AI-powered KYB platform 
-                authenticates company documents, identifies ultimate beneficial owners, 
-                and screens against global watchlists to stop business fraud.
+                Verify business entities with confidence. Our AI-powered KYB
+                platform authenticates company documents, identifies ultimate
+                beneficial owners, and screens against global watchlists to stop
+                business fraud.
               </p>
             </Reveal>
             <Reveal delay={0.24}>
               <div className="flex flex-wrap gap-3">
-                <GoldBtn>Start KYB verification</GoldBtn>
-                <GoldBtn outline>Talk to compliance experts →</GoldBtn>
+                <Link href="/demo">
+                  <GoldBtn>Get demo→</GoldBtn>
+                </Link>
               </div>
             </Reveal>
 
             {/* Feature bullet list */}
             <Reveal delay={0.32}>
               <ul className="mt-8 space-y-3">
-                <CheckItem>Verify 150+ business document types globally</CheckItem>
-                <CheckItem>AI-powered fraud detection for shell companies</CheckItem>
-                <CheckItem>UBO identification and ownership structure mapping</CheckItem>
+                <CheckItem>
+                  Verify 150+ business document types globally
+                </CheckItem>
+                <CheckItem>
+                  AI-powered fraud detection for shell companies
+                </CheckItem>
+                <CheckItem>
+                  UBO identification and ownership structure mapping
+                </CheckItem>
                 <CheckItem>8-second average verification time</CheckItem>
                 <CheckItem>Real-time sanctions & PEP screening</CheckItem>
               </ul>
@@ -413,48 +404,35 @@ function HeroSection() {
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-green-400" />
-                    <span className="text-xs text-black/40">Verified Entity</span>
-                  </div>
-                </div>
-
-                {/* Business Document Preview */}
-                <div
-                  className="rounded-xl p-4 mb-4"
-                  style={{
-                    background: "linear-gradient(135deg,#1e3a5f,#2c4c6e)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                  }}
-                >
-                  <div className="flex items-start gap-3">
-                    <div
-                      className="w-16 h-16 rounded-lg bg-white/20 flex items-center justify-center text-3xl"
-                    >
-                      🏭
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-white/80 text-xs font-bold">BUSINESS REGISTRATION</span>
-                        <span className="px-1.5 py-0.5 rounded text-[10px] bg-green-400/20 text-green-300">
-                          VERIFIED
-                        </span>
-                      </div>
-                      <div className="text-white text-sm font-bold mb-1">Apex Technologies Ltd</div>
-                      <div className="text-white/70 text-xs mb-2">Registration #: 12456789</div>
-                      <div className="grid grid-cols-2 gap-2 text-[10px] text-white/60">
-                        <div>Jurisdiction: UK</div>
-                        <div>Incorporated: 2019</div>
-                      </div>
-                    </div>
+                    <span className="text-xs text-black/40">
+                      Verified Entity
+                    </span>
                   </div>
                 </div>
 
                 {/* Verification Steps */}
                 <div className="space-y-3">
                   {[
-                    { label: "Business registration verified", status: "complete", icon: "📄" },
-                    { label: "UBO identification", status: "complete", icon: "👥" },
-                    { label: "Sanctions screening", status: "complete", icon: "⚠️" },
-                    { label: "Ownership structure analysis", status: "complete", icon: "🔗" },
+                    {
+                      label: "Business registration verified",
+                      status: "complete",
+                      icon: "📄",
+                    },
+                    {
+                      label: "UBO identification",
+                      status: "complete",
+                      icon: "👥",
+                    },
+                    {
+                      label: "Sanctions screening",
+                      status: "complete",
+                      icon: "⚠️",
+                    },
+                    {
+                      label: "Ownership structure analysis",
+                      status: "complete",
+                      icon: "🔗",
+                    },
                   ].map((step, i) => (
                     <div key={step.label} className="flex items-center gap-3">
                       <div
@@ -468,8 +446,12 @@ function HeroSection() {
                       >
                         {step.status === "complete" ? "✓" : step.icon}
                       </div>
-                      <span className="text-sm text-black/70 flex-1">{step.label}</span>
-                      <span className="text-xs text-green-600 font-bold">Verified</span>
+                      <span className="text-sm text-black/70 flex-1">
+                        {step.label}
+                      </span>
+                      <span className="text-xs text-green-600 font-bold">
+                        Verified
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -487,8 +469,12 @@ function HeroSection() {
                       !
                     </div>
                     <div>
-                      <div className="text-xs font-bold text-black">Risk Score</div>
-                      <div className="text-xs text-black/50">Low risk • Approved</div>
+                      <div className="text-xs font-bold text-black">
+                        Risk Score
+                      </div>
+                      <div className="text-xs text-black/50">
+                        Low risk • Approved
+                      </div>
                     </div>
                   </div>
                   <div
@@ -510,7 +496,9 @@ function HeroSection() {
               >
                 <div className="flex items-center gap-2 mb-2">
                   <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                  <span className="text-xs text-black/60">Business Trust Score</span>
+                  <span className="text-xs text-black/60">
+                    Business Trust Score
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-black/40">Confidence</span>
@@ -593,9 +581,24 @@ function HeroSection() {
 ═══════════════════════════════════════════════════════════════════ */
 function BusinessFraudDetectionSection() {
   const fraudStats = [
-    { label: "Shell Companies Detected", value: "234K+", trend: "+12%", color: "#ef4444" },
-    { label: "Suspicious Ownership", value: "189K+", trend: "+8%", color: "#f97316" },
-    { label: "Fraud Prevention Rate", value: "99.3%", trend: "+2.4%", color: "#22c55e" },
+    {
+      label: "Shell Companies Detected",
+      value: "234K+",
+      trend: "+12%",
+      color: "#ef4444",
+    },
+    {
+      label: "Suspicious Ownership",
+      value: "189K+",
+      trend: "+8%",
+      color: "#f97316",
+    },
+    {
+      label: "Fraud Prevention Rate",
+      value: "99.3%",
+      trend: "+2.4%",
+      color: "#22c55e",
+    },
   ];
 
   return (
@@ -612,17 +615,24 @@ function BusinessFraudDetectionSection() {
               Detect and prevent sophisticated business fraud
             </h2>
             <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-6 max-w-lg">
-              Our AI-powered fraud detection engine identifies complex business fraud patterns, 
-              including shell companies, nominee directors, and synthetic business identities. 
-              Protect your organization from financial crime and regulatory penalties.
+              Our AI-powered fraud detection engine identifies complex business
+              fraud patterns, including shell companies, nominee directors, and
+              synthetic business identities. Protect your organization from
+              financial crime and regulatory penalties.
             </p>
             <ul className="space-y-3 mb-8">
-              <CheckItem>Shell company detection with ownership analysis</CheckItem>
-              <CheckItem>Nominee director and shadow director identification</CheckItem>
+              <CheckItem>
+                Shell company detection with ownership analysis
+              </CheckItem>
+              <CheckItem>
+                Nominee director and shadow director identification
+              </CheckItem>
               <CheckItem>Cross-border entity verification</CheckItem>
               <CheckItem>Fraud ring detection and pattern matching</CheckItem>
             </ul>
-            <GoldBtn>Explore fraud prevention →</GoldBtn>
+            <Link href="/products/fraud-detection ">
+              <GoldBtn>Explore fraud prevention →</GoldBtn>
+            </Link>
           </Reveal>
 
           {/* RIGHT - Fraud Detection Dashboard */}
@@ -642,9 +652,11 @@ function BusinessFraudDetectionSection() {
                   >
                     Fraud Detection Dashboard
                   </span>
-                  <span className="text-xs text-red-400 animate-pulse">● Live Monitoring</span>
+                  <span className="text-xs text-red-400 animate-pulse">
+                    ● Live Monitoring
+                  </span>
                 </div>
-                
+
                 {/* Fraud Metrics */}
                 <div className="space-y-3 mb-4">
                   {fraudStats.map((stat) => (
@@ -652,7 +664,9 @@ function BusinessFraudDetectionSection() {
                       <div className="flex justify-between text-xs mb-1">
                         <span className="text-white/60">{stat.label}</span>
                         <div className="flex gap-2">
-                          <span className="text-white font-bold">{stat.value}</span>
+                          <span className="text-white font-bold">
+                            {stat.value}
+                          </span>
                           <span className="text-red-400">{stat.trend}</span>
                         </div>
                       </div>
@@ -663,7 +677,10 @@ function BusinessFraudDetectionSection() {
                         <div
                           className="h-full rounded-full"
                           style={{
-                            width: stat.label === "Fraud Prevention Rate" ? "99%" : "65%",
+                            width:
+                              stat.label === "Fraud Prevention Rate"
+                                ? "99%"
+                                : "65%",
                             background: stat.color,
                           }}
                         />
@@ -674,29 +691,60 @@ function BusinessFraudDetectionSection() {
 
                 {/* Recent Alerts */}
                 <div className="space-y-2">
-                  <div className="text-xs text-white/40 mb-2">Recent Fraud Alerts</div>
+                  <div className="text-xs text-white/40 mb-2">
+                    Recent Fraud Alerts
+                  </div>
                   {[
-                    { type: "Shell Company", entity: "Global Trading LLC", risk: "High", time: "2m ago" },
-                    { type: "UBO Mismatch", entity: "Apex Holdings", risk: "Medium", time: "5m ago" },
-                    { type: "Sanctions Hit", entity: "Meridian Group", risk: "Critical", time: "12m ago" },
+                    {
+                      type: "Shell Company",
+                      entity: "Global Trading LLC",
+                      risk: "High",
+                      time: "2m ago",
+                    },
+                    {
+                      type: "UBO Mismatch",
+                      entity: "Apex Holdings",
+                      risk: "Medium",
+                      time: "5m ago",
+                    },
+                    {
+                      type: "Sanctions Hit",
+                      entity: "Meridian Group",
+                      risk: "Critical",
+                      time: "12m ago",
+                    },
                   ].map((alert) => (
                     <div
                       key={alert.entity}
                       className="flex items-center justify-between p-2 rounded-lg"
-                      style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.05)" }}
+                      style={{
+                        background: "rgba(0,0,0,0.3)",
+                        border: "1px solid rgba(255,255,255,0.05)",
+                      }}
                     >
                       <div className="flex items-center gap-2">
                         <div
                           className="w-2 h-2 rounded-full"
                           style={{
-                            background: alert.risk === "Critical" ? "#ef4444" : alert.risk === "High" ? "#f97316" : "#eab308",
+                            background:
+                              alert.risk === "Critical"
+                                ? "#ef4444"
+                                : alert.risk === "High"
+                                  ? "#f97316"
+                                  : "#eab308",
                           }}
                         />
-                        <span className="text-xs text-white/80">{alert.type}</span>
+                        <span className="text-xs text-white/80">
+                          {alert.type}
+                        </span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="text-xs text-white/60">{alert.entity}</span>
-                        <span className="text-xs text-red-400">{alert.risk}</span>
+                        <span className="text-xs text-white/60">
+                          {alert.entity}
+                        </span>
+                        <span className="text-xs text-red-400">
+                          {alert.risk}
+                        </span>
                       </div>
                     </div>
                   ))}
@@ -726,8 +774,9 @@ function UBOIdentificationSection() {
             Map ultimate beneficial owners and complex structures
           </h2>
           <p className="text-black/50 text-sm max-w-xl mx-auto leading-relaxed">
-            Uncover hidden ownership structures, identify beneficial owners, and understand
-            complex corporate hierarchies with automated ownership mapping.
+            Uncover hidden ownership structures, identify beneficial owners, and
+            understand complex corporate hierarchies with automated ownership
+            mapping.
           </p>
         </Reveal>
 
@@ -743,7 +792,7 @@ function UBOIdentificationSection() {
                   Ownership Structure Map
                 </span>
               </div>
-              
+
               {/* Visual Org Chart */}
               <div className="relative min-h-[300px] flex items-center justify-center">
                 <div className="relative w-full">
@@ -758,13 +807,34 @@ function UBOIdentificationSection() {
                     >
                       Apex Technologies Ltd
                     </div>
-                    <div className="text-xs text-black/40 mt-1">Parent Company</div>
+                    <div className="text-xs text-black/40 mt-1">
+                      Parent Company
+                    </div>
                   </div>
 
                   {/* Ownership Lines */}
-                  <svg className="absolute top-20 left-1/2 w-full h-32 -translate-x-1/2" style={{ zIndex: 0 }}>
-                    <line x1="50%" y1="0" x2="25%" y2="100%" stroke="#c9940a" strokeWidth="2" strokeDasharray="4,4" />
-                    <line x1="50%" y1="0" x2="75%" y2="100%" stroke="#c9940a" strokeWidth="2" strokeDasharray="4,4" />
+                  <svg
+                    className="absolute top-20 left-1/2 w-full h-32 -translate-x-1/2"
+                    style={{ zIndex: 0 }}
+                  >
+                    <line
+                      x1="50%"
+                      y1="0"
+                      x2="25%"
+                      y2="100%"
+                      stroke="#c9940a"
+                      strokeWidth="2"
+                      strokeDasharray="4,4"
+                    />
+                    <line
+                      x1="50%"
+                      y1="0"
+                      x2="75%"
+                      y2="100%"
+                      stroke="#c9940a"
+                      strokeWidth="2"
+                      strokeDasharray="4,4"
+                    />
                   </svg>
 
                   {/* Subsidiaries */}
@@ -776,8 +846,12 @@ function UBOIdentificationSection() {
                       >
                         Tech Solutions Inc
                       </div>
-                      <div className="text-[10px] text-black/40 mt-1">80% owned</div>
-                      <div className="text-[10px] text-black/30 mt-1">UBO: John Mitchell</div>
+                      <div className="text-[10px] text-black/40 mt-1">
+                        80% owned
+                      </div>
+                      <div className="text-[10px] text-black/30 mt-1">
+                        UBO: John Mitchell
+                      </div>
                     </div>
                     <div className="text-center">
                       <div
@@ -786,8 +860,12 @@ function UBOIdentificationSection() {
                       >
                         Digital Services Ltd
                       </div>
-                      <div className="text-[10px] text-black/40 mt-1">100% owned</div>
-                      <div className="text-[10px] text-black/30 mt-1">UBO: Sarah Chen</div>
+                      <div className="text-[10px] text-black/40 mt-1">
+                        100% owned
+                      </div>
+                      <div className="text-[10px] text-black/30 mt-1">
+                        UBO: Sarah Chen
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -817,12 +895,15 @@ function UBOIdentificationSection() {
                   Automated UBO identification
                 </h3>
                 <p className="text-black/55 text-sm leading-relaxed mb-4">
-                  Identify ultimate beneficial owners across complex corporate structures 
-                  using AI-powered ownership mapping. Our system analyzes corporate registries, 
-                  shareholder records, and public data to reveal true ownership.
+                  Identify ultimate beneficial owners across complex corporate
+                  structures using AI-powered ownership mapping. Our system
+                  analyzes corporate registries, shareholder records, and public
+                  data to reveal true ownership.
                 </p>
                 <ul className="space-y-2">
-                  <CheckItem>Ownership chain analysis up to 10 levels deep</CheckItem>
+                  <CheckItem>
+                    Ownership chain analysis up to 10 levels deep
+                  </CheckItem>
                   <CheckItem>Cross-jurisdictional ownership mapping</CheckItem>
                   <CheckItem>Shareholder registry integration</CheckItem>
                   <CheckItem>Automated UBO percentage calculation</CheckItem>
@@ -837,8 +918,9 @@ function UBOIdentificationSection() {
                   Risk-based ownership screening
                 </h3>
                 <p className="text-black/55 text-sm leading-relaxed mb-4">
-                  Automatically flag high-risk ownership structures, including opaque 
-                  offshore entities, nominee arrangements, and concentrated ownership patterns.
+                  Automatically flag high-risk ownership structures, including
+                  opaque offshore entities, nominee arrangements, and
+                  concentrated ownership patterns.
                 </p>
                 <ul className="space-y-2">
                   <CheckItem>Offshore entity risk scoring</CheckItem>
@@ -872,9 +954,10 @@ function GlobalVerificationSection() {
               Verify businesses across 150+ jurisdictions
             </h2>
             <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-6 max-w-lg">
-              Access real-time business registry data from over 150 countries. Our global network 
-              provides comprehensive business verification data including registration status, 
-              legal entity types, and corporate filings.
+              Access real-time business registry data from over 150 countries.
+              Our global network provides comprehensive business verification
+              data including registration status, legal entity types, and
+              corporate filings.
             </p>
             <ul className="space-y-3 mb-8">
               <CheckItem gold>150+ business registries integrated</CheckItem>
@@ -882,10 +965,7 @@ function GlobalVerificationSection() {
               <CheckItem gold>Cross-border entity matching</CheckItem>
               <CheckItem gold>Multi-language document processing</CheckItem>
             </ul>
-            <div className="flex gap-3">
-              <GoldBtn>Explore global coverage</GoldBtn>
-              <GoldBtn outline>View jurisdictions →</GoldBtn>
-            </div>
+            <div className="flex gap-3"></div>
           </Reveal>
 
           {/* RIGHT - Global Map UI */}
@@ -903,7 +983,10 @@ function GlobalVerificationSection() {
                 </span>
                 <span
                   className="text-xs px-2 py-0.5 rounded-full font-bold"
-                  style={{ background: "rgba(34,197,94,0.1)", color: "#16a34a" }}
+                  style={{
+                    background: "rgba(34,197,94,0.1)",
+                    color: "#16a34a",
+                  }}
                 >
                   150+ Countries
                 </span>
@@ -912,20 +995,50 @@ function GlobalVerificationSection() {
               {/* World Map Stats */}
               <div className="space-y-3 mb-4">
                 {[
-                  { region: "North America", count: "87M+", entities: "Business entities", color: "#c9940a" },
-                  { region: "Europe", count: "124M+", entities: "Companies", color: "#f5d87a" },
-                  { region: "Asia-Pacific", count: "156M+", entities: "Business registrations", color: "#c9940a" },
-                  { region: "Middle East & Africa", count: "43M+", entities: "Active entities", color: "#f5d87a" },
+                  {
+                    region: "North America",
+                    count: "87M+",
+                    entities: "Business entities",
+                    color: "#c9940a",
+                  },
+                  {
+                    region: "Europe",
+                    count: "124M+",
+                    entities: "Companies",
+                    color: "#f5d87a",
+                  },
+                  {
+                    region: "Asia-Pacific",
+                    count: "156M+",
+                    entities: "Business registrations",
+                    color: "#c9940a",
+                  },
+                  {
+                    region: "Middle East & Africa",
+                    count: "43M+",
+                    entities: "Active entities",
+                    color: "#f5d87a",
+                  },
                 ].map((region) => (
-                  <div key={region.region} className="flex items-center justify-between p-2 rounded-lg bg-gray-50">
+                  <div
+                    key={region.region}
+                    className="flex items-center justify-between p-2 rounded-lg bg-gray-50"
+                  >
                     <div>
-                      <div className="text-xs font-bold text-black">{region.region}</div>
-                      <div className="text-[10px] text-black/40">{region.entities}</div>
+                      <div className="text-xs font-bold text-black">
+                        {region.region}
+                      </div>
+                      <div className="text-[10px] text-black/40">
+                        {region.entities}
+                      </div>
                     </div>
                     <div className="text-right">
                       <div
                         className="text-sm font-black"
-                        style={{ color: region.color, fontFamily: "'Georgia',serif" }}
+                        style={{
+                          color: region.color,
+                          fontFamily: "'Georgia',serif",
+                        }}
                       >
                         {region.count}
                       </div>
@@ -936,9 +1049,17 @@ function GlobalVerificationSection() {
 
               {/* Top Sources */}
               <div className="pt-3 border-t border-black/10">
-                <div className="text-xs text-black/40 mb-2">Top Registry Sources</div>
+                <div className="text-xs text-black/40 mb-2">
+                  Top Registry Sources
+                </div>
                 <div className="flex flex-wrap gap-2">
-                  {["Companies House (UK)", "SEC (US)", "ASIC (AU)", "HKMA (HK)", "ACRA (SG)"].map((source) => (
+                  {[
+                    "Companies House (UK)",
+                    "SEC (US)",
+                    "ASIC (AU)",
+                    "HKMA (HK)",
+                    "ACRA (SG)",
+                  ].map((source) => (
                     <span
                       key={source}
                       className="text-[10px] px-2 py-1 rounded-full bg-gray-100 text-black/60"
@@ -972,8 +1093,16 @@ function GlobalVerificationSection() {
               {/* Document Types */}
               <div className="space-y-3 mb-4">
                 {[
-                  { doc: "Certificate of Incorporation", status: "Verified", icon: "📜" },
-                  { doc: "Articles of Association", status: "Verified", icon: "📑" },
+                  {
+                    doc: "Certificate of Incorporation",
+                    status: "Verified",
+                    icon: "📜",
+                  },
+                  {
+                    doc: "Articles of Association",
+                    status: "Verified",
+                    icon: "📑",
+                  },
                   { doc: "Business License", status: "Verified", icon: "📋" },
                   { doc: "Tax Registration", status: "Pending", icon: "🏷️" },
                 ].map((doc) => (
@@ -987,7 +1116,9 @@ function GlobalVerificationSection() {
                     </div>
                     <span
                       className={`text-xs font-bold ${
-                        doc.status === "Verified" ? "text-green-600" : "text-yellow-600"
+                        doc.status === "Verified"
+                          ? "text-green-600"
+                          : "text-yellow-600"
                       }`}
                     >
                       {doc.status}
@@ -998,16 +1129,23 @@ function GlobalVerificationSection() {
 
               {/* Authentication Checks */}
               <div className="space-y-2">
-                <div className="text-xs text-black/40 mb-1">Security Features</div>
+                <div className="text-xs text-black/40 mb-1">
+                  Security Features
+                </div>
                 {[
                   { check: "Official seal verification", passed: true },
                   { check: "Digital signature authenticity", passed: true },
                   { check: "Registry cross-reference", passed: true },
                   { check: "Issue date validation", passed: true },
                 ].map((check) => (
-                  <div key={check.check} className="flex items-center justify-between">
+                  <div
+                    key={check.check}
+                    className="flex items-center justify-between"
+                  >
                     <span className="text-xs text-black/55">{check.check}</span>
-                    <span className="text-xs text-green-600 font-bold">✓ Pass</span>
+                    <span className="text-xs text-green-600 font-bold">
+                      ✓ Pass
+                    </span>
                   </div>
                 ))}
               </div>
@@ -1024,9 +1162,10 @@ function GlobalVerificationSection() {
               Authenticate business documents with forensic accuracy
             </h2>
             <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-6 max-w-lg">
-              Verify certificates of incorporation, articles of association, business licenses, 
-              and other corporate documents with forensic-level analysis. Our AI detects forgeries, 
-              alterations, and invalid documents in seconds.
+              Verify certificates of incorporation, articles of association,
+              business licenses, and other corporate documents with
+              forensic-level analysis. Our AI detects forgeries, alterations,
+              and invalid documents in seconds.
             </p>
             <ul className="space-y-3 mb-8">
               <CheckItem gold>150+ business document types supported</CheckItem>
@@ -1034,7 +1173,9 @@ function GlobalVerificationSection() {
               <CheckItem gold>Registry cross-verification</CheckItem>
               <CheckItem gold>Digital signature validation</CheckItem>
             </ul>
-            <GoldBtn outline>Learn about document authentication →</GoldBtn>
+            <Link href="/products/document-verification">
+              <GoldBtn outline>Learn about document authentication →</GoldBtn>
+            </Link>
           </Reveal>
         </div>
       </div>
@@ -1066,9 +1207,10 @@ function AMLComplianceSection() {
               Automated AML & sanctions screening for businesses
             </h2>
             <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-6">
-              Screen business entities, directors, and UBOs against global sanctions lists, 
-              PEP databases, and adverse media. Meet FATF recommendations and local AML 
-              requirements with automated compliance workflows.
+              Screen business entities, directors, and UBOs against global
+              sanctions lists, PEP databases, and adverse media. Meet FATF
+              recommendations and local AML requirements with automated
+              compliance workflows.
             </p>
             <ul className="space-y-3 mb-8">
               <CheckItem>Real-time sanctions screening</CheckItem>
@@ -1077,7 +1219,6 @@ function AMLComplianceSection() {
               <CheckItem>Automated risk scoring</CheckItem>
               <CheckItem>Audit-ready compliance reports</CheckItem>
             </ul>
-            <GoldBtn>View compliance solutions →</GoldBtn>
           </Reveal>
 
           {/* RIGHT - AML Dashboard */}
@@ -1099,7 +1240,7 @@ function AMLComplianceSection() {
                   </span>
                   <span className="text-xs text-green-400">● Compliant</span>
                 </div>
-                
+
                 {/* Stats Grid */}
                 <div className="grid grid-cols-3 gap-3 mb-4">
                   {amlStats.map((stat) => (
@@ -1114,18 +1255,37 @@ function AMLComplianceSection() {
                       >
                         {stat.count}
                       </div>
-                      <div className="text-[10px] text-white/40">{stat.name}</div>
+                      <div className="text-[10px] text-white/40">
+                        {stat.name}
+                      </div>
                     </div>
                   ))}
                 </div>
 
                 {/* Screening Results */}
                 <div className="space-y-2">
-                  <div className="text-xs text-white/40 mb-2">Recent Screening Results</div>
+                  <div className="text-xs text-white/40 mb-2">
+                    Recent Screening Results
+                  </div>
                   {[
-                    { entity: "Global Trade Ltd", risk: "Low", checks: "5/5", status: "Clear" },
-                    { entity: "Meridian Holdings", risk: "Medium", checks: "4/5", status: "Review" },
-                    { entity: "Eastern Capital", risk: "High", checks: "2/5", status: "Flagged" },
+                    {
+                      entity: "Global Trade Ltd",
+                      risk: "Low",
+                      checks: "5/5",
+                      status: "Clear",
+                    },
+                    {
+                      entity: "Meridian Holdings",
+                      risk: "Medium",
+                      checks: "4/5",
+                      status: "Review",
+                    },
+                    {
+                      entity: "Eastern Capital",
+                      risk: "High",
+                      checks: "2/5",
+                      status: "Flagged",
+                    },
                   ].map((result) => (
                     <div
                       key={result.entity}
@@ -1133,19 +1293,28 @@ function AMLComplianceSection() {
                       style={{ background: "rgba(0,0,0,0.3)" }}
                     >
                       <div>
-                        <div className="text-xs text-white/80">{result.entity}</div>
-                        <div className="text-[10px] text-white/40">Passed {result.checks}</div>
+                        <div className="text-xs text-white/80">
+                          {result.entity}
+                        </div>
+                        <div className="text-[10px] text-white/40">
+                          Passed {result.checks}
+                        </div>
                       </div>
                       <div className="text-right">
                         <div
                           className={`text-xs font-bold ${
-                            result.risk === "Low" ? "text-green-400" : 
-                            result.risk === "Medium" ? "text-yellow-400" : "text-red-400"
+                            result.risk === "Low"
+                              ? "text-green-400"
+                              : result.risk === "Medium"
+                                ? "text-yellow-400"
+                                : "text-red-400"
                           }`}
                         >
                           {result.risk} Risk
                         </div>
-                        <div className="text-[10px] text-white/40">{result.status}</div>
+                        <div className="text-[10px] text-white/40">
+                          {result.status}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -1164,12 +1333,36 @@ function AMLComplianceSection() {
 ═══════════════════════════════════════════════════════════════════ */
 function IndustrySolutionsSection() {
   const industries = [
-    { name: "Banking & Finance", icon: "🏦", desc: "Meet regulatory requirements for corporate banking, merchant services, and trade finance." },
-    { name: "Fintech & Payments", icon: "💳", desc: "Onboard business clients with automated KYB checks for payment processors and digital wallets." },
-    { name: "Crypto & Web3", icon: "₿", desc: "Verify corporate entities for exchange listings, wallet services, and DeFi platforms." },
-    { name: "Real Estate", icon: "🏠", desc: "Screen property investors, developers, and corporate buyers for AML compliance." },
-    { name: "Legal & Professional", icon: "⚖️", desc: "Verify client entities for legal firms, accounting practices, and consultancies." },
-    { name: "Insurance", icon: "🛡️", desc: "Screen corporate policyholders and prevent fraudulent business insurance claims." },
+    {
+      name: "Banking & Finance",
+      icon: "🏦",
+      desc: "Meet regulatory requirements for corporate banking, merchant services, and trade finance.",
+    },
+    {
+      name: "Fintech & Payments",
+      icon: "💳",
+      desc: "Onboard business clients with automated KYB checks for payment processors and digital wallets.",
+    },
+    {
+      name: "Crypto & Web3",
+      icon: "₿",
+      desc: "Verify corporate entities for exchange listings, wallet services, and DeFi platforms.",
+    },
+    {
+      name: "Real Estate",
+      icon: "🏠",
+      desc: "Screen property investors, developers, and corporate buyers for AML compliance.",
+    },
+    {
+      name: "Legal & Professional",
+      icon: "⚖️",
+      desc: "Verify client entities for legal firms, accounting practices, and consultancies.",
+    },
+    {
+      name: "Insurance",
+      icon: "🛡️",
+      desc: "Screen corporate policyholders and prevent fraudulent business insurance claims.",
+    },
   ];
 
   return (
@@ -1184,7 +1377,8 @@ function IndustrySolutionsSection() {
             KYB solutions for every industry
           </h2>
           <p className="text-black/50 text-sm max-w-xl mx-auto">
-            Tailored business verification solutions for high-compliance industries
+            Tailored business verification solutions for high-compliance
+            industries
           </p>
         </Reveal>
 
@@ -1205,210 +1399,14 @@ function IndustrySolutionsSection() {
                 >
                   {industry.name}
                 </h3>
-                <p className="text-black/50 text-xs leading-relaxed">{industry.desc}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   SECTION 7 — TRUST & SECURITY METRICS
-═══════════════════════════════════════════════════════════════════ */
-function TrustMetricsSection() {
-  const [ref, visible] = useReveal(0.2);
-  const n1 = useCounter(500, visible);
-  const n2 = useCounter(150, visible);
-  const n3 = useCounter(99.7, visible);
-  const n4 = useCounter(8, visible);
-
-  const trustPillars = [
-    {
-      icon: "🔒",
-      title: "Enterprise-grade security",
-      desc: "SOC 2 Type II certified with bank-level encryption and data protection standards.",
-    },
-    {
-      icon: "⚖️",
-      title: "Global compliance",
-      desc: "Fully compliant with FATF recommendations, EU AML directives, and local regulations.",
-    },
-    {
-      icon: "🤝",
-      title: "Expert support",
-      desc: "24/7 access to compliance specialists and forensic document examiners.",
-    },
-    {
-      icon: "📊",
-      title: "Audit trail",
-      desc: "Complete audit logs and compliance reporting for regulatory examinations.",
-    },
-  ];
-
-  return (
-    <section className="py-16 sm:py-24 bg-gray-50 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal className="text-center mb-12">
-          <GoldLabel>Trust & Security</GoldLabel>
-          <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-black text-black mt-2 mb-4"
-            style={{ fontFamily: "'Georgia',serif" }}
-          >
-            Trusted by leading financial institutions
-          </h2>
-          <p className="text-black/50 text-sm max-w-xl mx-auto">
-            Industry-leading accuracy and security for business verification
-          </p>
-        </Reveal>
-
-        {/* Stats row */}
-        <div
-          ref={ref}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-5 mb-14"
-        >
-          {[
-            { val: n1, suffix: "+", label: "Businesses Verified", sub: "Annually" },
-            { val: n2, suffix: "+", label: "Jurisdictions", sub: "Global coverage" },
-            { val: n3, suffix: "%", label: "Accuracy Rate", sub: "Industry-leading" },
-            { val: n4, suffix: "s", label: "Average Time", sub: "To verify" },
-          ].map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.1} direction="scale">
-              <div
-                className="p-6 rounded-2xl text-center transition-all duration-300"
-                style={{
-                  background: "linear-gradient(135deg,#000,#1a1000)",
-                  border: "1px solid rgba(201,148,10,0.25)",
-                }}
-              >
-                <div
-                  className="text-2xl sm:text-3xl font-black mb-1"
-                  style={{
-                    fontFamily: "'Georgia',serif",
-                    background: "linear-gradient(135deg,#c9940a,#f5d87a)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  {s.val}{s.suffix}
-                </div>
-                <div
-                  className="text-white font-bold text-xs mb-1"
-                  style={{ fontFamily: "'Georgia',serif" }}
-                >
-                  {s.label}
-                </div>
-                <div className="text-white/40 text-[10px]">{s.sub}</div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        {/* 4 trust pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {trustPillars.map((p, i) => (
-            <Reveal key={p.title} delay={0.08 * i}>
-              <div
-                className="group p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl h-full"
-                style={{
-                  background: "#fff",
-                  border: "1px solid rgba(0,0,0,0.07)",
-                }}
-              >
-                <div className="text-2xl mb-3">{p.icon}</div>
-                <h4
-                  className="font-black text-black text-sm mb-2 group-hover:text-yellow-700 transition-colors"
-                  style={{ fontFamily: "'Georgia',serif" }}
-                >
-                  {p.title}
-                </h4>
-                <p className="text-xs text-black/50 leading-relaxed">
-                  {p.desc}
+                <p className="text-black/50 text-xs leading-relaxed">
+                  {industry.desc}
                 </p>
               </div>
             </Reveal>
           ))}
         </div>
       </div>
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   SECTION 8 — TESTIMONIAL
-═══════════════════════════════════════════════════════════════════ */
-function TestimonialSection() {
-  return (
-    <section
-      className="py-14 sm:py-20 relative overflow-hidden"
-      style={{ background: "linear-gradient(135deg,#000,#1a1000,#3d2900)" }}
-    >
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg,transparent,#c9940a 30%,#f5d87a 50%,#c9940a 70%,transparent)",
-        }}
-      />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
-        <Reveal>
-          <div
-            className="text-5xl font-black mb-4"
-            style={{
-              color: "rgba(201,148,10,0.2)",
-              fontFamily: "'Georgia',serif",
-            }}
-          >
-            "
-          </div>
-          <p
-            className="text-white/80 text-base sm:text-xl lg:text-2xl italic leading-relaxed mb-8 font-bold"
-            style={{ fontFamily: "'Georgia',serif" }}
-          >
-            Falcon's KYB platform reduced our manual review time by 75% and helped us identify 
-            over $50M in potentially fraudulent business applications last year alone.
-          </p>
-          <div className="flex items-center justify-center gap-4">
-            <div
-              className="w-11 h-11 rounded-full flex items-center justify-center font-black text-sm"
-              style={{
-                background: "linear-gradient(135deg,#c9940a,#f5d87a)",
-                color: "#000",
-                fontFamily: "'Georgia',serif",
-              }}
-            >
-              MS
-            </div>
-            <div className="text-left">
-              <p
-                className="font-black text-white text-sm"
-                style={{ fontFamily: "'Georgia',serif" }}
-              >
-                Maria Santos
-              </p>
-              <p className="text-white/40 text-xs">
-                Head of AML Compliance, Global Bank Corporation
-              </p>
-            </div>
-            <div className="ml-4 hidden sm:flex gap-1">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-yellow-400">
-                  ★
-                </span>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-      </div>
-      <div
-        className="absolute bottom-0 left-0 right-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg,transparent,#c9940a 30%,#f5d87a 50%,#c9940a 70%,transparent)",
-        }}
-      />
     </section>
   );
 }
@@ -1485,7 +1483,8 @@ function FAQSection() {
                   <span
                     className="text-xl transition-transform duration-200"
                     style={{
-                      transform: openIndex === idx ? "rotate(45deg)" : "rotate(0)",
+                      transform:
+                        openIndex === idx ? "rotate(45deg)" : "rotate(0)",
                       color: "#c9940a",
                     }}
                   >
@@ -1497,7 +1496,9 @@ function FAQSection() {
                     openIndex === idx ? "pb-4 max-h-96" : "max-h-0"
                   }`}
                 >
-                  <p className="text-black/55 text-sm leading-relaxed">{item.a}</p>
+                  <p className="text-black/55 text-sm leading-relaxed">
+                    {item.a}
+                  </p>
                 </div>
               </div>
             </Reveal>
@@ -1511,8 +1512,6 @@ function FAQSection() {
     </section>
   );
 }
-
-
 
 /* ═══════════════════════════════════════════════════════════════════
    MAIN EXPORT COMPONENT
@@ -1544,10 +1543,7 @@ export default function KYBVerificationLanding() {
       <GlobalVerificationSection />
       <AMLComplianceSection />
       <IndustrySolutionsSection />
-      <TrustMetricsSection />
-      <TestimonialSection />
       <FAQSection />
-      
     </main>
   );
 }

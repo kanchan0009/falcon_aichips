@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -403,7 +403,6 @@ function HeroSection() {
             </Reveal>
             <Reveal delay={0.24}>
               <div className="flex flex-wrap gap-3">
-                <GoldBtn>Find out more</GoldBtn>
                 <GoldBtn outline>Watch demo →</GoldBtn>
               </div>
             </Reveal>
@@ -806,7 +805,7 @@ function DocumentAuthSection() {
                   <p className="text-black/55 text-sm sm:text-base leading-relaxed mb-6 max-w-md">
                     {feat.desc}
                   </p>
-                  <GoldBtn>Learn more</GoldBtn>
+                  
                 </Reveal>
               </div>
               {/* UI card */}
@@ -823,54 +822,7 @@ function DocumentAuthSection() {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   SECTION 3 — HARDWARE CTA BANNER
-═══════════════════════════════════════════════════════════════════ */
-function HardwareBanner() {
-  return (
-    <section className="py-8 sm:py-10 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal>
-          <div
-            className="rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5"
-            style={{
-              background: "linear-gradient(135deg,#000,#1a1000)",
-              border: "1px solid rgba(201,148,10,0.25)",
-            }}
-          >
-            <div className="flex items-center gap-5">
-              <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0"
-                style={{
-                  background: "rgba(201,148,10,0.12)",
-                  border: "1px solid rgba(201,148,10,0.25)",
-                }}
-              >
-                🖨️
-              </div>
-              <div>
-                <p
-                  className="text-white font-black text-base sm:text-lg mb-1"
-                  style={{ fontFamily: "'Georgia',serif" }}
-                >
-                  Looking for document authentication hardware?
-                </p>
-                <p className="text-white/45 text-xs leading-relaxed max-w-lg">
-                  Falcon offers a range of desktop and kiosk document readers
-                  for in-branch and in-store verification workflows — fully
-                  integrated with our software platform.
-                </p>
-              </div>
-            </div>
-            <div className="flex-shrink-0">
-              <GoldBtn sm>Explore hardware →</GoldBtn>
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
+
 
 /* ═══════════════════════════════════════════════════════════════════
    SECTION 4 — ESTABLISH TRUST IN REAL TIME
@@ -1110,7 +1062,7 @@ function TestimonialBanner() {
 ═══════════════════════════════════════════════════════════════════ */
 function ConnectSafelySection() {
   const [activeTab, setActiveTab] = useState(0);
-  const tabs: string[] = ["Falcon Go", "Falcon Trust Network"];
+  const tabs: string[] = ["Falcon ", "Falcon Trust Network"];
 
   const tabContent: TabContent[] = [
     {
@@ -1129,7 +1081,7 @@ function ConnectSafelySection() {
               className="text-xs font-black text-black"
               style={{ fontFamily: "'Georgia',serif" }}
             >
-              Falcon Go Dashboard
+              Falcon Dashboard
             </span>
             <span
               className="text-xs px-2 py-0.5 rounded-full font-bold"
@@ -1361,8 +1313,8 @@ function ConnectSafelySection() {
               ))}
             </ul>
             <div className="flex gap-3">
-              <GoldBtn>Learn more</GoldBtn>
-              <GoldBtn outline>See case study →</GoldBtn>
+              
+              
             </div>
           </Reveal>
 
@@ -1622,13 +1574,9 @@ function BottomCTA() {
               at global scale.
             </p>
             <div className="flex flex-wrap gap-3 mb-10">
-              <GoldBtn>Get a demo</GoldBtn>
-              <button
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white border border-white/15 hover:border-white/30 transition-colors"
-                style={{ fontFamily: "'Georgia',serif" }}
-              >
-                Start free trial →
-              </button>
+              <Link href="/demo" passHref>
+              <GoldBtn>Get a demo</GoldBtn></Link>
+              
             </div>
             <div className="flex flex-wrap gap-4 sm:gap-6 opacity-35">
               {["Aviva", "AXA", "HSBC", "Lloyds", "Barclays"].map((b) => (
@@ -1724,7 +1672,7 @@ export default function SecureIDPage() {
 
       <HeroSection />
       <DocumentAuthSection />
-      <HardwareBanner />
+     
       <EstablishTrustSection />
       <TestimonialBanner />
       <ConnectSafelySection />

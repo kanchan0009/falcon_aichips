@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import React, { useEffect, useRef, useState, useCallback } from "react";
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -19,12 +19,7 @@ interface FeatureCardProps {
   delay?: number;
 }
 
-interface TestimonialProps {
-  quote: string;
-  author: string;
-  role: string;
-  logo?: string;
-}
+
 
 interface ContactFormData {
   firstName: string;
@@ -416,7 +411,7 @@ function HeroSection() {
             </Reveal>
             <Reveal delay={0.2}>
               <div className="flex flex-wrap gap-3">
-                <GoldBtn>Find out more</GoldBtn>
+                <Link href="/learn_more"><GoldBtn>Find out more</GoldBtn></Link>
                 <GoldBtn outline>Watch demo →</GoldBtn>
               </div>
             </Reveal>
@@ -453,7 +448,7 @@ function HeroSection() {
                 />
               </div>
 
-              {/* Video call UI card */}
+              
 
               {/* Scan progress card */}
               <GlassCard className="absolute bottom-6 left-5 w-52">
